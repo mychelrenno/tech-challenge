@@ -1,6 +1,6 @@
 package com.fiap.tech_challenge.interfaces.controller;
 
-import com.fiap.tech_challenge.core.usecase.CreateUserTypeUseCase;
+import com.fiap.tech_challenge.core.usecase.usertype.CreateUserTypeUseCase;
 import com.fiap.tech_challenge.interfaces.dto.UserTypeDto;
 import com.fiap.tech_challenge.interfaces.mapper.UserTypeMapper;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,7 +21,5 @@ public class UserTypeController {
     @PostMapping
     public void create(@RequestBody UserTypeDto userTypeDto) {
         var userType = createUserTypeUseCase.execute(UserTypeMapper.convertDtoToEntity(userTypeDto));
-
-        System.out.println("mychelteste");
     }
 }

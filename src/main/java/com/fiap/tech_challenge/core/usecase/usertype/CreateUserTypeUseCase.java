@@ -1,10 +1,9 @@
-package com.fiap.tech_challenge.core.usecase;
+package com.fiap.tech_challenge.core.usecase.usertype;
 
-import com.fiap.tech_challenge.core.entity.UserType;
+import com.fiap.tech_challenge.core.domain.UserType;
 import com.fiap.tech_challenge.core.repository.UserTypeRepository;
 
 public class CreateUserTypeUseCase {
-
     private final UserTypeRepository userTypeRepository;
 
     public CreateUserTypeUseCase(UserTypeRepository userTypeRepository) {
@@ -12,7 +11,6 @@ public class CreateUserTypeUseCase {
     }
 
     public UserType execute(UserType userType) {
-        var _userType = userTypeRepository.save(userType);
-        return _userType;
+        return userTypeRepository.save(userType);
     }
 }

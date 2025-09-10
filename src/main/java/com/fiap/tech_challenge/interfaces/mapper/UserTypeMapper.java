@@ -1,9 +1,8 @@
 package com.fiap.tech_challenge.interfaces.mapper;
 
-import com.fiap.tech_challenge.core.entity.UserType;
+import com.fiap.tech_challenge.core.domain.UserType;
 import com.fiap.tech_challenge.infrastructure.entity.UserTypeJpa;
 import com.fiap.tech_challenge.interfaces.dto.UserTypeDto;
-import org.apache.catalina.User;
 
 public class UserTypeMapper {
 

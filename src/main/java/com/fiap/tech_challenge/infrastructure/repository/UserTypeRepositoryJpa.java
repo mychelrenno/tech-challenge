@@ -1,6 +1,6 @@
 package com.fiap.tech_challenge.infrastructure.repository;
 
-import com.fiap.tech_challenge.core.entity.UserType;
+import com.fiap.tech_challenge.core.domain.UserType;
 import com.fiap.tech_challenge.core.repository.UserTypeRepository;
 import com.fiap.tech_challenge.infrastructure.repository.jpa.SpringDataJpaUserType;
 import com.fiap.tech_challenge.interfaces.mapper.UserTypeMapper;
@@ -11,6 +11,10 @@ public class UserTypeRepositoryJpa implements UserTypeRepository {
 
     private final SpringDataJpaUserType springDataJpaUserType;
 
+    public UserTypeRepositoryJpa(SpringDataJpaUserType springDataJpaUserType) {
+        this.springDataJpaUserType = springDataJpaUserType;
+    }
+
     @Override
     public UserType save(UserType userType) {
         var userTypeJpa = UserTypeMapper.convertEntityToJpa(userType);
@@ -19,7 +23,4 @@ public class UserTypeRepositoryJpa implements UserTypeRepository {
         return _userType;
     }
 
-    public UserTypeRepositoryJpa(SpringDataJpaUserType springDataJpaUserType) {
-        this.springDataJpaUserType = springDataJpaUserType;
-    }
 }

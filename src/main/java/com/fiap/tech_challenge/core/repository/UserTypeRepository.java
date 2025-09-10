@@ -1,8 +1,7 @@
 package com.fiap.tech_challenge.core.repository;
 
-import com.fiap.tech_challenge.core.entity.UserType;
+import com.fiap.tech_challenge.core.domain.UserType;
 
 public interface UserTypeRepository {
-
-    public UserType save(UserType userType);
+    UserType save(UserType userType);
 }

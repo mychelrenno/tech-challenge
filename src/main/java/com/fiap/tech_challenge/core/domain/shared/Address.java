@@ -15,8 +15,20 @@ public class Address {
         if (postalCode == null || postalCode.isBlank()) {
             throw new IllegalArgumentException("Postal code cannot be empty.");
         }
-
         this.id = id;
+        this.postalCode = postalCode;
+        this.street = street;
+        this.additionalDetails = additionalDetails;
+        this.city = city;
+        this.country = country;
+    }
+
+    public Address(String postalCode,
+                   String street, String additionalDetails,
+                   String city, String country) {
+        if (postalCode == null || postalCode.isBlank()) {
+            throw new IllegalArgumentException("Postal code cannot be empty.");
+        }
         this.postalCode = postalCode;
         this.street = street;
         this.additionalDetails = additionalDetails;
