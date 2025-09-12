@@ -1,10 +1,8 @@
 package com.fiap.tech_challenge.interfaces.mapper;
 
-import com.fiap.tech_challenge.core.domain.UserType;
 import com.fiap.tech_challenge.core.domain.shared.Address;
 import com.fiap.tech_challenge.infrastructure.entity.AddressJpa;
 import com.fiap.tech_challenge.interfaces.dto.AddressDto;
-import com.fiap.tech_challenge.interfaces.dto.UserTypeDto;
 
 public class AddressMapper {
 
@@ -35,6 +33,17 @@ public class AddressMapper {
                 addressJpa.getAdditionalDetails(),
                 addressJpa.getCity(),
                 addressJpa.getCountry()
+        );
+    }
+
+    public static AddressDto convertEntityToDto(Address address) {
+        if (address == null) return null;
+        return new AddressDto(
+            address.getPostalCode(),
+            address.getStreet(),
+            address.getAdditionalDetails(),
+            address.getCity(),
+            address.getCountry()
         );
     }
 }
