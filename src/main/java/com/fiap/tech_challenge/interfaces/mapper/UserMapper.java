@@ -1,11 +1,7 @@
 package com.fiap.tech_challenge.interfaces.mapper;
 
 import com.fiap.tech_challenge.core.domain.User;
-import com.fiap.tech_challenge.core.domain.UserType;
-import com.fiap.tech_challenge.core.domain.shared.Address;
-import com.fiap.tech_challenge.infrastructure.entity.AddressJpa;
 import com.fiap.tech_challenge.infrastructure.entity.UserJpa;
-import com.fiap.tech_challenge.infrastructure.entity.UserTypeJpa;
 import com.fiap.tech_challenge.interfaces.dto.UserInputDto;
 
 import java.util.Date;

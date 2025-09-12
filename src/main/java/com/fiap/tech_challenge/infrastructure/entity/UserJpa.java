@@ -19,7 +19,11 @@ public class UserJpa implements Serializable {
     private String username;
     @Column(nullable = false)
     private String password;
+    @ManyToOne
+    @JoinColumn(name = "user_type_jpa_id")
     private UserTypeJpa userTypeJpa;
+    @ManyToOne
+    @JoinColumn(name = "address_jpa_id")
     private AddressJpa addressJpa;
     private Date lastUpdateDate;
     private Boolean active;
