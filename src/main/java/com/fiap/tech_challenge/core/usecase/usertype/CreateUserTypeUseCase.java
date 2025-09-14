@@ -11,6 +11,9 @@ public class CreateUserTypeUseCase {
     }
 
     public UserType execute(UserType userType) {
+        if(userType.getName()==null || userType.getName().isBlank()){
+            throw new IllegalArgumentException("Name cannot be empty.");
+        }
         return userTypeRepository.save(userType);
     }
 }
