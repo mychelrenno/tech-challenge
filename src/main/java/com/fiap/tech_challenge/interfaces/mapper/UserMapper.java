@@ -21,6 +21,7 @@ public class UserMapper {
 
     public static UserJpa convertEntityToJpa(User user) {
         return new UserJpa(
+                user.getId(),
                 user.getName(),
                 user.getEmail(),
                 user.getUsername(),
@@ -34,6 +35,7 @@ public class UserMapper {
 
     public static User convertJpaToEntity(UserJpa userJpa) {
         return new User(
+                userJpa.getId(),
                 userJpa.getName(),
                 userJpa.getEmail(),
                 userJpa.getUsername(),

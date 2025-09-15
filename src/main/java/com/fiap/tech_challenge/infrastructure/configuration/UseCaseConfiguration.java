@@ -1,6 +1,5 @@
 package com.fiap.tech_challenge.infrastructure.configuration;
 
-import com.fiap.tech_challenge.core.usecase.address.CreateAddressUseCase;
 import com.fiap.tech_challenge.core.usecase.restaurant.CreateRestaurantUseCase;
 import com.fiap.tech_challenge.core.usecase.restaurant.DeleteRestaurantUseCase;
 import com.fiap.tech_challenge.core.usecase.restaurant.GetRestaurantUseCase;
@@ -21,21 +20,13 @@ public class UseCaseConfiguration {
     private final UserTypeRepositoryJpa userTypeRepositoryJpa;
     private final UserRepositoryJpa userRepositoryJpa;
     private final RestaurantRepositoryJpa restaurantRepositoryJpa;
-    private final AddressRepositoryJpa addressRepositoryJpa;
 
     public UseCaseConfiguration(UserTypeRepositoryJpa userTypeRepositoryJpa,
                                 UserRepositoryJpa userRepositoryJpa,
-                                RestaurantRepositoryJpa restaurantRepositoryJpa,
-                                AddressRepositoryJpa addressRepositoryJpa) {
+                                RestaurantRepositoryJpa restaurantRepositoryJpa) {
         this.userTypeRepositoryJpa = userTypeRepositoryJpa;
         this.userRepositoryJpa = userRepositoryJpa;
         this.restaurantRepositoryJpa = restaurantRepositoryJpa;
-        this.addressRepositoryJpa = addressRepositoryJpa;
-    }
-
-    @Bean
-    public CreateAddressUseCase makeAddressUseCase(){
-        return new CreateAddressUseCase(addressRepositoryJpa);
     }
 
     @Bean

@@ -46,6 +46,23 @@ public class UserJpa implements Serializable {
         this.active = active;
     }
 
+    public UserJpa(Long id,
+                   String name,
+                   String email, String username,
+                   String password, UserTypeJpa userTypeJpa,
+                   AddressJpa addressJpa, Date lastUpdateDate,
+                   Boolean active) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.username = username;
+        this.password = password;
+        this.userTypeJpa = userTypeJpa;
+        this.addressJpa = addressJpa;
+        this.lastUpdateDate = lastUpdateDate;
+        this.active = active;
+    }
+
     public Long getId() {
         return id;
     }

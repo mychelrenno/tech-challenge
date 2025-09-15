@@ -14,17 +14,15 @@ import org.springframework.web.bind.annotation.*;
 public class UserController {
     private final CreateUserUseCase createUserUseCase;
     private final ChangeUserPasswordUseCase changeUserPasswordUseCase;
-    private final CreateAddressUseCase createAddressUseCase;
 
-    public UserController(CreateUserUseCase createUserUseCase, ChangeUserPasswordUseCase changeUserPasswordUseCase, CreateAddressUseCase createAddressUseCase) {
+    public UserController(CreateUserUseCase createUserUseCase,
+                          ChangeUserPasswordUseCase changeUserPasswordUseCase) {
         this.createUserUseCase = createUserUseCase;
         this.changeUserPasswordUseCase = changeUserPasswordUseCase;
-        this.createAddressUseCase = createAddressUseCase;
     }
 
     @PostMapping
     public User create(@RequestBody UserInputDto userInputDto) {
-        // save User
         return createUserUseCase.execute(UserMapper.convertDtoToEntity(userInputDto));
     }
 
