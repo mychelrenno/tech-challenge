@@ -19,16 +19,16 @@ public class CreateUserUseCase {
         if (user.getUsername() == null || user.getUsername().isBlank()) {
             throw new IllegalArgumentException("Username cannot be empty.");
         }
-        if (user.getEmail().isEmpty() || user.getEmail().contains("@")) {
+        if (user.getEmail().isEmpty() || !user.getEmail().contains("@")) {
             throw new IllegalArgumentException("Invalid email provided.");
         }
         if (user.getPassword().isEmpty()) {
             throw new IllegalArgumentException("Password cannot be empty.");
         }
-        if(userRepository.findByEmail(user.getEmail()).isPresent()){
+        if(userRepository.findByEmail(user.getEmail())!=null){
             throw new IllegalArgumentException("E-mail already registered.");
         }
-        if(userRepository.findByUsername(user.getUsername()).isPresent()){
+        if(userRepository.findByUsername(user.getUsername())!=null){
             throw new IllegalArgumentException("Username already registered.");
         }
     }

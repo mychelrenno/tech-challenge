@@ -4,4 +4,5 @@ import com.fiap.tech_challenge.infrastructure.entity.UserTypeJpa;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface SpringDataJpaUserType extends JpaRepository<UserTypeJpa, Long> {
+    UserTypeJpa findByName(String name);
 }

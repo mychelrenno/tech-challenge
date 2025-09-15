@@ -1,11 +1,14 @@
 package com.fiap.tech_challenge.infrastructure.configuration;
 
+import com.fiap.tech_challenge.core.usecase.address.CreateAddressUseCase;
 import com.fiap.tech_challenge.core.usecase.restaurant.CreateRestaurantUseCase;
 import com.fiap.tech_challenge.core.usecase.restaurant.DeleteRestaurantUseCase;
 import com.fiap.tech_challenge.core.usecase.restaurant.GetRestaurantUseCase;
 import com.fiap.tech_challenge.core.usecase.restaurant.UpdateRestaurantUseCase;
+import com.fiap.tech_challenge.core.usecase.user.ChangeUserPasswordUseCase;
 import com.fiap.tech_challenge.core.usecase.user.CreateUserUseCase;
 import com.fiap.tech_challenge.core.usecase.usertype.CreateUserTypeUseCase;
+import com.fiap.tech_challenge.infrastructure.repository.AddressRepositoryJpa;
 import com.fiap.tech_challenge.infrastructure.repository.RestaurantRepositoryJpa;
 import com.fiap.tech_challenge.infrastructure.repository.UserRepositoryJpa;
 import com.fiap.tech_challenge.infrastructure.repository.UserTypeRepositoryJpa;
@@ -18,11 +21,21 @@ public class UseCaseConfiguration {
     private final UserTypeRepositoryJpa userTypeRepositoryJpa;
     private final UserRepositoryJpa userRepositoryJpa;
     private final RestaurantRepositoryJpa restaurantRepositoryJpa;
+    private final AddressRepositoryJpa addressRepositoryJpa;
 
-    public UseCaseConfiguration(UserTypeRepositoryJpa userTypeRepositoryJpa, UserRepositoryJpa userRepositoryJpa, RestaurantRepositoryJpa restaurantRepositoryJpa) {
+    public UseCaseConfiguration(UserTypeRepositoryJpa userTypeRepositoryJpa,
+                                UserRepositoryJpa userRepositoryJpa,
+                                RestaurantRepositoryJpa restaurantRepositoryJpa,
+                                AddressRepositoryJpa addressRepositoryJpa) {
         this.userTypeRepositoryJpa = userTypeRepositoryJpa;
         this.userRepositoryJpa = userRepositoryJpa;
         this.restaurantRepositoryJpa = restaurantRepositoryJpa;
+        this.addressRepositoryJpa = addressRepositoryJpa;
+    }
+
+    @Bean
+    public CreateAddressUseCase makeAddressUseCase(){
+        return new CreateAddressUseCase(addressRepositoryJpa);
     }
 
     @Bean
@@ -33,6 +46,11 @@ public class UseCaseConfiguration {
     @Bean
     public CreateUserUseCase makeCreateUserUseCase() {
         return new CreateUserUseCase(userRepositoryJpa);
+    }
+
+    @Bean
+    public ChangeUserPasswordUseCase changeUserPasswordUserUseCase() {
+        return new ChangeUserPasswordUseCase(userRepositoryJpa);
     }
 
     @Bean

@@ -18,9 +18,8 @@ public class UserTypeRepositoryJpa implements UserTypeRepository {
     @Override
     public UserType save(UserType userType) {
         var userTypeJpa = UserTypeMapper.convertEntityToJpa(userType);
-        var _userTypeJpa =springDataJpaUserType.save(userTypeJpa);
-        var _userType = UserTypeMapper.convertJpaToEntity(_userTypeJpa);
-        return _userType;
+        var _userTypeJpa = springDataJpaUserType.save(userTypeJpa);
+        return UserTypeMapper.convertJpaToEntity(_userTypeJpa);
     }
 
 }

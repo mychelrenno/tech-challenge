@@ -12,6 +12,8 @@ public class UserTypeJpa implements Serializable {
     private Long id;
     private String name;
 
+    public UserTypeJpa(){}
+
     public UserTypeJpa(Long id, String name) {
         this.id = id;
         this.name = name;

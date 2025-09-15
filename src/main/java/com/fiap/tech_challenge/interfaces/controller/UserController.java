@@ -1,28 +1,37 @@
 package com.fiap.tech_challenge.interfaces.controller;
 
 import com.fiap.tech_challenge.core.domain.User;
+import com.fiap.tech_challenge.core.usecase.address.CreateAddressUseCase;
+import com.fiap.tech_challenge.core.usecase.user.ChangeUserPasswordUseCase;
 import com.fiap.tech_challenge.core.usecase.user.CreateUserUseCase;
-import com.fiap.tech_challenge.core.usecase.usertype.CreateUserTypeUseCase;
+import com.fiap.tech_challenge.interfaces.dto.PasswordRequestDto;
 import com.fiap.tech_challenge.interfaces.dto.UserInputDto;
-import com.fiap.tech_challenge.interfaces.dto.UserTypeDto;
 import com.fiap.tech_challenge.interfaces.mapper.UserMapper;
-import com.fiap.tech_challenge.interfaces.mapper.UserTypeMapper;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/users")
 public class UserController {
     private final CreateUserUseCase createUserUseCase;
+    private final ChangeUserPasswordUseCase changeUserPasswordUseCase;
+    private final CreateAddressUseCase createAddressUseCase;
 
-    public UserController(CreateUserUseCase createUserUseCase) {
+    public UserController(CreateUserUseCase createUserUseCase, ChangeUserPasswordUseCase changeUserPasswordUseCase, CreateAddressUseCase createAddressUseCase) {
         this.createUserUseCase = createUserUseCase;
+        this.changeUserPasswordUseCase = changeUserPasswordUseCase;
+        this.createAddressUseCase = createAddressUseCase;
     }
 
     @PostMapping
     public User create(@RequestBody UserInputDto userInputDto) {
+        // save User
         return createUserUseCase.execute(UserMapper.convertDtoToEntity(userInputDto));
+    }
+
+    @PatchMapping
+    public User updatePassword(@RequestBody PasswordRequestDto passwordRequestDto) {
+        return changeUserPasswordUseCase.execute(passwordRequestDto.id(),
+                passwordRequestDto.oldPassword(),
+                passwordRequestDto.newPassword());
     }
 }

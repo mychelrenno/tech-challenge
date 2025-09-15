@@ -19,10 +19,6 @@ public class User {
     public User(Long id, String name, String email, String username,
                 String password, UserType userType,
                 Address address) {
-
-        if (name == null || name.isBlank()) {
-            throw new IllegalArgumentException("Name cannot be empty.");
-        }
         if (!email.contains("@")) {
             throw new IllegalArgumentException("Invalid email.");
         }
@@ -104,5 +100,13 @@ public class User {
 
     public Boolean getActive() {
         return active;
+    }
+
+    public void changePassword(String newPassword){
+        if(!newPassword.isEmpty()){
+            this.password = newPassword;
+        }else{
+            throw new IllegalArgumentException("New password cannot be empty.");
+        }
     }
 }
