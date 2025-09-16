@@ -7,7 +7,9 @@ import com.fiap.tech_challenge.core.usecase.restaurant.UpdateRestaurantUseCase;
 import com.fiap.tech_challenge.core.usecase.user.ChangeUserPasswordUseCase;
 import com.fiap.tech_challenge.core.usecase.user.CreateUserUseCase;
 import com.fiap.tech_challenge.core.usecase.usertype.CreateUserTypeUseCase;
-import com.fiap.tech_challenge.infrastructure.repository.AddressRepositoryJpa;
+import com.fiap.tech_challenge.core.usecase.usertype.DeleteUserTypeUseCase;
+import com.fiap.tech_challenge.core.usecase.usertype.ListAllUserTypeUseCase;
+import com.fiap.tech_challenge.core.usecase.usertype.UpdateUserTypeUseCase;
 import com.fiap.tech_challenge.infrastructure.repository.RestaurantRepositoryJpa;
 import com.fiap.tech_challenge.infrastructure.repository.UserRepositoryJpa;
 import com.fiap.tech_challenge.infrastructure.repository.UserTypeRepositoryJpa;
@@ -32,6 +34,21 @@ public class UseCaseConfiguration {
     @Bean
     public CreateUserTypeUseCase makeCreateUserTypeUseCase() {
         return new CreateUserTypeUseCase(userTypeRepositoryJpa);
+    }
+
+    @Bean
+    public ListAllUserTypeUseCase makeListAllUserTypeUseCase() {
+        return new ListAllUserTypeUseCase(userTypeRepositoryJpa);
+    }
+
+    @Bean
+    public UpdateUserTypeUseCase makeUpdateUserTypeUseCase() {
+        return new UpdateUserTypeUseCase(userTypeRepositoryJpa);
+    }
+
+    @Bean
+    public DeleteUserTypeUseCase makeDeleteUserTypeUseCase() {
+        return new DeleteUserTypeUseCase(userTypeRepositoryJpa);
     }
 
     @Bean

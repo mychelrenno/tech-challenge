@@ -1,18 +1,24 @@
 {
 	"info": {
-		"_postman_id": "cfaf37b9-5ce9-4794-9a16-a1c8b0b5e797",
+		"_postman_id": "ca134ec4-8b4a-4bfb-b5ef-f9d570968d13",
 		"name": "tech-challenge-phase-two",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "5338485",
+		"_collection_link": "https://ze-comanda.postman.co/workspace/private-workspace~9d6a29a5-de4f-49af-8bed-1bb747e1ad88/collection/5338485-ca134ec4-8b4a-4bfb-b5ef-f9d570968d13?action=share&source=collection_link&creator=5338485"
 	},
 	"item": [
 		{
-			"name": "type-user-create",
+			"name": "user-type",
+			"item": []
+		},
+		{
+			"name": "create",
 			"request": {
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"name\": \"mycheloi\"\r\n}",
+					"raw": "{\r\n    \"name\": \"\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -39,7 +45,10 @@
 			"request": {
 				"method": "POST",
 				"header": [
-					{ "key": "Content-Type", "value": "application/json" }
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
 				],
 				"body": {
 					"mode": "raw",
@@ -48,9 +57,14 @@
 				"url": {
 					"raw": "http://localhost:8081/api/restaurants",
 					"protocol": "http",
-					"host": ["localhost"],
+					"host": [
+						"localhost"
+					],
 					"port": "8081",
-					"path": ["api", "restaurants"]
+					"path": [
+						"api",
+						"restaurants"
+					]
 				}
 			},
 			"response": []
@@ -60,7 +74,10 @@
 			"request": {
 				"method": "PUT",
 				"header": [
-					{ "key": "Content-Type", "value": "application/json" }
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
 				],
 				"body": {
 					"mode": "raw",
@@ -69,9 +86,15 @@
 				"url": {
 					"raw": "http://localhost:8081/api/restaurants/1",
 					"protocol": "http",
-					"host": ["localhost"],
+					"host": [
+						"localhost"
+					],
 					"port": "8081",
-					"path": ["api", "restaurants", "1"]
+					"path": [
+						"api",
+						"restaurants",
+						"1"
+					]
 				}
 			},
 			"response": []
@@ -84,9 +107,15 @@
 				"url": {
 					"raw": "http://localhost:8081/api/restaurants/1",
 					"protocol": "http",
-					"host": ["localhost"],
+					"host": [
+						"localhost"
+					],
 					"port": "8081",
-					"path": ["api", "restaurants", "1"]
+					"path": [
+						"api",
+						"restaurants",
+						"1"
+					]
 				}
 			},
 			"response": []
@@ -99,9 +128,15 @@
 				"url": {
 					"raw": "http://localhost:8081/api/restaurants/1",
 					"protocol": "http",
-					"host": ["localhost"],
+					"host": [
+						"localhost"
+					],
 					"port": "8081",
-					"path": ["api", "restaurants", "1"]
+					"path": [
+						"api",
+						"restaurants",
+						"1"
+					]
 				}
 			},
 			"response": []
@@ -114,13 +149,17 @@
 				"url": {
 					"raw": "http://localhost:8081/api/restaurants",
 					"protocol": "http",
-					"host": ["localhost"],
+					"host": [
+						"localhost"
+					],
 					"port": "8081",
-					"path": ["api", "restaurants"]
+					"path": [
+						"api",
+						"restaurants"
+					]
 				}
 			},
 			"response": []
 		}
 	]
 }
-
