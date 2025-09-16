@@ -8,6 +8,11 @@ public class UserType {
         this.name = name;
     }
 
+    public UserType(Long id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
     public Long getId() {
         return id;
     }
