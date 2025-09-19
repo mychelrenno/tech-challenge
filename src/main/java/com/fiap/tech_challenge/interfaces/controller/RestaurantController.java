@@ -1,6 +1,6 @@
 package com.fiap.tech_challenge.interfaces.controller;
 
-import com.fiap.tech_challenge.core.domain.Restaurant;
+import com.fiap.tech_challenge.core.domain.restaurant.Restaurant;
 import com.fiap.tech_challenge.core.usecase.restaurant.CreateRestaurantUseCase;
 import com.fiap.tech_challenge.core.usecase.restaurant.UpdateRestaurantUseCase;
 import com.fiap.tech_challenge.core.usecase.restaurant.DeleteRestaurantUseCase;
@@ -8,7 +8,6 @@ import com.fiap.tech_challenge.core.usecase.restaurant.GetRestaurantUseCase;
 import com.fiap.tech_challenge.interfaces.dto.RestaurantInputDto;
 import com.fiap.tech_challenge.interfaces.dto.RestaurantOutputDto;
 import com.fiap.tech_challenge.interfaces.mapper.RestaurantMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

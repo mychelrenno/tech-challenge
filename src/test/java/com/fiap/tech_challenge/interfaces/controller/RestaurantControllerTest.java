@@ -1,6 +1,6 @@
 package com.fiap.tech_challenge.interfaces.controller;
 
-import com.fiap.tech_challenge.core.domain.Restaurant;
+import com.fiap.tech_challenge.core.domain.restaurant.Restaurant;
 import com.fiap.tech_challenge.core.domain.shared.Address;
 import com.fiap.tech_challenge.core.usecase.restaurant.CreateRestaurantUseCase;
 import com.fiap.tech_challenge.core.usecase.restaurant.UpdateRestaurantUseCase;
@@ -9,7 +9,6 @@ import com.fiap.tech_challenge.core.usecase.restaurant.GetRestaurantUseCase;
 import com.fiap.tech_challenge.interfaces.dto.AddressDto;
 import com.fiap.tech_challenge.interfaces.dto.RestaurantInputDto;
 import com.fiap.tech_challenge.interfaces.dto.RestaurantOutputDto;
-import com.fiap.tech_challenge.interfaces.mapper.RestaurantMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;

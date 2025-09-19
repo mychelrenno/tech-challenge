@@ -1,6 +1,6 @@
 package com.fiap.tech_challenge.core.usecase.user;
 
-import com.fiap.tech_challenge.core.domain.User;
+import com.fiap.tech_challenge.core.domain.user.User;
 import com.fiap.tech_challenge.core.repository.UserRepository;
 
 public class CreateUserUseCase {

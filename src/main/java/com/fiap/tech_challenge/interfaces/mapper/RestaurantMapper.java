@@ -1,6 +1,6 @@
 package com.fiap.tech_challenge.interfaces.mapper;
 
-import com.fiap.tech_challenge.core.domain.Restaurant;
+import com.fiap.tech_challenge.core.domain.restaurant.Restaurant;
 import com.fiap.tech_challenge.infrastructure.entity.RestaurantJpa;
 import com.fiap.tech_challenge.interfaces.dto.RestaurantInputDto;
 import com.fiap.tech_challenge.interfaces.dto.RestaurantOutputDto;

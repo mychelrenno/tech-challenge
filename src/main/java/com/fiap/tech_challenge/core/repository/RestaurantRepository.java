@@ -1,6 +1,6 @@
 package com.fiap.tech_challenge.core.repository;
 
-import com.fiap.tech_challenge.core.domain.Restaurant;
+import com.fiap.tech_challenge.core.domain.restaurant.Restaurant;
 import java.util.List;
 import java.util.Optional;
 

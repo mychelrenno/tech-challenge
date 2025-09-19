@@ -1,64 +1,48 @@
 package com.fiap.tech_challenge.core.domain.restaurant;
 
-import com.fiap.tech_challenge.core.domain.Owner;
 import com.fiap.tech_challenge.core.domain.shared.Address;
-
-import java.util.List;
 
 public class Restaurant {
     private Long id;
     private String name;
     private Address address;
-    private RestaurantType restaurantType;
-    private List<OpeningTime> openingTimePeriods;
-    private Owner owner;
+    private String cuisineType;
+    private String openingHours;
+    private Long ownerId; // Referência ao usuário dono
 
-    public Restaurant(Long id, String name,
-                      Address address,
-                      RestaurantType restaurantType,
-                      List<OpeningTime> openingTimePeriods,
-                      Owner owner) {
+    public Restaurant(Long id, String name, Address address, String cuisineType, String openingHours, Long ownerId) {
+        if (name == null || name.isBlank()) {
+            throw new IllegalArgumentException("Nome do restaurante não pode ser vazio.");
+        }
+        if (address == null) {
+            throw new IllegalArgumentException("Endereço não pode ser nulo.");
+        }
+        if (cuisineType == null || cuisineType.isBlank()) {
+            throw new IllegalArgumentException("Tipo de cozinha não pode ser vazio.");
+        }
+        if (openingHours == null || openingHours.isBlank()) {
+            throw new IllegalArgumentException("Horário de funcionamento não pode ser vazio.");
+        }
+        if (ownerId == null) {
+            throw new IllegalArgumentException("Dono do restaurante não pode ser nulo.");
+        }
         this.id = id;
         this.name = name;
         this.address = address;
-        this.restaurantType = restaurantType;
-        this.openingTimePeriods = openingTimePeriods;
-        this.owner = owner;
+        this.cuisineType = cuisineType;
+        this.openingHours = openingHours;
+        this.ownerId = ownerId;
     }
 
-    public Restaurant(String name,
-                      Address address,
-                      RestaurantType restaurantType,
-                      List<OpeningTime> openingTimePeriods,
-                      Owner owner) {
-        this.name = name;
-        this.address = address;
-        this.restaurantType = restaurantType;
-        this.openingTimePeriods = openingTimePeriods;
-        this.owner = owner;
+    public Restaurant(String name, Address address, String cuisineType, String openingHours, Long ownerId) {
+        this(null, name, address, cuisineType, openingHours, ownerId);
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public Address getAddress() {
-        return address;
-    }
-
-    public RestaurantType getRestaurantType() {
-        return restaurantType;
-    }
-
-    public List<OpeningTime> getOpeningTimePeriods() {
-        return openingTimePeriods;
-    }
-
-    public Owner getOwner() {
-        return owner;
-    }
+    public Long getId() { return id; }
+    public String getName() { return name; }
+    public Address getAddress() { return address; }
+    public String getCuisineType() { return cuisineType; }
+    public String getOpeningHours() { return openingHours; }
+    public Long getOwnerId() { return ownerId; }
 }
+

@@ -1,6 +1,6 @@
 package com.fiap.tech_challenge.interfaces.mapper;
 
-import com.fiap.tech_challenge.core.domain.Restaurant;
+import com.fiap.tech_challenge.core.domain.restaurant.Restaurant;
 import com.fiap.tech_challenge.core.domain.shared.Address;
 import com.fiap.tech_challenge.infrastructure.entity.AddressJpa;
 import com.fiap.tech_challenge.infrastructure.entity.RestaurantJpa;
