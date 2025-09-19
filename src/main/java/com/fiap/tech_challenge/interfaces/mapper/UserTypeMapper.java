@@ -1,6 +1,6 @@
 package com.fiap.tech_challenge.interfaces.mapper;
 
-import com.fiap.tech_challenge.core.domain.UserType;
+import com.fiap.tech_challenge.core.domain.user.UserType;
 import com.fiap.tech_challenge.infrastructure.entity.UserTypeJpa;
 import com.fiap.tech_challenge.interfaces.dto.UserTypeDto;
 
@@ -15,6 +15,10 @@ public class UserTypeMapper {
 
     public static UserTypeJpa convertEntityToJpa(UserType userType) {
         return new UserTypeJpa(userType.getId(), userType.getName());
+    }
+
+    public static UserTypeDto convertJpaToDto(UserTypeJpa userTypeJpa){
+        return new UserTypeDto(userTypeJpa.getId(), userTypeJpa.getName());
     }
 
     public static UserTypeDto convertEntityToDto(UserType userType) {

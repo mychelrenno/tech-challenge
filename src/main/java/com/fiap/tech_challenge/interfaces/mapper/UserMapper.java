@@ -1,8 +1,9 @@
 package com.fiap.tech_challenge.interfaces.mapper;
 
-import com.fiap.tech_challenge.core.domain.User;
+import com.fiap.tech_challenge.core.domain.user.User;
 import com.fiap.tech_challenge.infrastructure.entity.UserJpa;
 import com.fiap.tech_challenge.interfaces.dto.UserInputDto;
+import com.fiap.tech_challenge.interfaces.dto.user.UserOutputDto;
 
 import java.util.Date;
 
@@ -16,6 +17,16 @@ public class UserMapper {
                 userInputDto.password(),
                 UserTypeMapper.convertDtoToEntity(userInputDto.userType()),
                 AddressMapper.convertDtoToEntity(userInputDto.address())
+        );
+    }
+
+    public static User convertDtoToEntity(UserOutputDto userOutputDto) {
+        return new User(
+                userOutputDto.name(),
+                userOutputDto.email(),
+                userOutputDto.username(),
+                UserTypeMapper.convertDtoToEntity(userOutputDto.userType()),
+                AddressMapper.convertDtoToEntity(userOutputDto.address())
         );
     }
 

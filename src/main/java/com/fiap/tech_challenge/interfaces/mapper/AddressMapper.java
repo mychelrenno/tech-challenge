@@ -46,4 +46,15 @@ public class AddressMapper {
             address.getCountry()
         );
     }
+
+    public static AddressDto convertJpaToDto(AddressJpa addressJpa) {
+        if (addressJpa == null) return null;
+        return new AddressDto(
+                addressJpa.getPostalCode(),
+                addressJpa.getStreet(),
+                addressJpa.getAdditionalDetails(),
+                addressJpa.getCity(),
+                addressJpa.getCountry()
+        );
+    }
 }
