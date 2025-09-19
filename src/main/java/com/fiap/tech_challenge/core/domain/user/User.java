@@ -1,4 +1,4 @@
-package com.fiap.tech_challenge.core.domain;
+package com.fiap.tech_challenge.core.domain.user;
 
 import com.fiap.tech_challenge.core.domain.shared.Address;
 
@@ -60,6 +60,28 @@ public class User {
         this.email = email;
         this.username = username;
         this.password = password;
+        this.userType = userType;
+        this.address = address;
+        this.lastUpdateDate = new Date();
+        this.active = true;
+    }
+
+    public User(String name, String email, String username, UserType userType,
+                Address address) {
+
+        if (name == null || name.isBlank()) {
+            throw new IllegalArgumentException("Name cannot be empty.");
+        }
+        if (!email.contains("@")) {
+            throw new IllegalArgumentException("Invalid email.");
+        }
+        if (username == null || username.isBlank()) {
+            throw new IllegalArgumentException("Username cannot be empty.");
+        }
+
+        this.name = name;
+        this.email = email;
+        this.username = username;
         this.userType = userType;
         this.address = address;
         this.lastUpdateDate = new Date();
