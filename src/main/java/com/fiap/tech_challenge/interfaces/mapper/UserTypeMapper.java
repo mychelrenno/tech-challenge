@@ -1,6 +1,6 @@
 package com.fiap.tech_challenge.interfaces.mapper;
 
-import com.fiap.tech_challenge.core.domain.user.UserType;
+import com.fiap.tech_challenge.core.domain.UserType;
 import com.fiap.tech_challenge.infrastructure.entity.UserTypeJpa;
 import com.fiap.tech_challenge.interfaces.dto.UserTypeDto;
 
