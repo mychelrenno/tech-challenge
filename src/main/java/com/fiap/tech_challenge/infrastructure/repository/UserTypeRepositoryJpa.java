@@ -44,4 +44,11 @@ public class UserTypeRepositoryJpa implements UserTypeRepository {
         springDataJpaUserType.deleteById(id);
     }
 
+    @Override
+    public UserType findByName(UserType userType) {
+        var userTypeJpa = springDataJpaUserType.findByName(userType.getName());
+        var _userType = UserTypeMapper.convertJpaToEntity(userTypeJpa);
+        return _userType;
+    }
+
 }

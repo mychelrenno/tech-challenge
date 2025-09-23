@@ -9,4 +9,6 @@ public interface UserTypeRepository {
     List<UserType> listAll();
     UserType update(UserType userType);
     void delete(Long id);
+    UserType findByName(UserType userType);
+
 }

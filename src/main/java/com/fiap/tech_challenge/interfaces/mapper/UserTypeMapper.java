@@ -10,22 +10,37 @@ import java.util.List;
 public class UserTypeMapper {
 
     public static UserType convertDtoToEntity(UserTypeDto dto) {
+        if (dto == null) {
+            return null;
+        }
         return new UserType(dto.id(), dto.name());
     }
 
     public static UserTypeJpa convertEntityToJpa(UserType userType) {
+        if (userType == null) {
+            return null;
+        }
         return new UserTypeJpa(userType.getId(), userType.getName());
     }
 
     public static UserTypeDto convertJpaToDto(UserTypeJpa userTypeJpa){
+        if (userTypeJpa == null) {
+            return null;
+        }
         return new UserTypeDto(userTypeJpa.getId(), userTypeJpa.getName());
     }
 
     public static UserTypeDto convertEntityToDto(UserType userType) {
+        if (userType == null) {
+            return null;
+        }
         return new UserTypeDto(userType.getId(), userType.getName());
     }
 
     public static UserType convertJpaToEntity(UserTypeJpa userTypeJpa) {
+        if (userTypeJpa == null) {
+            return null;
+        }
         return new UserType(userTypeJpa.getId(), userTypeJpa.getName());
     }
 
