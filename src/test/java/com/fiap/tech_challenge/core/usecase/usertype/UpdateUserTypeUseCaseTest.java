@@ -10,44 +10,42 @@ import org.mockito.Mockito;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-public class CreateUserTypeUseCaseTest {
+public class UpdateUserTypeUseCaseTest {
 
     private UserTypeRepository userTypeRepository;
-    private CreateUserTypeUseCase createUserTypeUseCase;
+    private UpdateUserTypeUseCase updateUserTypeUseCase;
 
     @BeforeEach
     void setUp() {
         userTypeRepository = Mockito.mock(UserTypeRepository.class);
-        createUserTypeUseCase = new CreateUserTypeUseCase(userTypeRepository);
+        updateUserTypeUseCase = new UpdateUserTypeUseCase(userTypeRepository);
     }
 
     @Test
-    void mustSaveUserTypeWithoutProblem() throws Exception {
+    void mustUpdateUserTypeWhenThereIsntAnotherWithSameName() {
         UserType userType = new UserType("owner");
         when(userTypeRepository.findByName(userType)).thenReturn(null);
-        UserType savedUserType = new UserType(1L, "owner");
-        when(userTypeRepository.save(userType)).thenReturn(savedUserType);
-
-        UserType result = createUserTypeUseCase.execute(userType);
+        UserType updatedUserType = new UserType(1L, "owner");
+        when(userTypeRepository.update(userType)).thenReturn(updatedUserType);
+        UserType result = updateUserTypeUseCase.execute(userType);
 
         assertNotNull(result);
         assertEquals(1L, result.getId());
         assertEquals("owner", result.getName());
         verify(userTypeRepository, times(1)).findByName(userType);
-        verify(userTypeRepository, times(1)).save(userType);
+        verify(userTypeRepository, times(1)).update(userType);
     }
 
     @Test
     void mustThrowExceptionWhenUserTypeAlreadyExists() {
-        UserType existingUserType = new UserType("custumer");
-        when(userTypeRepository.findByName(existingUserType)).thenReturn(existingUserType);
+        UserType userType = new UserType("owner");
+        when(userTypeRepository.findByName(userType)).thenReturn(userType);
 
-        ResourceAlreadyExistsException exception = assertThrows(
-                ResourceAlreadyExistsException.class,
-                () -> createUserTypeUseCase.execute(existingUserType)
-        );
+        Exception exception = assertThrows(ResourceAlreadyExistsException.class, () -> {
+            updateUserTypeUseCase.execute(userType);
+        });
         assertEquals("UserType already exists", exception.getMessage());
-        verify(userTypeRepository, times(1)).findByName(existingUserType);
-        verify(userTypeRepository, never()).save(any());
+        verify(userTypeRepository, times(1)).findByName(userType);
+        verify(userTypeRepository, never()).update(any());
     }
 }
