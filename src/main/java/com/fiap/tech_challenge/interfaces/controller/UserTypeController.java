@@ -24,7 +24,7 @@ public class UserTypeController {
 
     public UserTypeController(CreateUserTypeUseCase createUserTypeUseCase,
                               ListAllUserTypeUseCase listAllUserTypeUseCase,
-                              UpdateUserTypeUseCase updateUserTypeUseCas,
+                              UpdateUserTypeUseCase updateUserTypeUseCase,
                               DeleteUserTypeUseCase deleteUserTypeUseCase) {
         this.createUserTypeUseCase = createUserTypeUseCase;
         this.listAllUserTypeUseCase = listAllUserTypeUseCase;
@@ -33,7 +33,7 @@ public class UserTypeController {
     }
 
     @PostMapping
-    public UserTypeDto create(@RequestBody @Validated(Create.class) UserTypeDto userTypeDto) {
+    public UserTypeDto create(@RequestBody @Validated(Create.class) UserTypeDto userTypeDto) throws Exception {
         var userType = createUserTypeUseCase.execute(UserTypeMapper.convertDtoToEntity(userTypeDto));
         var _userTypeDto = UserTypeMapper.convertEntityToDto(userType);
         return _userTypeDto;
