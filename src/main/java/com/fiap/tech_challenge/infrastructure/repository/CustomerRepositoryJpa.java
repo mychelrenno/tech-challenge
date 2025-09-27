@@ -65,4 +65,19 @@ public class CustomerRepositoryJpa implements CustomerRepository {
         // save customer
         return CustomerMapper.convertJpaToEntity(springDataJpaCustomer.save(customerJpa));
     }
+
+    @Override
+    public Boolean delete(Long customerId) {
+        Optional<CustomerJpa> customerJpa = springDataJpaCustomer.findById(customerId);
+        if(customerJpa.isPresent()){
+            Optional<UserJpa> userJpa = springDataJpaUser.findById(customerJpa.get().getUserJpa().getId());
+            if(userJpa.isPresent()){
+                userJpa.get().setActive(false);
+                userJpa.get().setLastUpdateDate(new Date());
+                springDataJpaUser.save(userJpa.get());
+                return true;
+            }
+        }
+        return false;
+    }
 }

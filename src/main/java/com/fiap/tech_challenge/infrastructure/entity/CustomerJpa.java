@@ -19,6 +19,9 @@ public class CustomerJpa implements Serializable {
     @OneToMany(mappedBy = "customerJpa", cascade = CascadeType.ALL)
     private List<OrderJpa> orders;
 
+    public CustomerJpa() {
+    }
+
     public CustomerJpa(Long id,
                        String document,
                        UserJpa userJpa,
