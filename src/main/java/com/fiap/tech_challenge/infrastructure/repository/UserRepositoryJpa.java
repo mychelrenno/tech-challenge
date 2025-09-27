@@ -3,6 +3,7 @@ package com.fiap.tech_challenge.infrastructure.repository;
 import com.fiap.tech_challenge.core.domain.user.User;
 import com.fiap.tech_challenge.core.repository.UserRepository;
 import com.fiap.tech_challenge.infrastructure.entity.UserJpa;
+import com.fiap.tech_challenge.infrastructure.entity.UserTypeJpa;
 import com.fiap.tech_challenge.infrastructure.repository.jpa.SpringDataJpaUser;
 import com.fiap.tech_challenge.infrastructure.repository.jpa.SpringDataJpaUserType;
 import com.fiap.tech_challenge.interfaces.dto.user.UserOutputDto;
@@ -29,7 +30,8 @@ public class UserRepositoryJpa implements UserRepository {
     public User save(User user) {
         var userJpa = UserMapper.convertEntityToJpa(user);
         // check if user type already registered
-        var userTypeJpa = springDataJpaUserType.findByName(user.getUserType().getName());
+        UserTypeJpa userTypeJpa = UserTypeMapper.convertEntityToJpa(user.getUserType());
+        userTypeJpa = springDataJpaUserType.findByName(userTypeJpa.getName());
         if(userTypeJpa!=null){
             userJpa.setUserTypeJpa(userTypeJpa);
         }

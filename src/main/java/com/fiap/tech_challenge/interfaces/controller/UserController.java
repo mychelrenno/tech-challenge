@@ -3,7 +3,7 @@ package com.fiap.tech_challenge.interfaces.controller;
 import com.fiap.tech_challenge.core.domain.user.User;
 import com.fiap.tech_challenge.core.usecase.user.*;
 import com.fiap.tech_challenge.interfaces.dto.PasswordRequestDto;
-import com.fiap.tech_challenge.interfaces.dto.UserInputDto;
+import com.fiap.tech_challenge.interfaces.dto.user.UserInputDto;
 import com.fiap.tech_challenge.interfaces.mapper.UserMapper;
 import org.springframework.web.bind.annotation.*;
 

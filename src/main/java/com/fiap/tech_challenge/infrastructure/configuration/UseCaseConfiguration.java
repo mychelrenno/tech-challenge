@@ -1,5 +1,10 @@
 package com.fiap.tech_challenge.infrastructure.configuration;
 
+import com.fiap.tech_challenge.core.repository.CustomerRepository;
+import com.fiap.tech_challenge.core.usecase.customer.CreateCustomerUseCase;
+import com.fiap.tech_challenge.core.usecase.customer.DeleteCustomerUseCase;
+import com.fiap.tech_challenge.core.usecase.customer.ListAllCustomersUseCase;
+import com.fiap.tech_challenge.core.usecase.customer.UpdateCustomerUseCase;
 import com.fiap.tech_challenge.core.usecase.restaurant.CreateRestaurantUseCase;
 import com.fiap.tech_challenge.core.usecase.restaurant.DeleteRestaurantUseCase;
 import com.fiap.tech_challenge.core.usecase.restaurant.GetRestaurantUseCase;
@@ -21,13 +26,16 @@ public class UseCaseConfiguration {
     private final UserTypeRepositoryJpa userTypeRepositoryJpa;
     private final UserRepositoryJpa userRepositoryJpa;
     private final RestaurantRepositoryJpa restaurantRepositoryJpa;
+    private final CustomerRepository customerRepository;
 
     public UseCaseConfiguration(UserTypeRepositoryJpa userTypeRepositoryJpa,
                                 UserRepositoryJpa userRepositoryJpa,
-                                RestaurantRepositoryJpa restaurantRepositoryJpa) {
+                                RestaurantRepositoryJpa restaurantRepositoryJpa,
+                                CustomerRepository customerRepository) {
         this.userTypeRepositoryJpa = userTypeRepositoryJpa;
         this.userRepositoryJpa = userRepositoryJpa;
         this.restaurantRepositoryJpa = restaurantRepositoryJpa;
+        this.customerRepository = customerRepository;
     }
 
     // CRUD UserType
@@ -76,6 +84,29 @@ public class UseCaseConfiguration {
     public ListAllActiveUsersUseCase listAllActiveUsersUseCase(){
         return new ListAllActiveUsersUseCase(userRepositoryJpa);
     }
+
+    // CRUD Customer
+    @Bean
+    public CreateCustomerUseCase createCustomerUseCase(){
+        return new CreateCustomerUseCase(customerRepository);
+    }
+
+    @Bean
+    public DeleteCustomerUseCase deleteCustomerUseCase(){
+        return new DeleteCustomerUseCase(customerRepository);
+    }
+
+    @Bean
+    public ListAllCustomersUseCase listAllCustomersUseCase(){
+        return new ListAllCustomersUseCase(customerRepository);
+    }
+
+    @Bean
+    public UpdateCustomerUseCase updateCustomerUseCase(){
+        return new UpdateCustomerUseCase(customerRepository);
+    }
+
+    // CRUD Owner
 
     // CRUD Restaurant
     @Bean

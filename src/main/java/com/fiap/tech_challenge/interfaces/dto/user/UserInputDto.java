@@ -1,4 +1,7 @@
-package com.fiap.tech_challenge.interfaces.dto;
+package com.fiap.tech_challenge.interfaces.dto.user;
+
+import com.fiap.tech_challenge.interfaces.dto.AddressDto;
+import com.fiap.tech_challenge.interfaces.dto.UserTypeDto;
 
 public record UserInputDto(
         String name,

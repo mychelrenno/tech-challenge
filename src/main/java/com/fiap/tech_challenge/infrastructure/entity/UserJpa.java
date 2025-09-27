@@ -19,8 +19,8 @@ public class UserJpa implements Serializable {
     private String username;
     @Column(nullable = false)
     private String password;
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_type_jpa_id")
+    @ManyToOne
+    @JoinColumn(name = "user_type_jpa_id", nullable = false)
     private UserTypeJpa userTypeJpa;
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "address_jpa_id")

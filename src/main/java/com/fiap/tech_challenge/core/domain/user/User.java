@@ -1,5 +1,6 @@
 package com.fiap.tech_challenge.core.domain.user;
 
+import com.fiap.tech_challenge.core.domain.UserType;
 import com.fiap.tech_challenge.core.domain.shared.Address;
 
 import java.util.Date;
@@ -114,10 +115,6 @@ public class User {
 
     public Address getAddress() {
         return address;
-    }
-
-    public Date getLastUpdateDate() {
-        return lastUpdateDate;
     }
 
     public Boolean getActive() {
