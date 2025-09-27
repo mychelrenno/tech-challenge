@@ -11,17 +11,17 @@ import org.springframework.web.bind.annotation.*;
 public class CustomerController {
     private CreateCustomerUseCase createCustomerUseCase;
     private DeleteCustomerUseCase deleteCustomerUseCase;
-    private ListAllCustomersUseCase listAllCustomersUseCase;
-    private UpdateCustomerUseCase updateCustomerUseCase;
+//    private ListAllCustomersUseCase listAllCustomersUseCase;
+//    private UpdateCustomerUseCase updateCustomerUseCase;
 
     public CustomerController(CreateCustomerUseCase createCustomerUseCase,
-                              DeleteCustomerUseCase deleteCustomerUseCase,
-                              ListAllCustomersUseCase listAllCustomersUseCase,
-                              UpdateCustomerUseCase updateCustomerUseCase) {
+                              DeleteCustomerUseCase deleteCustomerUseCase
+                              /*ListAllCustomersUseCase listAllCustomersUseCase,*/
+                              /*UpdateCustomerUseCase */) {
         this.createCustomerUseCase = createCustomerUseCase;
         this.deleteCustomerUseCase = deleteCustomerUseCase;
-        this.listAllCustomersUseCase = listAllCustomersUseCase;
-        this.updateCustomerUseCase = updateCustomerUseCase;
+//        this.listAllCustomersUseCase = listAllCustomersUseCase;
+//        this.updateCustomerUseCase = updateCustomerUseCase;
     }
 
     @PostMapping

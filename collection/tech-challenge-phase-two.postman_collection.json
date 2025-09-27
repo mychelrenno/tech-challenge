@@ -1,10 +1,10 @@
 {
 	"info": {
-		"_postman_id": "77fd58cc-6fba-4dbb-9f77-053dff929a1e",
+		"_postman_id": "974d7ccb-3aac-4864-ad1b-c5c32b221f0b",
 		"name": "tech-challenge-phase-two",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "5338485",
-		"_collection_link": "https://ze-comanda.postman.co/workspace/private-workspace~9d6a29a5-de4f-49af-8bed-1bb747e1ad88/collection/5338485-77fd58cc-6fba-4dbb-9f77-053dff929a1e?action=share&source=collection_link&creator=5338485"
+		"_collection_link": "https://ze-comanda.postman.co/workspace/private-workspace~9d6a29a5-de4f-49af-8bed-1bb747e1ad88/collection/5338485-974d7ccb-3aac-4864-ad1b-c5c32b221f0b?action=share&source=collection_link&creator=5338485"
 	},
 	"item": [
 		{
@@ -112,125 +112,130 @@
 			]
 		},
 		{
-			"name": "Create Restaurant",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n  \"name\": \"Restaurante Exemplo\",\n  \"address\": {\n    \"postalCode\": \"12345-678\",\n    \"street\": \"Rua Exemplo\",\n    \"additionalDetails\": \"Sala 1\",\n    \"city\": \"São Paulo\",\n    \"country\": \"Brasil\"\n  },\n  \"cuisineType\": \"Italiana\",\n  \"openingHours\": \"08:00-22:00\",\n  \"ownerId\": 1\n}"
+			"name": "restaurant",
+			"item": [
+				{
+					"name": "Create Restaurant",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Restaurante Exemplo\",\n  \"address\": {\n    \"postalCode\": \"12345-678\",\n    \"street\": \"Rua Exemplo\",\n    \"additionalDetails\": \"Sala 1\",\n    \"city\": \"São Paulo\",\n    \"country\": \"Brasil\"\n  },\n  \"cuisineType\": \"Italiana\",\n  \"openingHours\": \"08:00-22:00\",\n  \"ownerId\": 1\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/restaurants",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"restaurants"
+							]
+						}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "http://localhost:8081/api/restaurants",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8081",
-					"path": [
-						"api",
-						"restaurants"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Update Restaurant",
-			"request": {
-				"method": "PUT",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n  \"name\": \"Restaurante Atualizado\",\n  \"address\": {\n    \"postalCode\": \"12345-678\",\n    \"street\": \"Rua Nova\",\n    \"additionalDetails\": \"Sala 2\",\n    \"city\": \"São Paulo\",\n    \"country\": \"Brasil\"\n  },\n  \"cuisineType\": \"Japonesa\",\n  \"openingHours\": \"10:00-23:00\",\n  \"ownerId\": 1\n}"
+				{
+					"name": "Update Restaurant",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Restaurante Atualizado\",\n  \"address\": {\n    \"postalCode\": \"12345-678\",\n    \"street\": \"Rua Nova\",\n    \"additionalDetails\": \"Sala 2\",\n    \"city\": \"São Paulo\",\n    \"country\": \"Brasil\"\n  },\n  \"cuisineType\": \"Japonesa\",\n  \"openingHours\": \"10:00-23:00\",\n  \"ownerId\": 1\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/restaurants/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"restaurants",
+								"1"
+							]
+						}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "http://localhost:8081/api/restaurants/1",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8081",
-					"path": [
-						"api",
-						"restaurants",
-						"1"
-					]
+				{
+					"name": "Delete Restaurant",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/restaurants/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"restaurants",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Restaurant By Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/restaurants/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"restaurants",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Restaurants",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/restaurants",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"restaurants"
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
-		},
-		{
-			"name": "Delete Restaurant",
-			"request": {
-				"method": "DELETE",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:8081/api/restaurants/1",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8081",
-					"path": [
-						"api",
-						"restaurants",
-						"1"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Get Restaurant By Id",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:8081/api/restaurants/1",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8081",
-					"path": [
-						"api",
-						"restaurants",
-						"1"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Get All Restaurants",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:8081/api/restaurants",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8081",
-					"path": [
-						"api",
-						"restaurants"
-					]
-				}
-			},
-			"response": []
+			]
 		}
 	]
 }

@@ -3,8 +3,8 @@ package com.fiap.tech_challenge.infrastructure.configuration;
 import com.fiap.tech_challenge.core.repository.CustomerRepository;
 import com.fiap.tech_challenge.core.usecase.customer.CreateCustomerUseCase;
 import com.fiap.tech_challenge.core.usecase.customer.DeleteCustomerUseCase;
-import com.fiap.tech_challenge.core.usecase.customer.ListAllCustomersUseCase;
-import com.fiap.tech_challenge.core.usecase.customer.UpdateCustomerUseCase;
+//import com.fiap.tech_challenge.core.usecase.customer.ListAllCustomersUseCase;
+//import com.fiap.tech_challenge.core.usecase.customer.UpdateCustomerUseCase;
 import com.fiap.tech_challenge.core.usecase.restaurant.CreateRestaurantUseCase;
 import com.fiap.tech_challenge.core.usecase.restaurant.DeleteRestaurantUseCase;
 import com.fiap.tech_challenge.core.usecase.restaurant.GetRestaurantUseCase;
@@ -96,15 +96,15 @@ public class UseCaseConfiguration {
         return new DeleteCustomerUseCase(customerRepository);
     }
 
-    @Bean
-    public ListAllCustomersUseCase listAllCustomersUseCase(){
-        return new ListAllCustomersUseCase(customerRepository);
-    }
+//    @Bean
+//    public ListAllCustomersUseCase listAllCustomersUseCase(){
+//        return new ListAllCustomersUseCase(customerRepository);
+//    }
 
-    @Bean
-    public UpdateCustomerUseCase updateCustomerUseCase(){
-        return new UpdateCustomerUseCase(customerRepository);
-    }
+//    @Bean
+//    public UpdateCustomerUseCase updateCustomerUseCase(){
+//        return new UpdateCustomerUseCase(customerRepository);
+//    }
 
     // CRUD Owner
 
