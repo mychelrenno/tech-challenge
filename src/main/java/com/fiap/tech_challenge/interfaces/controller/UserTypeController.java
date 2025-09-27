@@ -17,10 +17,10 @@ import java.util.List;
 @RequestMapping("/api/type-user")
 public class UserTypeController {
 
-    private CreateUserTypeUseCase createUserTypeUseCase;
-    private ListAllUserTypeUseCase listAllUserTypeUseCase;
-    private UpdateUserTypeUseCase updateUserTypeUseCase;
-    private DeleteUserTypeUseCase deleteUserTypeUseCase;
+    private final CreateUserTypeUseCase createUserTypeUseCase;
+    private final ListAllUserTypeUseCase listAllUserTypeUseCase;
+    private final UpdateUserTypeUseCase updateUserTypeUseCase;
+    private final DeleteUserTypeUseCase deleteUserTypeUseCase;
 
     public UserTypeController(CreateUserTypeUseCase createUserTypeUseCase,
                               ListAllUserTypeUseCase listAllUserTypeUseCase,
@@ -34,23 +34,24 @@ public class UserTypeController {
 
     @PostMapping
     public UserTypeDto create(@RequestBody @Validated(Create.class) UserTypeDto userTypeDto) throws Exception {
-        var userType = createUserTypeUseCase.execute(UserTypeMapper.convertDtoToEntity(userTypeDto));
-        var _userTypeDto = UserTypeMapper.convertEntityToDto(userType);
+        var userType = UserTypeMapper.convertDtoToDomain(userTypeDto);
+        var _userType = createUserTypeUseCase.execute(userType);
+        var _userTypeDto = UserTypeMapper.convertDomainToDto(_userType);
         return _userTypeDto;
     }
 
     @GetMapping
     public List<UserTypeDto> listAll() {
         var userTypeList = listAllUserTypeUseCase.execute();
-        var userTypeDtoList = UserTypeMapper.convertEntityToDtoList(userTypeList);
+        var userTypeDtoList = UserTypeMapper.convertDomainToDto(userTypeList);
         return userTypeDtoList;
     }
 
     @PutMapping
     public UserTypeDto update(@RequestBody @Validated(Update.class) UserTypeDto userTypeDto) {
-        var userType = UserTypeMapper.convertDtoToEntity(userTypeDto);
+        var userType = UserTypeMapper.convertDtoToDomain(userTypeDto);
         var _userType = updateUserTypeUseCase.execute(userType);
-        var _userTypeDto = UserTypeMapper.convertEntityToDto(_userType);
+        var _userTypeDto = UserTypeMapper.convertDomainToDto(_userType);
         return _userTypeDto;
     }
 
