@@ -1,9 +1,7 @@
 package com.fiap.tech_challenge.interfaces.controller;
 
-import com.fiap.tech_challenge.core.usecase.usertype.CreateUserTypeUseCase;
-import com.fiap.tech_challenge.core.usecase.usertype.DeleteUserTypeUseCase;
-import com.fiap.tech_challenge.core.usecase.usertype.ListAllUserTypeUseCase;
-import com.fiap.tech_challenge.core.usecase.usertype.UpdateUserTypeUseCase;
+import com.fiap.tech_challenge.core.domain.UserType;
+import com.fiap.tech_challenge.core.usecase.usertype.*;
 import com.fiap.tech_challenge.interfaces.dto.UserTypeDto;
 import com.fiap.tech_challenge.interfaces.mapper.UserTypeMapper;
 import com.fiap.tech_challenge.interfaces.dto.validation.group.Create;
@@ -21,15 +19,18 @@ public class UserTypeController {
     private final ListAllUserTypeUseCase listAllUserTypeUseCase;
     private final UpdateUserTypeUseCase updateUserTypeUseCase;
     private final DeleteUserTypeUseCase deleteUserTypeUseCase;
+    private final FindByIdUseCase findByIdUseCase;
 
     public UserTypeController(CreateUserTypeUseCase createUserTypeUseCase,
                               ListAllUserTypeUseCase listAllUserTypeUseCase,
                               UpdateUserTypeUseCase updateUserTypeUseCase,
-                              DeleteUserTypeUseCase deleteUserTypeUseCase) {
+                              DeleteUserTypeUseCase deleteUserTypeUseCase,
+                              FindByIdUseCase findByIdUseCase) {
         this.createUserTypeUseCase = createUserTypeUseCase;
         this.listAllUserTypeUseCase = listAllUserTypeUseCase;
         this.updateUserTypeUseCase = updateUserTypeUseCase;
         this.deleteUserTypeUseCase = deleteUserTypeUseCase;
+        this.findByIdUseCase = findByIdUseCase;
     }
 
     @PostMapping
@@ -45,6 +46,13 @@ public class UserTypeController {
         var userTypeList = listAllUserTypeUseCase.execute();
         var userTypeDtoList = UserTypeMapper.convertDomainToDto(userTypeList);
         return userTypeDtoList;
+    }
+
+    @GetMapping("/{id}")
+    public UserTypeDto findById(@PathVariable Long id) {
+        var userType = findByIdUseCase.execute(new UserType(id));
+        var userTypeDto = UserTypeMapper.convertDomainToDto(userType);
+        return userTypeDto;
     }
 
     @PutMapping

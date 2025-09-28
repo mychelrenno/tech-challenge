@@ -51,4 +51,14 @@ public class UserTypeRepositoryJpa implements UserTypeRepository {
         return _userType;
     }
 
+    @Override
+    public UserType findById(UserType userType) {
+        var userTypeJpa = springDataJpaUserType.findById(userType.getId());
+        if (userTypeJpa.isPresent()) {
+            var _userType = UserTypeMapper.convertJpaToDomain(userTypeJpa.get());
+            return _userType;
+        }
+        return null;
+    }
+
 }

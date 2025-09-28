@@ -1,6 +1,7 @@
 package com.fiap.tech_challenge.interfaces.controller.handler;
 
 import com.fiap.tech_challenge.core.exception.ResourceAlreadyExistsException;
+import com.fiap.tech_challenge.core.exception.ResourceNotFoundException;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -38,5 +39,17 @@ public class ValidationExceptionHandler {
         response.put("path", request.getRequestURI());
 
         return ResponseEntity.status(HttpStatus.CONFLICT).body(response);
+    }
+
+    @ExceptionHandler(ResourceNotFoundException.class)
+    public ResponseEntity<Map<String, Object>> handleResourceNotFound(ResourceNotFoundException ex, HttpServletRequest request) {
+
+        Map<String, Object> response = new HashMap<>();
+        response.put("timestamp", LocalDateTime.now());
+        response.put("status", HttpStatus.NOT_FOUND.value());
+        response.put("error", ex.getMessage());
+        response.put("path", request.getRequestURI());
+
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
     }
 }

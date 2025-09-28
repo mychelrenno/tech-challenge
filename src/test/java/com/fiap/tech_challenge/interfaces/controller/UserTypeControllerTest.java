@@ -1,10 +1,7 @@
 package com.fiap.tech_challenge.interfaces.controller;
 
 import com.fiap.tech_challenge.core.domain.UserType;
-import com.fiap.tech_challenge.core.usecase.usertype.CreateUserTypeUseCase;
-import com.fiap.tech_challenge.core.usecase.usertype.DeleteUserTypeUseCase;
-import com.fiap.tech_challenge.core.usecase.usertype.ListAllUserTypeUseCase;
-import com.fiap.tech_challenge.core.usecase.usertype.UpdateUserTypeUseCase;
+import com.fiap.tech_challenge.core.usecase.usertype.*;
 import com.fiap.tech_challenge.interfaces.dto.UserTypeDto;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -21,6 +18,7 @@ class UserTypeControllerTest {
     private ListAllUserTypeUseCase listAllUserTypeUseCase;
     private UpdateUserTypeUseCase updateUserTypeUseCase;
     private DeleteUserTypeUseCase deleteUserTypeUseCase;
+    private FindByIdUseCase findByIdUseCase;
     private UserTypeController controller;
 
     @BeforeEach
@@ -29,12 +27,14 @@ class UserTypeControllerTest {
         listAllUserTypeUseCase = mock(ListAllUserTypeUseCase.class);
         updateUserTypeUseCase = mock(UpdateUserTypeUseCase.class);
         deleteUserTypeUseCase = mock(DeleteUserTypeUseCase.class);
+        findByIdUseCase = mock(FindByIdUseCase.class);
 
         controller = new UserTypeController(
                 createUserTypeUseCase,
                 listAllUserTypeUseCase,
                 updateUserTypeUseCase,
-                deleteUserTypeUseCase
+                deleteUserTypeUseCase,
+                findByIdUseCase
         );
     }
 

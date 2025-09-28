@@ -4,6 +4,10 @@ public class UserType {
     private Long id;
     private String name;
 
+    public UserType(Long id) {
+        this.id = id;
+    }
+
     public UserType(String name) {
         this.name = name;
     }
