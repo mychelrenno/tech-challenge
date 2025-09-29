@@ -1,9 +1,7 @@
 package com.fiap.tech_challenge.interfaces.controller;
 
-import com.fiap.tech_challenge.core.usecase.usertype.CreateUserTypeUseCase;
-import com.fiap.tech_challenge.core.usecase.usertype.DeleteUserTypeUseCase;
-import com.fiap.tech_challenge.core.usecase.usertype.ListAllUserTypeUseCase;
-import com.fiap.tech_challenge.core.usecase.usertype.UpdateUserTypeUseCase;
+import com.fiap.tech_challenge.core.domain.UserType;
+import com.fiap.tech_challenge.core.usecase.usertype.*;
 import com.fiap.tech_challenge.interfaces.dto.UserTypeDto;
 import com.fiap.tech_challenge.interfaces.mapper.UserTypeMapper;
 import com.fiap.tech_challenge.interfaces.dto.validation.group.Create;
@@ -17,40 +15,51 @@ import java.util.List;
 @RequestMapping("/api/type-user")
 public class UserTypeController {
 
-    private CreateUserTypeUseCase createUserTypeUseCase;
-    private ListAllUserTypeUseCase listAllUserTypeUseCase;
-    private UpdateUserTypeUseCase updateUserTypeUseCase;
-    private DeleteUserTypeUseCase deleteUserTypeUseCase;
+    private final CreateUserTypeUseCase createUserTypeUseCase;
+    private final ListAllUserTypeUseCase listAllUserTypeUseCase;
+    private final UpdateUserTypeUseCase updateUserTypeUseCase;
+    private final DeleteUserTypeUseCase deleteUserTypeUseCase;
+    private final FindByIdUseCase findByIdUseCase;
 
     public UserTypeController(CreateUserTypeUseCase createUserTypeUseCase,
                               ListAllUserTypeUseCase listAllUserTypeUseCase,
                               UpdateUserTypeUseCase updateUserTypeUseCase,
-                              DeleteUserTypeUseCase deleteUserTypeUseCase) {
+                              DeleteUserTypeUseCase deleteUserTypeUseCase,
+                              FindByIdUseCase findByIdUseCase) {
         this.createUserTypeUseCase = createUserTypeUseCase;
         this.listAllUserTypeUseCase = listAllUserTypeUseCase;
         this.updateUserTypeUseCase = updateUserTypeUseCase;
         this.deleteUserTypeUseCase = deleteUserTypeUseCase;
+        this.findByIdUseCase = findByIdUseCase;
     }
 
     @PostMapping
     public UserTypeDto create(@RequestBody @Validated(Create.class) UserTypeDto userTypeDto) throws Exception {
-        var userType = createUserTypeUseCase.execute(UserTypeMapper.convertDtoToEntity(userTypeDto));
-        var _userTypeDto = UserTypeMapper.convertEntityToDto(userType);
+        var userType = UserTypeMapper.convertDtoToDomain(userTypeDto);
+        var _userType = createUserTypeUseCase.execute(userType);
+        var _userTypeDto = UserTypeMapper.convertDomainToDto(_userType);
         return _userTypeDto;
     }
 
     @GetMapping
     public List<UserTypeDto> listAll() {
         var userTypeList = listAllUserTypeUseCase.execute();
-        var userTypeDtoList = UserTypeMapper.convertEntityToDtoList(userTypeList);
+        var userTypeDtoList = UserTypeMapper.convertDomainToDto(userTypeList);
         return userTypeDtoList;
+    }
+
+    @GetMapping("/{id}")
+    public UserTypeDto findById(@PathVariable Long id) {
+        var userType = findByIdUseCase.execute(new UserType(id));
+        var userTypeDto = UserTypeMapper.convertDomainToDto(userType);
+        return userTypeDto;
     }
 
     @PutMapping
     public UserTypeDto update(@RequestBody @Validated(Update.class) UserTypeDto userTypeDto) {
-        var userType = UserTypeMapper.convertDtoToEntity(userTypeDto);
+        var userType = UserTypeMapper.convertDtoToDomain(userTypeDto);
         var _userType = updateUserTypeUseCase.execute(userType);
-        var _userTypeDto = UserTypeMapper.convertEntityToDto(_userType);
+        var _userTypeDto = UserTypeMapper.convertDomainToDto(_userType);
         return _userTypeDto;
     }
 

@@ -15,7 +15,7 @@ public class UserMapper {
                 userInputDto.email(),
                 userInputDto.username(),
                 userInputDto.password(),
-                UserTypeMapper.convertDtoToEntity(userInputDto.userType()),
+                UserTypeMapper.convertDtoToDomain(userInputDto.userType()),
                 AddressMapper.convertDtoToEntity(userInputDto.address())
         );
     }
@@ -27,8 +27,7 @@ public class UserMapper {
                 userOutputDto.email(),
                 userOutputDto.username(),
                 UserTypeMapper.convertDtoToEntity(userOutputDto.userType()),
-                AddressMapper.convertDtoToEntity(userOutputDto.address()),
-                userOutputDto.active()
+                AddressMapper.convertDtoToEntity(userOutputDto.address())
         );
     }
 
@@ -39,7 +38,7 @@ public class UserMapper {
                 user.getEmail(),
                 user.getUsername(),
                 user.getPassword(),
-                UserTypeMapper.convertEntityToJpa(user.getUserType()),
+                UserTypeMapper.convertDomainToJpa(user.getUserType()),
                 AddressMapper.convertEntityToJpa(user.getAddress()),
                 new Date(),
                 true
@@ -53,7 +52,7 @@ public class UserMapper {
                 userJpa.getEmail(),
                 userJpa.getUsername(),
                 userJpa.getPassword(),
-                UserTypeMapper.convertJpaToEntity(userJpa.getUserTypeJpa()),
+                UserTypeMapper.convertJpaToDomain(userJpa.getUserTypeJpa()),
                 AddressMapper.convertJpaToEntity(userJpa.getAddressJpa())
         );
     }

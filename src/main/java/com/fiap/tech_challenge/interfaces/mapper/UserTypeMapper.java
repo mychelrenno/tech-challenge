@@ -9,14 +9,14 @@ import java.util.List;
 
 public class UserTypeMapper {
 
-    public static UserType convertDtoToEntity(UserTypeDto dto) {
+    public static UserType convertDtoToDomain(UserTypeDto dto) {
         if (dto == null) {
             return null;
         }
         return new UserType(dto.id(), dto.name());
     }
 
-    public static UserTypeJpa convertEntityToJpa(UserType userType) {
+    public static UserTypeJpa convertDomainToJpa(UserType userType) {
         if (userType == null) {
             return null;
         }
@@ -30,21 +30,21 @@ public class UserTypeMapper {
         return new UserTypeDto(userTypeJpa.getId(), userTypeJpa.getName());
     }
 
-    public static UserTypeDto convertEntityToDto(UserType userType) {
+    public static UserTypeDto convertDomainToDto(UserType userType) {
         if (userType == null) {
             return null;
         }
         return new UserTypeDto(userType.getId(), userType.getName());
     }
 
-    public static UserType convertJpaToEntity(UserTypeJpa userTypeJpa) {
+    public static UserType convertJpaToDomain(UserTypeJpa userTypeJpa) {
         if (userTypeJpa == null) {
             return null;
         }
         return new UserType(userTypeJpa.getId(), userTypeJpa.getName());
     }
 
-    public static List<UserType> convertJpaToEntityList(List<UserTypeJpa> userTypeJpaList) {
+    public static List<UserType> convertJpaToDomain(List<UserTypeJpa> userTypeJpaList) {
         var userTypeList = new ArrayList<UserType>();
         userTypeJpaList.forEach( u -> {
             var userType = new UserType(u.getId(), u.getName());
@@ -53,7 +53,7 @@ public class UserTypeMapper {
         return userTypeList;
     }
 
-    public static List<UserTypeDto> convertEntityToDtoList(List<UserType> userType) {
+    public static List<UserTypeDto> convertDomainToDto(List<UserType> userType) {
         var userTypeDtoList = new ArrayList<UserTypeDto>();
         userType.forEach( u -> {
             var userTypeDto = new UserTypeDto(u.getId(), u.getName());

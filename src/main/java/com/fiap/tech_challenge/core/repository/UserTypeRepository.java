@@ -10,5 +10,5 @@ public interface UserTypeRepository {
     UserType update(UserType userType);
     void delete(Long id);
     UserType findByName(UserType userType);
-
+    UserType findById(UserType userType);
 }

@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "user-type")
+@Table(name = "user_type")
 public class UserTypeJpa implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

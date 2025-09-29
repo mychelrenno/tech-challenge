@@ -3,7 +3,7 @@ package com.fiap.tech_challenge.infrastructure.entity;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "menu")
+@Table(name = "menus")
 public class MenuJpa {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

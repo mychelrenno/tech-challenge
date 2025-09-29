@@ -3,17 +3,14 @@ package com.fiap.tech_challenge.infrastructure.configuration;
 import com.fiap.tech_challenge.core.repository.CustomerRepository;
 import com.fiap.tech_challenge.core.usecase.customer.CreateCustomerUseCase;
 import com.fiap.tech_challenge.core.usecase.customer.DeleteCustomerUseCase;
-import com.fiap.tech_challenge.core.usecase.customer.ListAllCustomersUseCase;
-import com.fiap.tech_challenge.core.usecase.customer.UpdateCustomerUseCase;
+//import com.fiap.tech_challenge.core.usecase.customer.ListAllCustomersUseCase;
+//import com.fiap.tech_challenge.core.usecase.customer.UpdateCustomerUseCase;
 import com.fiap.tech_challenge.core.usecase.restaurant.CreateRestaurantUseCase;
 import com.fiap.tech_challenge.core.usecase.restaurant.DeleteRestaurantUseCase;
 import com.fiap.tech_challenge.core.usecase.restaurant.GetRestaurantUseCase;
 import com.fiap.tech_challenge.core.usecase.restaurant.UpdateRestaurantUseCase;
 import com.fiap.tech_challenge.core.usecase.user.*;
-import com.fiap.tech_challenge.core.usecase.usertype.CreateUserTypeUseCase;
-import com.fiap.tech_challenge.core.usecase.usertype.DeleteUserTypeUseCase;
-import com.fiap.tech_challenge.core.usecase.usertype.ListAllUserTypeUseCase;
-import com.fiap.tech_challenge.core.usecase.usertype.UpdateUserTypeUseCase;
+import com.fiap.tech_challenge.core.usecase.usertype.*;
 import com.fiap.tech_challenge.infrastructure.repository.RestaurantRepositoryJpa;
 import com.fiap.tech_challenge.infrastructure.repository.UserRepositoryJpa;
 import com.fiap.tech_challenge.infrastructure.repository.UserTypeRepositoryJpa;
@@ -59,6 +56,11 @@ public class UseCaseConfiguration {
         return new DeleteUserTypeUseCase(userTypeRepositoryJpa);
     }
 
+    @Bean
+    public FindByIdUseCase makeFindByIdUseCase() {
+        return new FindByIdUseCase(userTypeRepositoryJpa);
+    }
+
     // CRUD User
     @Bean
     public CreateUserUseCase makeCreateUserUseCase() {
@@ -96,15 +98,15 @@ public class UseCaseConfiguration {
         return new DeleteCustomerUseCase(customerRepository);
     }
 
-    @Bean
-    public ListAllCustomersUseCase listAllCustomersUseCase(){
-        return new ListAllCustomersUseCase(customerRepository);
-    }
+//    @Bean
+//    public ListAllCustomersUseCase listAllCustomersUseCase(){
+//        return new ListAllCustomersUseCase(customerRepository);
+//    }
 
-    @Bean
-    public UpdateCustomerUseCase updateCustomerUseCase(){
-        return new UpdateCustomerUseCase(customerRepository);
-    }
+//    @Bean
+//    public UpdateCustomerUseCase updateCustomerUseCase(){
+//        return new UpdateCustomerUseCase(customerRepository);
+//    }
 
     // CRUD Owner
 
