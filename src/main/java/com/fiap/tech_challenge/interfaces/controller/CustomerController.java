@@ -12,10 +12,10 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/customers")
 public class CustomerController {
-    private CreateCustomerUseCase createCustomerUseCase;
-    private DeleteCustomerUseCase deleteCustomerUseCase;
-    private ListAllCustomersUseCase listAllCustomersUseCase;
-    private UpdateCustomerUseCase updateCustomerUseCase;
+    private final CreateCustomerUseCase createCustomerUseCase;
+    private final DeleteCustomerUseCase deleteCustomerUseCase;
+    private final ListAllCustomersUseCase listAllCustomersUseCase;
+    private final UpdateCustomerUseCase updateCustomerUseCase;
 
     public CustomerController(CreateCustomerUseCase createCustomerUseCase,
                               DeleteCustomerUseCase deleteCustomerUseCase,

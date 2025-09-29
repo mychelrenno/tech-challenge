@@ -26,8 +26,9 @@ public class UserMapper {
                 userOutputDto.name(),
                 userOutputDto.email(),
                 userOutputDto.username(),
-                UserTypeMapper.convertDtoToEntity(userOutputDto.userType()),
-                AddressMapper.convertDtoToEntity(userOutputDto.address())
+                UserTypeMapper.convertDtoToDomain(userOutputDto.userType()),
+                AddressMapper.convertDtoToEntity(userOutputDto.address()),
+                userOutputDto.active()
         );
     }
 
