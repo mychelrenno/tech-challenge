@@ -62,14 +62,6 @@ public class CustomerJpa implements Serializable {
         this.userJpa = userJpa;
     }
 
-    public List<OrderJpa> getOrders() {
-        return orders;
-    }
-
-    public void setOrders(List<OrderJpa> orders) {
-        this.orders = orders;
-    }
-
     @Override
     public String toString() {
         return "CustomerJpa{" +

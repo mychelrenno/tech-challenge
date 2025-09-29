@@ -22,11 +22,13 @@ public class UserMapper {
 
     public static User convertDtoToEntity(UserOutputDto userOutputDto) {
         return new User(
+                userOutputDto.id(),
                 userOutputDto.name(),
                 userOutputDto.email(),
                 userOutputDto.username(),
                 UserTypeMapper.convertDtoToEntity(userOutputDto.userType()),
-                AddressMapper.convertDtoToEntity(userOutputDto.address())
+                AddressMapper.convertDtoToEntity(userOutputDto.address()),
+                userOutputDto.active()
         );
     }
 

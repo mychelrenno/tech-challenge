@@ -40,6 +40,25 @@ public class User {
         this.active = true;
     }
 
+    public User(Long id, String name,
+                String email, String username,
+                UserType userType, Address address,
+                Boolean active) {
+        if (!email.contains("@")) {
+            throw new IllegalArgumentException("Invalid email.");
+        }
+        if (username == null || username.isBlank()) {
+            throw new IllegalArgumentException("Username cannot be empty.");
+        }
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.username = username;
+        this.userType = userType;
+        this.address = address;
+        this.active = active;
+    }
+
     public User(String name, String email, String username,
                 String password, UserType userType,
                 Address address) {
