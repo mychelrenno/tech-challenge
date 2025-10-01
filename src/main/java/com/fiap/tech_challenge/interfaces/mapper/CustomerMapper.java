@@ -20,8 +20,7 @@ public class CustomerMapper {
         return new Customer(
                 customerJpa.getId(),
                 customerJpa.getDocument(),
-                UserMapper.convertJpaToEntity(customerJpa.getUserJpa()),
-                null
+                UserMapper.convertJpaToEntity(customerJpa.getUserJpa())
         );
     }
 
@@ -29,8 +28,7 @@ public class CustomerMapper {
         return new Customer(
                 null,
                 customerInputDto.document(),
-                UserMapper.convertDtoToEntity(customerInputDto.userInputDto()),
-                null
+                UserMapper.convertDtoToEntity(customerInputDto.userInputDto())
         );
     }
 
@@ -38,8 +36,7 @@ public class CustomerMapper {
         return new Customer(
                 customerOutputDto.id(),
                 customerOutputDto.document(),
-                UserMapper.convertDtoToEntity(customerOutputDto.userOutputDto()),
-                null
+                UserMapper.convertDtoToEntity(customerOutputDto.userOutputDto())
         );
     }
 
@@ -49,8 +46,7 @@ public class CustomerMapper {
             var customer = new Customer(
                     c.getId(),
                     c.getDocument(),
-                    UserMapper.convertJpaToEntity(c.getUserJpa()),
-                    null
+                    UserMapper.convertJpaToEntity(c.getUserJpa())
             );
             customersList.add(customer);
         });

@@ -3,7 +3,6 @@ package com.fiap.tech_challenge.infrastructure.entity;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
-import java.util.List;
 
 @Entity
 @Table(name = "customers")
@@ -16,20 +15,8 @@ public class CustomerJpa implements Serializable {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(nullable = false)
     private UserJpa userJpa;
-    @OneToMany(mappedBy = "customerJpa", cascade = CascadeType.ALL)
-    private List<OrderJpa> orders;
 
     public CustomerJpa() {
-    }
-
-    public CustomerJpa(Long id,
-                       String document,
-                       UserJpa userJpa,
-                       List<OrderJpa> orders) {
-        this.id = id;
-        this.document = document;
-        this.userJpa = userJpa;
-        this.orders = orders;
     }
 
     public CustomerJpa(String document,
@@ -68,7 +55,6 @@ public class CustomerJpa implements Serializable {
                 "id=" + id +
                 ", document='" + document + '\'' +
                 ", userJpa=" + userJpa +
-                ", orders=" + orders +
                 '}';
     }
 }

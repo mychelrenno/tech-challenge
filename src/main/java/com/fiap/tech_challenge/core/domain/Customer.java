@@ -9,13 +9,11 @@ public class Customer {
     private Long id;
     private String document;
     private User user;
-    private List<Order> orders;
 
-    public Customer(Long id, String document, User user, List<Order> orders) {
+    public Customer(Long id, String document, User user) {
         this.id = id;
         this.document = document;
         this.user = user;
-        this.orders = orders;
     }
 
     public Long getId() {
@@ -28,9 +26,5 @@ public class Customer {
 
     public User getUser() {
         return user;
-    }
-
-    public List<Order> getOrders() {
-        return orders;
     }
 }
