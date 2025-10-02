@@ -7,18 +7,12 @@ import java.util.List;
 
 public class Owner {
     private Long id;
-    private Long document;
+    private String document;
     private List<Restaurant> restaurants;
     private User user;
 
-    public Owner(Long id, Long document, List<Restaurant> restaurants, User user) {
+    public Owner(Long id, String document, List<Restaurant> restaurants, User user) {
         this.id = id;
-        this.document = document;
-        this.restaurants = restaurants;
-        this.user = user;
-    }
-
-    public Owner(Long document, List<Restaurant> restaurants, User user) {
         this.document = document;
         this.restaurants = restaurants;
         this.user = user;
@@ -28,7 +22,7 @@ public class Owner {
         return id;
     }
 
-    public Long getDocument() {
+    public String getDocument() {
         return document;
     }
 
