@@ -1,9 +1,6 @@
 package com.fiap.tech_challenge.core.domain;
 
-import com.fiap.tech_challenge.core.domain.order.Order;
 import com.fiap.tech_challenge.core.domain.user.User;
-
-import java.util.List;
 
 public class Customer {
     private Long id;

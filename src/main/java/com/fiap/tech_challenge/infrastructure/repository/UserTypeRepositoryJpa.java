@@ -27,7 +27,7 @@ public class UserTypeRepositoryJpa implements UserTypeRepository {
     @Override
     public List<UserType> listAll() {
         var userTypeJpaList = springDataJpaUserType.findAll();
-        return UserTypeMapper.convertJpaToEntityList(userTypeJpaList);
+        return UserTypeMapper.convertJpaToDomain(userTypeJpaList);
     }
 
     @Override
@@ -46,7 +46,7 @@ public class UserTypeRepositoryJpa implements UserTypeRepository {
     @Override
     public UserType findByName(UserType userType) {
         var userTypeJpa = springDataJpaUserType.findByName(userType.getName());
-        return UserTypeMapper.convertJpaToEntity(userTypeJpa);
+        return UserTypeMapper.convertJpaToDomain(userTypeJpa);
     }
 
     @Override
