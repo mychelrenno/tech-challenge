@@ -13,6 +13,7 @@ class MenuItemMapperTest {
     void shouldConvertDtoToEntity() {
         // Given
         MenuItemDto dto = new MenuItemDto(
+                null,
                 "Pizza Margherita",
                 "Pizza clássica com molho de tomate, mussarela e manjericão fresco",
                 45.90,
@@ -82,6 +83,7 @@ class MenuItemMapperTest {
     void shouldConvertDtoToEntityWithRestaurantOnly() {
         // Given
         MenuItemDto dto = new MenuItemDto(
+                null,
                 "Café Expresso",
                 "Café expresso tradicional, servido apenas no local",
                 4.50,
@@ -136,7 +138,7 @@ class MenuItemMapperTest {
     @Test
     void shouldConvertDtoToEntityWithNullValues() {
         // Given
-        MenuItemDto dto = new MenuItemDto(null, null, null, null, null);
+        MenuItemDto dto = new MenuItemDto(null, null, null, null, null, null);
 
         // When
         MenuItem entity = MenuItemMapper.convertDtoToEntity(dto);

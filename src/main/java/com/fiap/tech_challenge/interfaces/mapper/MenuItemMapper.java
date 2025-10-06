@@ -8,6 +8,7 @@ public class MenuItemMapper {
 
     public static MenuItem convertDtoToEntity(MenuItemDto dto) {
         return new MenuItem(
+                dto.id(),
                 dto.name(),
                 dto.description(),
                 dto.price(),
@@ -17,17 +18,22 @@ public class MenuItemMapper {
     }
 
     public static MenuItemJpa convertEntityToJpa(MenuItem menuItem) {
-        return new MenuItemJpa(
+        MenuItemJpa menuItemJpa = new MenuItemJpa(
                 menuItem.getName(),
                 menuItem.getDescription(),
                 menuItem.getPrice(),
                 menuItem.getRestaurantOnly(),
                 menuItem.getImagePath()
         );
+        if (menuItem.getId() != null) {
+            menuItemJpa.setId(menuItem.getId());
+        }
+        return menuItemJpa;
     }
 
     public static MenuItem convertJpaToEntity(MenuItemJpa menuItemJpa) {
         return new MenuItem(
+                menuItemJpa.getId(),
                 menuItemJpa.getName(),
                 menuItemJpa.getDescription(),
                 menuItemJpa.getPrice(),

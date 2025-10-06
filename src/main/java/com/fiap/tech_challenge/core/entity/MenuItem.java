@@ -10,6 +10,16 @@ public class MenuItem {
         this.imagePath = imagePath;
     }
 
+    public MenuItem(Long id, String name, String description, Double price, Boolean restaurantOnly, String imagePath) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.price = price;
+        this.restaurantOnly = restaurantOnly;
+        this.imagePath = imagePath;
+    }
+
+    private Long id;
     private String name;
     private String description;
     private Double price;
@@ -54,5 +64,13 @@ public class MenuItem {
 
     public void setImagePath(String imagePath) {
         this.imagePath = imagePath;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }

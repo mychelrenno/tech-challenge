@@ -32,6 +32,7 @@ class MenuItemControllerTest {
     void shouldCreateMenuItemSuccessfully() throws Exception {
         // Given
         MenuItemDto menuItemDto = new MenuItemDto(
+                null,
                 "Pizza Margherita",
                 "Pizza clássica com molho de tomate, mussarela e manjericão fresco",
                 45.90,
@@ -40,6 +41,7 @@ class MenuItemControllerTest {
         );
 
         MenuItem savedMenuItem = new MenuItem(
+                1L,
                 "Pizza Margherita",
                 "Pizza clássica com molho de tomate, mussarela e manjericão fresco",
                 45.90,
@@ -60,6 +62,7 @@ class MenuItemControllerTest {
     void shouldCreateMenuItemForRestaurantOnly() throws Exception {
         // Given
         MenuItemDto menuItemDto = new MenuItemDto(
+                null,
                 "Café Expresso",
                 "Café expresso tradicional, servido apenas no local",
                 4.50,
@@ -68,6 +71,7 @@ class MenuItemControllerTest {
         );
 
         MenuItem savedMenuItem = new MenuItem(
+                2L,
                 "Café Expresso",
                 "Café expresso tradicional, servido apenas no local",
                 4.50,
@@ -88,6 +92,7 @@ class MenuItemControllerTest {
     void shouldCreateMenuItemForDelivery() throws Exception {
         // Given
         MenuItemDto menuItemDto = new MenuItemDto(
+                null,
                 "Hambúrguer Artesanal",
                 "Hambúrguer com carne artesanal, disponível para delivery",
                 32.90,
@@ -96,6 +101,7 @@ class MenuItemControllerTest {
         );
 
         MenuItem savedMenuItem = new MenuItem(
+                3L,
                 "Hambúrguer Artesanal",
                 "Hambúrguer com carne artesanal, disponível para delivery",
                 32.90,
@@ -124,9 +130,9 @@ class MenuItemControllerTest {
     @Test
     void shouldHandleNullValues() throws Exception {
         // Given
-        MenuItemDto menuItemDto = new MenuItemDto(null, null, null, null, null);
+        MenuItemDto menuItemDto = new MenuItemDto(null, null, null, null, null, null);
 
-        MenuItem savedMenuItem = new MenuItem(null, null, null, null, null);
+        MenuItem savedMenuItem = new MenuItem(null, null, null, null, null, null);
 
         when(createMenuItemUseCase.execute(any(MenuItem.class))).thenReturn(savedMenuItem);
 
