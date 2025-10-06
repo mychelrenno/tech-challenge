@@ -2,19 +2,27 @@ package com.fiap.tech_challenge.infrastructure.entity;
 
 import jakarta.persistence.*;
 
+import java.io.Serializable;
+
 @Entity
-@Table(name = "user-type")
-public class UserTypeJpa {
+@Table(name = "user_type")
+public class UserTypeJpa implements Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @Column(nullable = false, unique = true)
+    private String name;
+
+    public UserTypeJpa(){}
+
+    public UserTypeJpa(Long id, String name) {
+        this.id = id;
+        this.name = name;
+    }
 
     public UserTypeJpa(String name) {
         this.name = name;
     }
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    private String name;
 
     public Long getId() {
         return id;

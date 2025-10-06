@@ -1,8 +1,14 @@
 package com.fiap.tech_challenge.core.repository;
 
-import com.fiap.tech_challenge.core.entity.UserType;
+import com.fiap.tech_challenge.core.domain.UserType;
+
+import java.util.List;
 
 public interface UserTypeRepository {
-
-    public UserType save(UserType userType);
+    UserType save(UserType userType);
+    List<UserType> listAll();
+    UserType update(UserType userType);
+    void delete(Long id);
+    UserType findByName(UserType userType);
+    UserType findById(UserType userType);
 }

@@ -1,108 +1,249 @@
 {
 	"info": {
-		"_postman_id": "cfaf37b9-5ce9-4794-9a16-a1c8b0b5e797",
+		"_postman_id": "c26423fb-ca15-4828-93a9-ce8f10fa43b6",
 		"name": "tech-challenge-phase-two",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "5338485",
-		"_collection_link": "https://ze-comanda.postman.co/workspace/private-workspace~9d6a29a5-de4f-49af-8bed-1bb747e1ad88/collection/5338485-cfaf37b9-5ce9-4794-9a16-a1c8b0b5e797?action=share&source=collection_link&creator=5338485"
+		"_collection_link": "https://ze-comanda.postman.co/workspace/private-workspace~9d6a29a5-de4f-49af-8bed-1bb747e1ad88/collection/5338485-c26423fb-ca15-4828-93a9-ce8f10fa43b6?action=share&source=collection_link&creator=5338485"
 	},
 	"item": [
 		{
-			"name": "type-user-create",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"name\": \"Dono de Restaurante\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
+			"name": "user-type",
+			"item": [
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"teste\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/type-user",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"type-user"
+							]
 						}
-					}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "http://localhost:8081/api/type-user",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8081",
-					"path": [
-						"api",
-						"type-user"
-					]
+				{
+					"name": "list-all",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/type-user",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"type-user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 3,\r\n    \"name\": \"teste\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/type-user",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"type-user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/type-user/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"type-user",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "find-by-id",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
 				}
-			},
-			"response": []
+			]
 		},
 		{
-			"name": "menu-item-create",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"name\": \"Pizza Margherita\",\r\n    \"description\": \"Pizza clássica com molho de tomate, mussarela e manjericão fresco\",\r\n    \"price\": 45.90,\r\n    \"restaurantOnly\": false,\r\n    \"imagePath\": \"/images/pizza-margherita.jpg\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
+			"name": "restaurant",
+			"item": [
+				{
+					"name": "Create Restaurant",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Restaurante Exemplo\",\n  \"address\": {\n    \"postalCode\": \"12345-678\",\n    \"street\": \"Rua Exemplo\",\n    \"additionalDetails\": \"Sala 1\",\n    \"city\": \"São Paulo\",\n    \"country\": \"Brasil\"\n  },\n  \"cuisineType\": \"Italiana\",\n  \"openingHours\": \"08:00-22:00\",\n  \"ownerId\": 1\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/restaurants",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"restaurants"
+							]
 						}
-					}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "http://localhost:8081/api/menu-item",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8081",
-					"path": [
-						"api",
-						"menu-item"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "menu-item-create-restaurant-only",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"name\": \"Café Expresso\",\r\n    \"description\": \"Café expresso tradicional, servido apenas no local\",\r\n    \"price\": 4.50,\r\n    \"restaurantOnly\": true,\r\n    \"imagePath\": \"/images/cafe-expresso.jpg\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
+				{
+					"name": "Update Restaurant",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Restaurante Atualizado\",\n  \"address\": {\n    \"postalCode\": \"12345-678\",\n    \"street\": \"Rua Nova\",\n    \"additionalDetails\": \"Sala 2\",\n    \"city\": \"São Paulo\",\n    \"country\": \"Brasil\"\n  },\n  \"cuisineType\": \"Japonesa\",\n  \"openingHours\": \"10:00-23:00\",\n  \"ownerId\": 1\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/restaurants/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"restaurants",
+								"1"
+							]
 						}
-					}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "http://localhost:8081/api/menu-item",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8081",
-					"path": [
-						"api",
-						"menu-item"
-					]
+				{
+					"name": "Delete Restaurant",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/restaurants/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"restaurants",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Restaurant By Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/restaurants/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"restaurants",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Restaurants",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/restaurants",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"restaurants"
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			]
 		}
 	]
 }

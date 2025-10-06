@@ -1,0 +1,60 @@
+package com.fiap.tech_challenge.interfaces.mapper;
+
+import com.fiap.tech_challenge.core.domain.user.User;
+import com.fiap.tech_challenge.infrastructure.entity.UserJpa;
+import com.fiap.tech_challenge.interfaces.dto.user.UserInputDto;
+import com.fiap.tech_challenge.interfaces.dto.user.UserOutputDto;
+
+import java.util.Date;
+
+public class UserMapper {
+
+    public static User convertDtoToEntity(UserInputDto userInputDto) {
+        return new User(
+                userInputDto.name(),
+                userInputDto.email(),
+                userInputDto.username(),
+                userInputDto.password(),
+                UserTypeMapper.convertDtoToDomain(userInputDto.userType()),
+                AddressMapper.convertDtoToEntity(userInputDto.address())
+        );
+    }
+
+    public static User convertDtoToEntity(UserOutputDto userOutputDto) {
+        return new User(
+                userOutputDto.id(),
+                userOutputDto.name(),
+                userOutputDto.email(),
+                userOutputDto.username(),
+                UserTypeMapper.convertDtoToDomain(userOutputDto.userType()),
+                AddressMapper.convertDtoToEntity(userOutputDto.address()),
+                userOutputDto.active()
+        );
+    }
+
+    public static UserJpa convertEntityToJpa(User user) {
+        return new UserJpa(
+                user.getId(),
+                user.getName(),
+                user.getEmail(),
+                user.getUsername(),
+                user.getPassword(),
+                UserTypeMapper.convertDomainToJpa(user.getUserType()),
+                AddressMapper.convertEntityToJpa(user.getAddress()),
+                new Date(),
+                true
+        );
+    }
+
+    public static User convertJpaToEntity(UserJpa userJpa) {
+        return new User(
+                userJpa.getId(),
+                userJpa.getName(),
+                userJpa.getEmail(),
+                userJpa.getUsername(),
+                userJpa.getPassword(),
+                UserTypeMapper.convertJpaToDomain(userJpa.getUserTypeJpa()),
+                AddressMapper.convertJpaToEntity(userJpa.getAddressJpa())
+        );
+    }
+}
