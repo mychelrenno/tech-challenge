@@ -1,0 +1,58 @@
+package com.fiap.tech_challenge.core.entity;
+
+public class MenuItem {
+
+    public MenuItem(String name, String description, Double price, Boolean restaurantOnly, String imagePath) {
+        this.name = name;
+        this.description = description;
+        this.price = price;
+        this.restaurantOnly = restaurantOnly;
+        this.imagePath = imagePath;
+    }
+
+    private String name;
+    private String description;
+    private Double price;
+    private Boolean restaurantOnly;
+    private String imagePath;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
+    }
+
+    public Boolean getRestaurantOnly() {
+        return restaurantOnly;
+    }
+
+    public void setRestaurantOnly(Boolean restaurantOnly) {
+        this.restaurantOnly = restaurantOnly;
+    }
+
+    public String getImagePath() {
+        return imagePath;
+    }
+
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
+    }
+}

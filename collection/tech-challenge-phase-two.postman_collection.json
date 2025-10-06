@@ -14,7 +14,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"name\": \"mycheloi\"\r\n}",
+					"raw": "{\r\n    \"name\": \"Dono de Restaurante\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -31,6 +31,74 @@
 					"path": [
 						"api",
 						"type-user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "menu-item-create",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Pizza Margherita\",\r\n    \"description\": \"Pizza clássica com molho de tomate, mussarela e manjericão fresco\",\r\n    \"price\": 45.90,\r\n    \"restaurantOnly\": false,\r\n    \"imagePath\": \"/images/pizza-margherita.jpg\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/api/menu-item",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"menu-item"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "menu-item-create-restaurant-only",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Café Expresso\",\r\n    \"description\": \"Café expresso tradicional, servido apenas no local\",\r\n    \"price\": 4.50,\r\n    \"restaurantOnly\": true,\r\n    \"imagePath\": \"/images/cafe-expresso.jpg\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/api/menu-item",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"menu-item"
 					]
 				}
 			},
