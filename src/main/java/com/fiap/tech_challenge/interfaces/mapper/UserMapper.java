@@ -10,29 +10,37 @@ import java.util.Date;
 public class UserMapper {
 
     public static User convertDtoToEntity(UserInputDto userInputDto) {
+        if (userInputDto == null) return null;
         return new User(
+                null,
                 userInputDto.name(),
                 userInputDto.email(),
                 userInputDto.username(),
                 userInputDto.password(),
                 UserTypeMapper.convertDtoToDomain(userInputDto.userType()),
-                AddressMapper.convertDtoToEntity(userInputDto.address())
+                AddressMapper.convertDtoToEntity(userInputDto.address()),
+                new Date(),
+                true
         );
     }
 
     public static User convertDtoToEntity(UserOutputDto userOutputDto) {
+        if (userOutputDto == null) return null;
         return new User(
                 userOutputDto.id(),
                 userOutputDto.name(),
                 userOutputDto.email(),
                 userOutputDto.username(),
+                null,
                 UserTypeMapper.convertDtoToDomain(userOutputDto.userType()),
                 AddressMapper.convertDtoToEntity(userOutputDto.address()),
+                userOutputDto.lastUpdateDate(),
                 userOutputDto.active()
         );
     }
 
     public static UserJpa convertEntityToJpa(User user) {
+        if (user == null) return null;
         return new UserJpa(
                 user.getId(),
                 user.getName(),
@@ -47,6 +55,7 @@ public class UserMapper {
     }
 
     public static User convertJpaToEntity(UserJpa userJpa) {
+        if (userJpa == null) return null;
         return new User(
                 userJpa.getId(),
                 userJpa.getName(),
@@ -54,7 +63,9 @@ public class UserMapper {
                 userJpa.getUsername(),
                 userJpa.getPassword(),
                 UserTypeMapper.convertJpaToDomain(userJpa.getUserTypeJpa()),
-                AddressMapper.convertJpaToEntity(userJpa.getAddressJpa())
+                AddressMapper.convertJpaToEntity(userJpa.getAddressJpa()),
+                userJpa.getLastUpdateDate(),
+                userJpa.getActive()
         );
     }
 }

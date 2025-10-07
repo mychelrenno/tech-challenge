@@ -62,15 +62,19 @@ public class UserRepositoryJpa implements UserRepository {
         var userJpa = springDataJpaUser.findById(id);
         if(userJpa.isPresent()){
             UserJpa foundUserJpa = userJpa.get();
-
+            // check if user type already registered
+            UserTypeJpa userTypeJpa = foundUserJpa.getUserTypeJpa();
+            userTypeJpa = springDataJpaUserType.findByName(user.getUserType().getName());
+            if(userTypeJpa!=null){
+                foundUserJpa.setUserTypeJpa(userTypeJpa);
+            }
+            // set user's new data
             foundUserJpa.setName(user.getName());
             foundUserJpa.setEmail(user.getEmail());
             foundUserJpa.setUsername(user.getUsername());
-            foundUserJpa.setUserTypeJpa(UserTypeMapper.convertDomainToJpa(user.getUserType()));
             foundUserJpa.setAddressJpa(AddressMapper.convertEntityToJpa(user.getAddress()));
             foundUserJpa.setLastUpdateDate(new Date());
             foundUserJpa.setActive(true);
-
             var savedUserJpa = springDataJpaUser.save(foundUserJpa);
             return UserMapper.convertJpaToEntity(savedUserJpa);
         }else{
@@ -104,6 +108,7 @@ public class UserRepositoryJpa implements UserRepository {
                         user.getUsername(),
                         UserTypeMapper.convertJpaToDto(user.getUserTypeJpa()),
                         AddressMapper.convertJpaToDto(user.getAddressJpa()),
+                        user.getLastUpdateDate(),
                         user.getActive()
                 ))
                 .toList();
