@@ -16,6 +16,9 @@ public class User {
     private Date lastUpdateDate;
     private Boolean active;
 
+    public User() {
+    }
+
     public User(Long id, String name,
                 String email, String username,
                 String password, UserType userType,
