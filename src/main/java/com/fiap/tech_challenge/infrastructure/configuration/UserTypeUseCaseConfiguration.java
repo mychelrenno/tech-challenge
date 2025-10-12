@@ -35,8 +35,8 @@ public class UserTypeUseCaseConfiguration {
     }
 
     @Bean
-    public FindByIdUseCase makeFindByIdUseCase() {
-        return new FindByIdUseCase(userTypeRepositoryJpa);
+    public FindUserTypeByIdUseCase makeFindByIdUseCase() {
+        return new FindUserTypeByIdUseCase(userTypeRepositoryJpa);
     }
 
 }

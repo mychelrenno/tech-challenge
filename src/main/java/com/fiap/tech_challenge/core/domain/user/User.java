@@ -19,10 +19,14 @@ public class User {
     public User() {
     }
 
-    public User(Long id, String name,
-                String email, String username,
-                String password, UserType userType,
-                Address address, Date lastUpdateDate,
+    public User(Long id,
+                String name,
+                String email,
+                String username,
+                String password,
+                UserType userType,
+                Address address,
+                Date lastUpdateDate,
                 Boolean active) {
         this.id = id;
         this.name = name;

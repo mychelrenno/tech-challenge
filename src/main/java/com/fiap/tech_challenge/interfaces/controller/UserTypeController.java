@@ -19,13 +19,13 @@ public class UserTypeController {
     private final ListAllUserTypeUseCase listAllUserTypeUseCase;
     private final UpdateUserTypeUseCase updateUserTypeUseCase;
     private final DeleteUserTypeUseCase deleteUserTypeUseCase;
-    private final FindByIdUseCase findByIdUseCase;
+    private final FindUserTypeByIdUseCase findByIdUseCase;
 
     public UserTypeController(CreateUserTypeUseCase createUserTypeUseCase,
                               ListAllUserTypeUseCase listAllUserTypeUseCase,
                               UpdateUserTypeUseCase updateUserTypeUseCase,
                               DeleteUserTypeUseCase deleteUserTypeUseCase,
-                              FindByIdUseCase findByIdUseCase) {
+                              FindUserTypeByIdUseCase findByIdUseCase) {
         this.createUserTypeUseCase = createUserTypeUseCase;
         this.listAllUserTypeUseCase = listAllUserTypeUseCase;
         this.updateUserTypeUseCase = updateUserTypeUseCase;

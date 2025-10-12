@@ -18,7 +18,7 @@ class UserTypeControllerTest {
     private ListAllUserTypeUseCase listAllUserTypeUseCase;
     private UpdateUserTypeUseCase updateUserTypeUseCase;
     private DeleteUserTypeUseCase deleteUserTypeUseCase;
-    private FindByIdUseCase findByIdUseCase;
+    private FindUserTypeByIdUseCase findByIdUseCase;
     private UserTypeController controller;
 
     @BeforeEach
@@ -27,7 +27,7 @@ class UserTypeControllerTest {
         listAllUserTypeUseCase = mock(ListAllUserTypeUseCase.class);
         updateUserTypeUseCase = mock(UpdateUserTypeUseCase.class);
         deleteUserTypeUseCase = mock(DeleteUserTypeUseCase.class);
-        findByIdUseCase = mock(FindByIdUseCase.class);
+        findByIdUseCase = mock(FindUserTypeByIdUseCase.class);
 
         controller = new UserTypeController(
                 createUserTypeUseCase,

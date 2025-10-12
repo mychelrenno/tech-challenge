@@ -4,10 +4,10 @@ import com.fiap.tech_challenge.core.domain.UserType;
 import com.fiap.tech_challenge.core.exception.ResourceNotFoundException;
 import com.fiap.tech_challenge.core.repository.UserTypeRepository;
 
-public class FindByIdUseCase {
+public class FindUserTypeByIdUseCase {
     private final UserTypeRepository userTypeRepository;
 
-    public FindByIdUseCase(UserTypeRepository userTypeRepository) {
+    public FindUserTypeByIdUseCase(UserTypeRepository userTypeRepository) {
         this.userTypeRepository = userTypeRepository;
     }
 
