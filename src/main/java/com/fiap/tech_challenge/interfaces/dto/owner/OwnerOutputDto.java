@@ -1,7 +1,7 @@
 package com.fiap.tech_challenge.interfaces.dto.owner;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fiap.tech_challenge.interfaces.dto.RestaurantOutputDto;
+import com.fiap.tech_challenge.interfaces.dto.restaurant.RestaurantOutputDto;
 import com.fiap.tech_challenge.interfaces.dto.user.UserOutputDto;
 
 import java.util.List;

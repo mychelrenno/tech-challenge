@@ -2,11 +2,12 @@ package com.fiap.tech_challenge.interfaces.mapper;
 
 import com.fiap.tech_challenge.core.domain.restaurant.Restaurant;
 import com.fiap.tech_challenge.infrastructure.entity.RestaurantJpa;
-import com.fiap.tech_challenge.interfaces.dto.RestaurantInputDto;
-import com.fiap.tech_challenge.interfaces.dto.RestaurantOutputDto;
+import com.fiap.tech_challenge.interfaces.dto.restaurant.RestaurantInputDto;
+import com.fiap.tech_challenge.interfaces.dto.restaurant.RestaurantOutputDto;
+import com.fiap.tech_challenge.interfaces.dto.restaurant.RestaurantOwnerOutputDto;
 
 public class RestaurantMapper {
-    public static RestaurantJpa toEntity(Restaurant restaurant) {
+    public static RestaurantJpa convertEntityToJpa(Restaurant restaurant) {
         if (restaurant == null) return null;
         return new RestaurantJpa(
             restaurant.getId(),
@@ -14,34 +15,34 @@ public class RestaurantMapper {
             AddressMapper.convertEntityToJpa(restaurant.getAddress()),
             restaurant.getCuisineType(),
             restaurant.getOpeningHours(),
-            restaurant.getOwnerId()
+            OwnerMapper.convertEntityToJpa(restaurant.getOwner())
         );
     }
 
-    public static Restaurant toDomain(RestaurantJpa entity) {
-        if (entity == null) return null;
+    public static Restaurant convertJpaToEntity(RestaurantJpa restaurantJpa) {
+        if (restaurantJpa == null) return null;
         return new Restaurant(
-            entity.getId(),
-            entity.getName(),
-            AddressMapper.convertJpaToEntity(entity.getAddressJpa()),
-            entity.getCuisineType(),
-            entity.getOpeningHours(),
-            entity.getOwnerId()
+                restaurantJpa.getId(),
+                restaurantJpa.getName(),
+                AddressMapper.convertJpaToEntity(restaurantJpa.getAddressJpa()),
+                restaurantJpa.getCuisineType(),
+                restaurantJpa.getOpeningHours(),
+                OwnerMapper.convertJpaToEntity(restaurantJpa.getOwner())
         );
     }
 
-    public static Restaurant fromInputDto(RestaurantInputDto dto) {
+    public static Restaurant convertInputDtoToDomain(RestaurantInputDto dto) {
         if (dto == null) return null;
         return new Restaurant(
             dto.name(),
             AddressMapper.convertDtoToEntity(dto.address()),
             dto.cuisineType(),
             dto.openingHours(),
-            dto.ownerId()
+            OwnerMapper.convertInputDtoToDomain(dto.owner())
         );
     }
 
-    public static RestaurantOutputDto toOutputDto(Restaurant restaurant) {
+    public static RestaurantOutputDto convertEntitytoOutputDto(Restaurant restaurant) {
         if (restaurant == null) return null;
         return new RestaurantOutputDto(
             restaurant.getId(),
@@ -49,7 +50,7 @@ public class RestaurantMapper {
             AddressMapper.convertEntityToDto(restaurant.getAddress()),
             restaurant.getCuisineType(),
             restaurant.getOpeningHours(),
-            restaurant.getOwnerId()
+            new RestaurantOwnerOutputDto(restaurant.getOwner().getId(), restaurant.getName(), restaurant.getOwner().getDocument())
         );
     }
 }

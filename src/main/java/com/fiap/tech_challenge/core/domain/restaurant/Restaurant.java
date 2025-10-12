@@ -1,5 +1,6 @@
 package com.fiap.tech_challenge.core.domain.restaurant;
 
+import com.fiap.tech_challenge.core.domain.Owner;
 import com.fiap.tech_challenge.core.domain.shared.Address;
 
 public class Restaurant {
@@ -8,9 +9,9 @@ public class Restaurant {
     private Address address;
     private String cuisineType;
     private String openingHours;
-    private Long ownerId; // Referência ao usuário dono
+    private Owner owner; // Referência ao usuário dono
 
-    public Restaurant(Long id, String name, Address address, String cuisineType, String openingHours, Long ownerId) {
+    public Restaurant(Long id, String name, Address address, String cuisineType, String openingHours, Owner owner) {
         if (name == null || name.isBlank()) {
             throw new IllegalArgumentException("Nome do restaurante não pode ser vazio.");
         }
@@ -23,7 +24,7 @@ public class Restaurant {
         if (openingHours == null || openingHours.isBlank()) {
             throw new IllegalArgumentException("Horário de funcionamento não pode ser vazio.");
         }
-        if (ownerId == null) {
+        if (owner == null) {
             throw new IllegalArgumentException("Dono do restaurante não pode ser nulo.");
         }
         this.id = id;
@@ -31,11 +32,11 @@ public class Restaurant {
         this.address = address;
         this.cuisineType = cuisineType;
         this.openingHours = openingHours;
-        this.ownerId = ownerId;
+        this.owner = owner;
     }
 
-    public Restaurant(String name, Address address, String cuisineType, String openingHours, Long ownerId) {
-        this(null, name, address, cuisineType, openingHours, ownerId);
+    public Restaurant(String name, Address address, String cuisineType, String openingHours, Owner owner) {
+        this(null, name, address, cuisineType, openingHours, owner);
     }
 
     public Long getId() { return id; }
@@ -43,6 +44,6 @@ public class Restaurant {
     public Address getAddress() { return address; }
     public String getCuisineType() { return cuisineType; }
     public String getOpeningHours() { return openingHours; }
-    public Long getOwnerId() { return ownerId; }
+    public Owner getOwner() { return owner; }
 }
 
