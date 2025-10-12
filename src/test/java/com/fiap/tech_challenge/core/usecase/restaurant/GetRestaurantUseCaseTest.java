@@ -1,5 +1,6 @@
 package com.fiap.tech_challenge.core.usecase.restaurant;
 
+import com.fiap.tech_challenge.core.domain.Owner;
 import com.fiap.tech_challenge.core.domain.restaurant.Restaurant;
 import com.fiap.tech_challenge.core.domain.shared.Address;
 import com.fiap.tech_challenge.core.repository.RestaurantRepository;
@@ -30,7 +31,8 @@ class GetRestaurantUseCaseTest {
     @Test
     void testFindByIdShouldReturnRestaurant() {
         Address address = new Address("01234-567", "Rua A", "Apto 101", "São Paulo", "Brasil");
-        Restaurant restaurant = new Restaurant(1L, "Restaurante Teste", address, "Italiana", "08:00-18:00", 1L);
+        Owner owner = new Owner(1L, "12345678900", null, null);
+        Restaurant restaurant = new Restaurant(1L, "Restaurante Teste", address, "Italiana", "08:00-18:00", owner);
         when(restaurantRepository.findById(1L)).thenReturn(Optional.of(restaurant));
 
         Optional<Restaurant> result = getRestaurantUseCase.findById(1L);
@@ -54,8 +56,10 @@ class GetRestaurantUseCaseTest {
     void testFindAllShouldReturnListOfRestaurants() {
         Address address1 = new Address("11111-111", "Rua B", "Sala 1", "Porto Alegre", "Brasil");
         Address address2 = new Address("22222-222", "Rua C", "Sala 2", "Recife", "Brasil");
-        Restaurant r1 = new Restaurant(3L, "Restaurante 1", address1, "Francesa", "11:00-23:00", 4L);
-        Restaurant r2 = new Restaurant(4L, "Restaurante 2", address2, "Chinesa", "12:00-00:00", 5L);
+        Owner owner1 = new Owner(4L, "12345678900", null, null);
+        Owner owner2 = new Owner(5L, "12345678900", null, null);
+        Restaurant r1 = new Restaurant(3L, "Restaurante 1", address1, "Francesa", "11:00-23:00", owner1);
+        Restaurant r2 = new Restaurant(4L, "Restaurante 2", address2, "Chinesa", "12:00-00:00", owner2);
         when(restaurantRepository.findAll()).thenReturn(Arrays.asList(r1, r2));
 
         List<Restaurant> result = getRestaurantUseCase.findAll();

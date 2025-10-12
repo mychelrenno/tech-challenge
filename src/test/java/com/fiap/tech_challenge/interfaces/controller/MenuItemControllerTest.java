@@ -2,6 +2,10 @@ package com.fiap.tech_challenge.interfaces.controller;
 
 import com.fiap.tech_challenge.core.entity.MenuItem;
 import com.fiap.tech_challenge.core.usecase.CreateMenuItemUseCase;
+import com.fiap.tech_challenge.core.usecase.DeleteMenuItemUseCase;
+import com.fiap.tech_challenge.core.usecase.FindAllMenuItemsUseCase;
+import com.fiap.tech_challenge.core.usecase.FindMenuItemByIdUseCase;
+import com.fiap.tech_challenge.core.usecase.UpdateMenuItemUseCase;
 import com.fiap.tech_challenge.interfaces.dto.MenuItemDto;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
@@ -24,6 +28,18 @@ class MenuItemControllerTest {
 
     @MockitoBean
     private CreateMenuItemUseCase createMenuItemUseCase;
+
+    @MockitoBean
+    private FindAllMenuItemsUseCase findAllMenuItemsUseCase;
+
+    @MockitoBean
+    private FindMenuItemByIdUseCase findMenuItemByIdUseCase;
+
+    @MockitoBean
+    private UpdateMenuItemUseCase updateMenuItemUseCase;
+
+    @MockitoBean
+    private DeleteMenuItemUseCase deleteMenuItemUseCase;
 
     @Autowired
     private ObjectMapper objectMapper;
@@ -120,6 +136,16 @@ class MenuItemControllerTest {
 
     @Test
     void shouldHandleEmptyRequestBody() throws Exception {
+        // Given
+        MenuItem savedMenuItem = new MenuItem(
+                99L,
+                "Item vazio",
+                "Descrição vazia",
+                0.0,
+                false,
+                null
+        );
+        when(createMenuItemUseCase.execute(any(MenuItem.class))).thenReturn(savedMenuItem);
         // When & Then
         mockMvc.perform(post("/api/menu-item")
                         .contentType(MediaType.APPLICATION_JSON)

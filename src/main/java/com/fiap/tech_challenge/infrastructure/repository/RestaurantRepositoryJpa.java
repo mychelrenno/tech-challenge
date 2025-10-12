@@ -20,21 +20,22 @@ public class RestaurantRepositoryJpa implements RestaurantRepository {
 
     @Override
     public Restaurant save(Restaurant restaurant) {
-        RestaurantJpa entity = RestaurantMapper.toEntity(restaurant);
+
+        RestaurantJpa entity = RestaurantMapper.convertEntityToJpa(restaurant);
         RestaurantJpa saved = springDataJpaRestaurant.save(entity);
-        return RestaurantMapper.toDomain(saved);
+        return RestaurantMapper.convertJpaToEntity(saved);
     }
 
     @Override
     public Optional<Restaurant> findById(Long id) {
         return springDataJpaRestaurant.findById(id)
-                .map(RestaurantMapper::toDomain);
+                .map(RestaurantMapper::convertJpaToEntity);
     }
 
     @Override
     public List<Restaurant> findAll() {
         return springDataJpaRestaurant.findAll().stream()
-                .map(RestaurantMapper::toDomain)
+                .map(RestaurantMapper::convertJpaToEntity)
                 .toList();
     }
 
@@ -45,9 +46,9 @@ public class RestaurantRepositoryJpa implements RestaurantRepository {
 
     @Override
     public Restaurant update(Restaurant restaurant) {
-        RestaurantJpa entity = RestaurantMapper.toEntity(restaurant);
+        RestaurantJpa entity = RestaurantMapper.convertEntityToJpa(restaurant);
         RestaurantJpa updated = springDataJpaRestaurant.save(entity);
-        return RestaurantMapper.toDomain(updated);
+        return RestaurantMapper.convertJpaToEntity(updated);
     }
 }
 

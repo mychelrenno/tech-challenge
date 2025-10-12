@@ -3,7 +3,7 @@ package com.fiap.tech_challenge.infrastructure.entity;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "menu-item")
+@Table(name = "menu_item")
 public class MenuItemJpa {
 
     public MenuItemJpa(String name, String description, Double price, Boolean restaurantOnly, String imagePath) {

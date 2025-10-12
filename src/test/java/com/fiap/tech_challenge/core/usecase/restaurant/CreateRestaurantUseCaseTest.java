@@ -1,5 +1,6 @@
 package com.fiap.tech_challenge.core.usecase.restaurant;
 
+import com.fiap.tech_challenge.core.domain.Owner;
 import com.fiap.tech_challenge.core.domain.restaurant.Restaurant;
 import com.fiap.tech_challenge.core.domain.shared.Address;
 import com.fiap.tech_challenge.core.repository.RestaurantRepository;
@@ -25,7 +26,8 @@ class CreateRestaurantUseCaseTest {
     @Test
     void testExecuteShouldSaveRestaurant() {
         Address address = new Address("01234-567", "Rua A", "Apto 101", "São Paulo", "Brasil");
-        Restaurant restaurant = new Restaurant(1L, "Restaurante Teste", address, "Italiana", "08:00-18:00", 1L);
+        Owner owner = new Owner(1L, "12345678900", null, null);
+        Restaurant restaurant = new Restaurant(1L, "Restaurante Teste", address, "Italiana", "08:00-18:00", owner);
         when(restaurantRepository.save(restaurant)).thenReturn(restaurant);
 
         Restaurant result = createRestaurantUseCase.execute(restaurant);
@@ -38,7 +40,8 @@ class CreateRestaurantUseCaseTest {
     @Test
     void testExecuteShouldReturnNullWhenRepositoryReturnsNull() {
         Address address = new Address("01234-567", "Rua B", "Casa", "Rio de Janeiro", "Brasil");
-        Restaurant restaurant = new Restaurant(2L, "Restaurante Null", address, "Japonesa", "09:00-22:00", 2L);
+        Owner owner = new Owner(2L, "12345678900", null, null);
+        Restaurant restaurant = new Restaurant(2L, "Restaurante Null", address, "Japonesa", "09:00-22:00", owner);
         when(restaurantRepository.save(restaurant)).thenReturn(null);
 
         Restaurant result = createRestaurantUseCase.execute(restaurant);

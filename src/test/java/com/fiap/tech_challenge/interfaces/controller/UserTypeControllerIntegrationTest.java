@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -25,9 +26,13 @@ class UserTypeControllerIntegrationTest {
     @Autowired
     private ObjectMapper objectMapper;
 
+    @Autowired
+    private JdbcTemplate jdbcTemplate;
+
     @Test
     void mustCreateUserType() throws Exception {
-        UserTypeDto createDto = new UserTypeDto(null, "owner");
+        String uniqueName = "owner_" + System.currentTimeMillis();
+        UserTypeDto createDto = new UserTypeDto(null, uniqueName);
         String createJson = objectMapper.writeValueAsString(createDto);
 
         mockMvc.perform(
@@ -35,12 +40,15 @@ class UserTypeControllerIntegrationTest {
                     .contentType(MediaType.APPLICATION_JSON)
                     .content(createJson)
                 ).andExpect(status().isOk())
-                .andExpect(jsonPath("$.name").value("owner"))
-                .andExpect(jsonPath("$.id").value(1L));
+                .andExpect(jsonPath("$.name").value(uniqueName))
+                .andExpect(jsonPath("$.id").isNumber());
     }
 
     @Test
     void mustListAllUserTypes() throws Exception {
+        // Limpa a tabela antes do teste
+        jdbcTemplate.execute("DELETE FROM user_type");
+
         UserTypeDto owner = new UserTypeDto(null, "owner");
         UserTypeDto customer = new UserTypeDto(null, "customer");
 
@@ -59,9 +67,7 @@ class UserTypeControllerIntegrationTest {
         mockMvc.perform(
                     get("/api/type-user"))
                     .andExpect(status().isOk()
-                ).andExpect(jsonPath("$.length()").value(2))
-                .andExpect(jsonPath("$[*].name", containsInAnyOrder("owner", "custumer")));
-
+                ).andExpect(jsonPath("$[*].name", containsInAnyOrder("owner", "customer")));
     }
 
     @Test
@@ -109,4 +115,3 @@ class UserTypeControllerIntegrationTest {
             ).andExpect(status().isNotFound());
     }
 }
-

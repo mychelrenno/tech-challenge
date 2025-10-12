@@ -1,13 +1,21 @@
 package com.fiap.tech_challenge.interfaces.mapper;
 
+import com.fiap.tech_challenge.core.domain.Owner;
+import com.fiap.tech_challenge.core.domain.UserType;
 import com.fiap.tech_challenge.core.domain.restaurant.Restaurant;
 import com.fiap.tech_challenge.core.domain.shared.Address;
 import com.fiap.tech_challenge.infrastructure.entity.AddressJpa;
+import com.fiap.tech_challenge.infrastructure.entity.OwnerJpa;
 import com.fiap.tech_challenge.infrastructure.entity.RestaurantJpa;
 import com.fiap.tech_challenge.interfaces.dto.AddressDto;
-import com.fiap.tech_challenge.interfaces.dto.RestaurantInputDto;
-import com.fiap.tech_challenge.interfaces.dto.RestaurantOutputDto;
+import com.fiap.tech_challenge.interfaces.dto.UserTypeDto;
+import com.fiap.tech_challenge.interfaces.dto.owner.OwnerInputDto;
+import com.fiap.tech_challenge.interfaces.dto.restaurant.RestaurantInputDto;
+import com.fiap.tech_challenge.interfaces.dto.restaurant.RestaurantOutputDto;
+import com.fiap.tech_challenge.interfaces.dto.user.UserInputDto;
 import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -15,80 +23,87 @@ class RestaurantMapperTest {
     @Test
     void testToEntity() {
         Address address = new Address("01234-567", "Rua A", "Apto 101", "São Paulo", "Brasil");
-        Restaurant restaurant = new Restaurant(1L, "Restaurante Teste", address, "Italiana", "08:00-18:00", 1L);
-        RestaurantJpa entity = RestaurantMapper.toEntity(restaurant);
-        assertNotNull(entity);
-        assertEquals(restaurant.getId(), entity.getId());
-        assertEquals(restaurant.getName(), entity.getName());
-        assertEquals(restaurant.getCuisineType(), entity.getCuisineType());
-        assertEquals(restaurant.getOpeningHours(), entity.getOpeningHours());
-        assertEquals(restaurant.getOwnerId(), entity.getOwnerId());
-        assertNotNull(entity.getAddressJpa());
-        assertEquals(address.getPostalCode(), entity.getAddressJpa().getPostalCode());
+        Owner owner = new Owner(2L, "12345678900", null, null);
+        Restaurant restaurant = new Restaurant(1L, "Restaurante Teste", address, "Italiana", "08:00-18:00", owner);
+        RestaurantJpa restaurantJpa = RestaurantMapper.convertEntityToJpa(restaurant);
+        assertNotNull(restaurantJpa);
+        assertEquals(restaurant.getId(), restaurantJpa.getId());
+        assertEquals(restaurant.getName(), restaurantJpa.getName());
+        assertEquals(restaurant.getCuisineType(), restaurantJpa.getCuisineType());
+        assertEquals(restaurant.getOpeningHours(), restaurantJpa.getOpeningHours());
+        assertEquals(restaurant.getOwner().getId(), restaurantJpa.getOwner().getId());
+        assertNotNull(restaurantJpa.getAddressJpa());
+        assertEquals(address.getPostalCode(), restaurantJpa.getAddressJpa().getPostalCode());
     }
 
     @Test
     void testToEntityWithNull() {
-        assertNull(RestaurantMapper.toEntity(null));
+        assertNull(RestaurantMapper.convertEntityToJpa(null));
     }
 
     @Test
     void testToDomain() {
         AddressJpa addressJpa = new AddressJpa("01234-567", "Rua A", "Apto 101", "São Paulo", "Brasil");
-        RestaurantJpa entity = new RestaurantJpa(2L, "Restaurante JPA", addressJpa, "Japonesa", "09:00-22:00", 2L);
-        Restaurant restaurant = RestaurantMapper.toDomain(entity);
+        OwnerJpa ownerJpa = new OwnerJpa();
+        ownerJpa.setId(2L);
+        RestaurantJpa entity = new RestaurantJpa(2L, "Restaurante JPA", addressJpa, "Japonesa", "09:00-22:00", ownerJpa);
+        Restaurant restaurant = RestaurantMapper.convertJpaToEntity(entity);
         assertNotNull(restaurant);
         assertEquals(entity.getId(), restaurant.getId());
         assertEquals(entity.getName(), restaurant.getName());
         assertEquals(entity.getCuisineType(), restaurant.getCuisineType());
         assertEquals(entity.getOpeningHours(), restaurant.getOpeningHours());
-        assertEquals(entity.getOwnerId(), restaurant.getOwnerId());
+        assertEquals(entity.getOwner().getId(), restaurant.getOwner().getId());
         assertNotNull(restaurant.getAddress());
         assertEquals(addressJpa.getPostalCode(), restaurant.getAddress().getPostalCode());
     }
 
     @Test
     void testToDomainWithNull() {
-        assertNull(RestaurantMapper.toDomain(null));
+        assertNull(RestaurantMapper.convertJpaToEntity(null));
     }
 
     @Test
     void testFromInputDto() {
         AddressDto addressDto = new AddressDto("01234-567", "Rua B", "Casa", "Rio de Janeiro", "Brasil");
-        RestaurantInputDto inputDto = new RestaurantInputDto("Restaurante DTO", addressDto, "Brasileira", "10:00-20:00", 3L);
-        Restaurant restaurant = RestaurantMapper.fromInputDto(inputDto);
+        UserTypeDto userTypeDto = new UserTypeDto(1L, "OWNER");
+        UserInputDto userDto = new UserInputDto("ownerUser", "", "", "password123", userTypeDto , addressDto);
+        OwnerInputDto ownerDto = new OwnerInputDto("12345678900", new ArrayList<>(), userDto);
+        RestaurantInputDto inputDto = new RestaurantInputDto("Restaurante DTO", addressDto, "Brasileira", "10:00-20:00", ownerDto);
+        Restaurant restaurant = RestaurantMapper.convertInputDtoToDomain(inputDto);
         assertNotNull(restaurant);
         assertEquals(inputDto.name(), restaurant.getName());
         assertEquals(inputDto.cuisineType(), restaurant.getCuisineType());
         assertEquals(inputDto.openingHours(), restaurant.getOpeningHours());
-        assertEquals(inputDto.ownerId(), restaurant.getOwnerId());
+        assertEquals(inputDto.owner().document(), restaurant.getOwner().getDocument());
         assertNotNull(restaurant.getAddress());
         assertEquals(addressDto.postalCode(), restaurant.getAddress().getPostalCode());
     }
 
     @Test
     void testFromInputDtoWithNull() {
-        assertNull(RestaurantMapper.fromInputDto(null));
+        assertNull(RestaurantMapper.convertInputDtoToDomain(null));
     }
 
     @Test
     void testToOutputDto() {
         Address address = new Address("22222-222", "Rua C", "Sala 2", "Recife", "Brasil");
-        Restaurant restaurant = new Restaurant(4L, "Restaurante Output", address, "Francesa", "11:00-23:00", 4L);
-        RestaurantOutputDto outputDto = RestaurantMapper.toOutputDto(restaurant);
+        Owner owner = new Owner(4L, "12345678900", null, null);
+        Restaurant restaurant = new Restaurant(4L, "Restaurante Output", address, "Francesa", "11:00-23:00", owner);
+        RestaurantOutputDto outputDto = RestaurantMapper.convertEntitytoOutputDto(restaurant);
         assertNotNull(outputDto);
         assertEquals(restaurant.getId(), outputDto.id());
         assertEquals(restaurant.getName(), outputDto.name());
         assertEquals(restaurant.getCuisineType(), outputDto.cuisineType());
         assertEquals(restaurant.getOpeningHours(), outputDto.openingHours());
-        assertEquals(restaurant.getOwnerId(), outputDto.ownerId());
+        assertEquals(restaurant.getOwner().getId(), outputDto.restaurantOwner().id());
         assertNotNull(outputDto.address());
         assertEquals(address.getPostalCode(), outputDto.address().postalCode());
     }
 
     @Test
     void testToOutputDtoWithNull() {
-        assertNull(RestaurantMapper.toOutputDto(null));
+        assertNull(RestaurantMapper.convertEntitytoOutputDto(null));
     }
 }
 
