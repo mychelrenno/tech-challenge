@@ -1,7 +1,5 @@
 package com.fiap.tech_challenge.infrastructure.entity;
 
-import com.fiap.tech_challenge.core.domain.restaurant.Restaurant;
-import com.fiap.tech_challenge.core.domain.user.User;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -14,19 +12,19 @@ public class OwnerJpa {
     private Long id;
     @Column(nullable = false)
     private String document;
-    @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL)
-    private List<Restaurant> restaurants;
+    @OneToMany(mappedBy = "ownerId", cascade = CascadeType.ALL)
+    private List<RestaurantJpa> restaurants;
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(nullable = false)
-    private User user;
+    private UserJpa user;
 
     public OwnerJpa() {
     }
 
     public OwnerJpa(Long id,
                     String document,
-                    List<Restaurant> restaurants,
-                    User user) {
+                    List<RestaurantJpa> restaurants,
+                    UserJpa user) {
         this.id = id;
         this.document = document;
         this.restaurants = restaurants;
@@ -49,19 +47,19 @@ public class OwnerJpa {
         this.document = document;
     }
 
-    public List<Restaurant> getRestaurants() {
+    public List<RestaurantJpa> getRestaurants() {
         return restaurants;
     }
 
-    public void setRestaurants(List<Restaurant> restaurants) {
+    public void setRestaurants(List<RestaurantJpa> restaurants) {
         this.restaurants = restaurants;
     }
 
-    public User getUser() {
+    public UserJpa getUser() {
         return user;
     }
 
-    public void setUser(User user) {
+    public void setUser(UserJpa user) {
         this.user = user;
     }
 

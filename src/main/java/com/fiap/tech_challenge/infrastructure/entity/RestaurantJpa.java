@@ -12,8 +12,7 @@ public class RestaurantJpa {
     private String name;
     private String cuisineType;
     private String openingHours;
-    @ManyToOne
-    @JoinColumn(name = "owner_id", nullable = false)
+    @Column(name = "owner_id", nullable = false)
     private Long ownerId;
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "address_jpa_id")
