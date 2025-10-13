@@ -34,7 +34,8 @@ class CreateMenuItemUseCaseTest {
                 "Pizza clássica com molho de tomate, mussarela e manjericão fresco",
                 45.90,
                 false,
-                "/images/pizza-margherita.jpg"
+                "/images/pizza-margherita.jpg",
+                1L
         );
 
         MenuItem savedMenuItem = new MenuItem(
@@ -42,7 +43,8 @@ class CreateMenuItemUseCaseTest {
                 "Pizza clássica com molho de tomate, mussarela e manjericão fresco",
                 45.90,
                 false,
-                "/images/pizza-margherita.jpg"
+                "/images/pizza-margherita.jpg",
+                1L
         );
 
         when(menuItemRepository.save(any(MenuItem.class))).thenReturn(savedMenuItem);
@@ -69,7 +71,8 @@ class CreateMenuItemUseCaseTest {
                 "Café expresso tradicional, servido apenas no local",
                 4.50,
                 true,
-                "/images/cafe-expresso.jpg"
+                "/images/cafe-expresso.jpg",
+                1L
         );
 
         when(menuItemRepository.save(any(MenuItem.class))).thenReturn(inputMenuItem);
@@ -94,7 +97,8 @@ class CreateMenuItemUseCaseTest {
                 "Hambúrguer com carne artesanal, disponível para delivery",
                 32.90,
                 false,
-                "/images/hamburger.jpg"
+                "/images/hamburger.jpg",
+                1L
         );
 
         when(menuItemRepository.save(any(MenuItem.class))).thenReturn(inputMenuItem);
@@ -114,7 +118,7 @@ class CreateMenuItemUseCaseTest {
     @Test
     void shouldHandleNullValues() {
         // Given
-        MenuItem inputMenuItem = new MenuItem(null, null, null, null, null);
+        MenuItem inputMenuItem = new MenuItem(null, null, null, null, null, null);
 
         when(menuItemRepository.save(any(MenuItem.class))).thenReturn(inputMenuItem);
 

@@ -25,7 +25,8 @@ class MenuItemRepositoryJpaIntegrationTest {
                 "Pizza clássica com molho de tomate, mussarela e manjericão fresco",
                 45.90,
                 false,
-                "/images/pizza-margherita.jpg"
+                "/images/pizza-margherita.jpg",
+                1L
         );
 
         // When
@@ -51,7 +52,8 @@ class MenuItemRepositoryJpaIntegrationTest {
                 "Café expresso tradicional, servido apenas no local",
                 4.50,
                 true,
-                "/images/cafe-expresso.jpg"
+                "/images/cafe-expresso.jpg",
+                2L
         );
 
         // When
@@ -67,7 +69,7 @@ class MenuItemRepositoryJpaIntegrationTest {
     @Test
     void shouldSaveMenuItemWithNullValues() {
         // Given
-        MenuItem menuItem = new MenuItem(null, null, null, null, null);
+        MenuItem menuItem = new MenuItem(null, null, null, null, null, null);
 
         // When
         MenuItem savedMenuItem = menuItemRepository.save(menuItem);
@@ -89,7 +91,8 @@ class MenuItemRepositoryJpaIntegrationTest {
                 "Pizza clássica",
                 45.90,
                 false,
-                "/images/pizza.jpg"
+                "/images/pizza.jpg",
+                1L
         );
 
         MenuItem cafe = new MenuItem(
@@ -97,7 +100,8 @@ class MenuItemRepositoryJpaIntegrationTest {
                 "Café tradicional",
                 4.50,
                 true,
-                "/images/cafe.jpg"
+                "/images/cafe.jpg",
+                2L
         );
 
         // When

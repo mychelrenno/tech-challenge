@@ -49,5 +49,40 @@ class CreateRestaurantUseCaseTest {
         assertNull(result);
         verify(restaurantRepository, times(1)).save(restaurant);
     }
-}
 
+    @Test
+    void testConstructorShouldThrowExceptionWhenNameIsNullOrBlank() {
+        Address address = new Address("01234-567", "Rua A", "Apto 101", "São Paulo", "Brasil");
+        Owner owner = new Owner(1L, "12345678900", null, null);
+        assertThrows(IllegalArgumentException.class, () -> new Restaurant(1L, null, address, "Italiana", "08:00-18:00", owner));
+        assertThrows(IllegalArgumentException.class, () -> new Restaurant(1L, "   ", address, "Italiana", "08:00-18:00", owner));
+    }
+
+    @Test
+    void testConstructorShouldThrowExceptionWhenAddressIsNull() {
+        Owner owner = new Owner(1L, "12345678900", null, null);
+        assertThrows(IllegalArgumentException.class, () -> new Restaurant(1L, "Restaurante Teste", null, "Italiana", "08:00-18:00", owner));
+    }
+
+    @Test
+    void testConstructorShouldThrowExceptionWhenCuisineTypeIsNullOrBlank() {
+        Address address = new Address("01234-567", "Rua A", "Apto 101", "São Paulo", "Brasil");
+        Owner owner = new Owner(1L, "12345678900", null, null);
+        assertThrows(IllegalArgumentException.class, () -> new Restaurant(1L, "Restaurante Teste", address, null, "08:00-18:00", owner));
+        assertThrows(IllegalArgumentException.class, () -> new Restaurant(1L, "Restaurante Teste", address, "   ", "08:00-18:00", owner));
+    }
+
+    @Test
+    void testConstructorShouldThrowExceptionWhenOpeningHoursIsNullOrBlank() {
+        Address address = new Address("01234-567", "Rua A", "Apto 101", "São Paulo", "Brasil");
+        Owner owner = new Owner(1L, "12345678900", null, null);
+        assertThrows(IllegalArgumentException.class, () -> new Restaurant(1L, "Restaurante Teste", address, "Italiana", null, owner));
+        assertThrows(IllegalArgumentException.class, () -> new Restaurant(1L, "Restaurante Teste", address, "Italiana", "   ", owner));
+    }
+
+    @Test
+    void testConstructorShouldThrowExceptionWhenOwnerIsNull() {
+        Address address = new Address("01234-567", "Rua A", "Apto 101", "São Paulo", "Brasil");
+        assertThrows(IllegalArgumentException.class, () -> new Restaurant(1L, "Restaurante Teste", address, "Italiana", "08:00-18:00", null));
+    }
+}

@@ -6,6 +6,7 @@ public record MenuItemDto(
         String description,
         Double price,
         Boolean restaurantOnly,
-        String imagePath
+        String imagePath,
+        Long restaurantId
 ) {
 }

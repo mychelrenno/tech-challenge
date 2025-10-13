@@ -5,6 +5,7 @@ import com.fiap.tech_challenge.core.usecase.menu_item.CreateMenuItemUseCase;
 import com.fiap.tech_challenge.core.usecase.menu_item.DeleteMenuItemUseCase;
 import com.fiap.tech_challenge.core.usecase.menu_item.FindAllMenuItemsUseCase;
 import com.fiap.tech_challenge.core.usecase.menu_item.FindMenuItemByIdUseCase;
+import com.fiap.tech_challenge.core.usecase.menu_item.FindMenuItemByRestaurantIdUseCase;
 import com.fiap.tech_challenge.core.usecase.menu_item.UpdateMenuItemUseCase;
 import com.fiap.tech_challenge.interfaces.dto.MenuItemDto;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -41,6 +42,9 @@ class MenuItemControllerTest {
     @MockitoBean
     private DeleteMenuItemUseCase deleteMenuItemUseCase;
 
+    @MockitoBean
+    private FindMenuItemByRestaurantIdUseCase findMenuItemByRestaurantIdUseCase;
+
     @Autowired
     private ObjectMapper objectMapper;
 
@@ -53,7 +57,8 @@ class MenuItemControllerTest {
                 "Pizza clássica com molho de tomate, mussarela e manjericão fresco",
                 45.90,
                 false,
-                "/images/pizza-margherita.jpg"
+                "/images/pizza-margherita.jpg",
+                1L
         );
 
         MenuItem savedMenuItem = new MenuItem(
@@ -62,7 +67,8 @@ class MenuItemControllerTest {
                 "Pizza clássica com molho de tomate, mussarela e manjericão fresco",
                 45.90,
                 false,
-                "/images/pizza-margherita.jpg"
+                "/images/pizza-margherita.jpg",
+                1L
         );
 
         when(createMenuItemUseCase.execute(any(MenuItem.class))).thenReturn(savedMenuItem);
@@ -83,7 +89,8 @@ class MenuItemControllerTest {
                 "Café expresso tradicional, servido apenas no local",
                 4.50,
                 true,
-                "/images/cafe-expresso.jpg"
+                "/images/cafe-expresso.jpg",
+                1L
         );
 
         MenuItem savedMenuItem = new MenuItem(
@@ -92,7 +99,8 @@ class MenuItemControllerTest {
                 "Café expresso tradicional, servido apenas no local",
                 4.50,
                 true,
-                "/images/cafe-expresso.jpg"
+                "/images/cafe-expresso.jpg",
+                1L
         );
 
         when(createMenuItemUseCase.execute(any(MenuItem.class))).thenReturn(savedMenuItem);
@@ -113,7 +121,8 @@ class MenuItemControllerTest {
                 "Hambúrguer com carne artesanal, disponível para delivery",
                 32.90,
                 false,
-                "/images/hamburger.jpg"
+                "/images/hamburger.jpg",
+                2L
         );
 
         MenuItem savedMenuItem = new MenuItem(
@@ -122,7 +131,8 @@ class MenuItemControllerTest {
                 "Hambúrguer com carne artesanal, disponível para delivery",
                 32.90,
                 false,
-                "/images/hamburger.jpg"
+                "/images/hamburger.jpg",
+                2L
         );
 
         when(createMenuItemUseCase.execute(any(MenuItem.class))).thenReturn(savedMenuItem);
@@ -138,12 +148,14 @@ class MenuItemControllerTest {
     void shouldHandleEmptyRequestBody() throws Exception {
         // Given
         MenuItem savedMenuItem = new MenuItem(
-                99L,
                 "Item vazio",
                 "Descrição vazia",
                 0.0,
                 false,
-                null
+                null,
+                1L
+
+
         );
         when(createMenuItemUseCase.execute(any(MenuItem.class))).thenReturn(savedMenuItem);
         // When & Then
@@ -156,9 +168,9 @@ class MenuItemControllerTest {
     @Test
     void shouldHandleNullValues() throws Exception {
         // Given
-        MenuItemDto menuItemDto = new MenuItemDto(null, null, null, null, null, null);
+        MenuItemDto menuItemDto = new MenuItemDto(null, null, null, null, null, null, null);
 
-        MenuItem savedMenuItem = new MenuItem(null, null, null, null, null, null);
+        MenuItem savedMenuItem = new MenuItem(null, null, null, null, null, null, null);
 
         when(createMenuItemUseCase.execute(any(MenuItem.class))).thenReturn(savedMenuItem);
 
@@ -174,7 +186,7 @@ class MenuItemControllerTest {
         // When & Then
         mockMvc.perform(post("/api/menu-item")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content("invalid json"))
+                        .content("{invalid}"))
                 .andExpect(status().isBadRequest());
     }
 }
