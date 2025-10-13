@@ -3,7 +3,6 @@ package com.fiap.tech_challenge.interfaces.mapper;
 import com.fiap.tech_challenge.core.domain.UserType;
 import com.fiap.tech_challenge.infrastructure.entity.UserTypeJpa;
 import com.fiap.tech_challenge.interfaces.dto.UserTypeDto;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,7 +43,8 @@ public class UserTypeMapper {
         return new UserType(userTypeJpa.getId(), userTypeJpa.getName());
     }
 
-    public static List<UserType> convertJpaToDomain(List<UserTypeJpa> userTypeJpaList) {
+    public static List<UserType> convertListJpaToDomain(List<UserTypeJpa> userTypeJpaList) {
+        if(userTypeJpaList.isEmpty()) return new ArrayList<>();
         var userTypeList = new ArrayList<UserType>();
         userTypeJpaList.forEach( u -> {
             var userType = new UserType(u.getId(), u.getName());
@@ -53,7 +53,8 @@ public class UserTypeMapper {
         return userTypeList;
     }
 
-    public static List<UserTypeDto> convertDomainToDto(List<UserType> userType) {
+    public static List<UserTypeDto> convertListDomainToDto(List<UserType> userType) {
+        if(userType.isEmpty()) return new ArrayList<>();
         var userTypeDtoList = new ArrayList<UserTypeDto>();
         userType.forEach( u -> {
             var userTypeDto = new UserTypeDto(u.getId(), u.getName());
