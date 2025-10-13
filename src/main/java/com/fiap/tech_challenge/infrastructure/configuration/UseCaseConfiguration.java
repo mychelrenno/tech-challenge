@@ -1,22 +1,46 @@
 package com.fiap.tech_challenge.infrastructure.configuration;
 
-import com.fiap.tech_challenge.core.usecase.CreateUserTypeUseCase;
-import com.fiap.tech_challenge.infrastructure.repository.UserTypeRepositoryJpa;
+import com.fiap.tech_challenge.core.usecase.menu_item.*;
+import com.fiap.tech_challenge.infrastructure.repository.MenuItemRepositoryJpa;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class UseCaseConfiguration {
 
-    private final UserTypeRepositoryJpa userTypeRepositoryJpa;
+    private final MenuItemRepositoryJpa menuItemRepositoryJpa;
 
-    public UseCaseConfiguration(UserTypeRepositoryJpa userTypeRepositoryJpa) {
-        this.userTypeRepositoryJpa = userTypeRepositoryJpa;
+    public UseCaseConfiguration(MenuItemRepositoryJpa menuItemRepositoryJpa) {
+        this.menuItemRepositoryJpa = menuItemRepositoryJpa;
     }
 
     @Bean
-    public CreateUserTypeUseCase makeCreateUserTypeUseCase() {
-        var createUserTypeUseCase = new CreateUserTypeUseCase(userTypeRepositoryJpa);
-        return createUserTypeUseCase;
+    public CreateMenuItemUseCase makeCreateMenuItemUseCase() {
+        return new CreateMenuItemUseCase(menuItemRepositoryJpa);
+    }
+
+    @Bean
+    public FindAllMenuItemsUseCase makeFindAllMenuItemsUseCase() {
+        return new FindAllMenuItemsUseCase(menuItemRepositoryJpa);
+    }
+
+    @Bean
+    public FindMenuItemByIdUseCase makeFindMenuItemByIdUseCase() {
+        return new FindMenuItemByIdUseCase(menuItemRepositoryJpa);
+    }
+
+    @Bean
+    public UpdateMenuItemUseCase makeUpdateMenuItemUseCase() {
+        return new UpdateMenuItemUseCase(menuItemRepositoryJpa);
+    }
+
+    @Bean
+    public DeleteMenuItemUseCase makeDeleteMenuItemUseCase() {
+        return new DeleteMenuItemUseCase(menuItemRepositoryJpa);
+    }
+
+    @Bean
+    public FindMenuItemByRestaurantIdUseCase makeFindMenuItemByRestaurantIdUseCase() {
+        return new FindMenuItemByRestaurantIdUseCase(menuItemRepositoryJpa);
     }
 }
