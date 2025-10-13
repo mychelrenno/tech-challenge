@@ -44,7 +44,7 @@ public class UserTypeController {
     @GetMapping
     public List<UserTypeDto> listAll() {
         var userTypeList = listAllUserTypeUseCase.execute();
-        var userTypeDtoList = UserTypeMapper.convertDomainToDto(userTypeList);
+        var userTypeDtoList = UserTypeMapper.convertListDomainToDto(userTypeList);
         return userTypeDtoList;
     }
 

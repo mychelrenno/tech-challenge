@@ -27,7 +27,7 @@ public class UserTypeRepositoryJpa implements UserTypeRepository {
     @Override
     public List<UserType> listAll() {
         var userTypeJpaList = springDataJpaUserType.findAll();
-        return UserTypeMapper.convertJpaToDomain(userTypeJpaList);
+        return UserTypeMapper.convertListJpaToDomain(userTypeJpaList);
     }
 
     @Override

@@ -1,6 +1,6 @@
 package com.fiap.tech_challenge.interfaces.controller;
 
-import com.fiap.tech_challenge.core.domain.MenuItem;
+import com.fiap.tech_challenge.core.domain.restaurant.MenuItem;
 import com.fiap.tech_challenge.core.usecase.menu_item.CreateMenuItemUseCase;
 import com.fiap.tech_challenge.core.usecase.menu_item.DeleteMenuItemUseCase;
 import com.fiap.tech_challenge.core.usecase.menu_item.FindAllMenuItemsUseCase;

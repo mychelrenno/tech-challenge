@@ -1,6 +1,6 @@
 package com.fiap.tech_challenge.core.usecase;
 
-import com.fiap.tech_challenge.core.domain.MenuItem;
+import com.fiap.tech_challenge.core.domain.restaurant.MenuItem;
 import com.fiap.tech_challenge.core.repository.MenuItemRepository;
 import com.fiap.tech_challenge.core.usecase.menu_item.CreateMenuItemUseCase;
 import org.junit.jupiter.api.BeforeEach;

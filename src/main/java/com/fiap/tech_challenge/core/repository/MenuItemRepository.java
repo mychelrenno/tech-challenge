@@ -16,6 +16,9 @@ public interface MenuItemRepository {
     public MenuItem update(MenuItem menuItem);
     
     public void deleteById(Long id);
+}
+
+
 
     Optional<MenuItem> findByRestaurantId(Long restaurantId);
 }
