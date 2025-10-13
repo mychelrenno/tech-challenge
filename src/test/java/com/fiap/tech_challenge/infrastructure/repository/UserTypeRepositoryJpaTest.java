@@ -8,6 +8,7 @@ import org.mockito.Mockito;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
@@ -87,5 +88,20 @@ class UserTypeRepositoryJpaTest {
         assertNotNull(result);
         assertEquals("owner", result.getName());
         verify(springDataJpaUserType, times(1)).findByName("owner");
+    }
+
+    @Test
+    void mustReturnUserType() {
+        // given
+        var userType = new UserType(1L, null);
+        var userTypeJpa = new UserTypeJpa(1L, "customer");
+        // when
+        when(springDataJpaUserType.findById(1L)).thenReturn(Optional.of(userTypeJpa));
+        UserType result = userTypeRepositoryJpa.findById(userType);
+        // then
+        assertNotNull(result);
+        assertEquals(1L, result.getId());
+        assertEquals("customer", result.getName());
+        verify(springDataJpaUserType, times(1)).findById(any(Long.class));
     }
 }
