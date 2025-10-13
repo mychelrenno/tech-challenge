@@ -31,7 +31,7 @@ class MenuItemRepositoryJpaTest {
         MenuItem menuItem = new MenuItem(null,
                 "pizza",
                 "deliciosa",
-                new Double("49.90"),
+                49.90,
                 true,
                 "/imagens/imagem-teste.jpg",
                 1L);
@@ -39,7 +39,7 @@ class MenuItemRepositoryJpaTest {
         MenuItemJpa menuItemJpaSaved = new MenuItemJpa(1L,
                 "pizza",
                 "deliciosa",
-                new Double("49.90"),
+                49.90,
                 true,
                 "/imagens/imagem-teste.jpg",
                 1L);
@@ -61,14 +61,14 @@ class MenuItemRepositoryJpaTest {
         MenuItemJpa menuItemJpa1 = new MenuItemJpa(1L,
                 "bacon com abacaxi",
                 "pizza dos deuses",
-                new Double("49.90"),
+                49.90,
                 true,
                 "/imagens/imagem-teste.jpg",
                 1L);
         MenuItemJpa menuItemJpa2 = new MenuItemJpa(2L,
                 "portuguesa",
                 "contem ovo para dar um pump",
-                new Double("49.90"),
+                49.90,
                 true,
                 "/imagens/imagem-teste.jpg",
                 2L);
@@ -88,7 +88,7 @@ class MenuItemRepositoryJpaTest {
         MenuItemJpa menuItemJpa = new MenuItemJpa(1L,
                 "bacon com abacaxi",
                 "pizza dos deuses",
-                new Double("49.90"),
+                49.90,
                 true,
                 "/imagens/imagem-teste.jpg",
                 1L);
