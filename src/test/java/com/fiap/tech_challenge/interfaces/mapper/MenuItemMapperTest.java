@@ -18,7 +18,8 @@ class MenuItemMapperTest {
                 "Pizza clássica com molho de tomate, mussarela e manjericão fresco",
                 45.90,
                 false,
-                "/images/pizza-margherita.jpg"
+                "/images/pizza-margherita.jpg",
+                1L
         );
 
         // When
@@ -41,7 +42,8 @@ class MenuItemMapperTest {
                 "Pizza clássica com molho de tomate, mussarela e manjericão fresco",
                 45.90,
                 false,
-                "/images/pizza-margherita.jpg"
+                "/images/pizza-margherita.jpg",
+                1L
         );
 
         // When
@@ -64,7 +66,8 @@ class MenuItemMapperTest {
                 "Pizza clássica com molho de tomate, mussarela e manjericão fresco",
                 45.90,
                 false,
-                "/images/pizza-margherita.jpg"
+                "/images/pizza-margherita.jpg",
+                1L
         );
 
         // When
@@ -88,7 +91,8 @@ class MenuItemMapperTest {
                 "Café expresso tradicional, servido apenas no local",
                 4.50,
                 true,
-                "/images/cafe-expresso.jpg"
+                "/images/cafe-expresso.jpg",
+                2L
         );
 
         // When
@@ -104,7 +108,7 @@ class MenuItemMapperTest {
     @Test
     void shouldConvertEntityToJpaWithNullValues() {
         // Given
-        MenuItem entity = new MenuItem(null, null, null, null, null);
+        MenuItem entity = new MenuItem(null, null, null, null, null, null );
 
         // When
         MenuItemJpa jpa = MenuItemMapper.convertEntityToJpa(entity);
@@ -121,7 +125,7 @@ class MenuItemMapperTest {
     @Test
     void shouldConvertJpaToEntityWithNullValues() {
         // Given
-        MenuItemJpa jpa = new MenuItemJpa(null, null, null, null, null);
+        MenuItemJpa jpa = new MenuItemJpa(null, null, null, null, null, null);
 
         // When
         MenuItem entity = MenuItemMapper.convertJpaToEntity(jpa);
@@ -138,7 +142,7 @@ class MenuItemMapperTest {
     @Test
     void shouldConvertDtoToEntityWithNullValues() {
         // Given
-        MenuItemDto dto = new MenuItemDto(null, null, null, null, null, null);
+        MenuItemDto dto = new MenuItemDto(null, null, null, null, null, null, null);
 
         // When
         MenuItem entity = MenuItemMapper.convertDtoToEntity(dto);

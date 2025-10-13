@@ -14,9 +14,10 @@ class MenuItemTest {
         Double price = 45.90;
         Boolean restaurantOnly = false;
         String imagePath = "/images/pizza-margherita.jpg";
+        Long restaurantId = 1L;
 
         // When
-        MenuItem menuItem = new MenuItem(name, description, price, restaurantOnly, imagePath);
+        MenuItem menuItem = new MenuItem(name, description, price, restaurantOnly, imagePath, restaurantId);
 
         // Then
         assertNotNull(menuItem);
@@ -30,7 +31,7 @@ class MenuItemTest {
     @Test
     void shouldAllowModificationOfFields() {
         // Given
-        MenuItem menuItem = new MenuItem("Original Name", "Original Description", 10.0, false, "/original.jpg");
+        MenuItem menuItem = new MenuItem("Original Name", "Original Description", 10.0, false, "/original.jpg", 1L);
 
         // When
         menuItem.setName("New Name");
@@ -55,9 +56,10 @@ class MenuItemTest {
         Double price = 4.50;
         Boolean restaurantOnly = true;
         String imagePath = "/images/cafe-expresso.jpg";
+        Long restaurantId = 1L;
 
         // When
-        MenuItem menuItem = new MenuItem(name, description, price, restaurantOnly, imagePath);
+        MenuItem menuItem = new MenuItem(name, description, price, restaurantOnly, imagePath, restaurantId);
 
         // Then
         assertNotNull(menuItem);
@@ -74,9 +76,10 @@ class MenuItemTest {
         Double price = 32.90;
         Boolean restaurantOnly = false;
         String imagePath = "/images/hamburger.jpg";
+        Long restaurantId = 1L;
 
         // When
-        MenuItem menuItem = new MenuItem(name, description, price, restaurantOnly, imagePath);
+        MenuItem menuItem = new MenuItem(name, description, price, restaurantOnly, imagePath, restaurantId);
 
         // Then
         assertNotNull(menuItem);

@@ -2,21 +2,23 @@ package com.fiap.tech_challenge.core.domain.restaurant;
 
 public class MenuItem {
 
-    public MenuItem(String name, String description, Double price, Boolean restaurantOnly, String imagePath) {
+    public MenuItem(String name, String description, Double price, Boolean restaurantOnly, String imagePath, Long restaurantId) {
         this.name = name;
         this.description = description;
         this.price = price;
         this.restaurantOnly = restaurantOnly;
         this.imagePath = imagePath;
+        this.restaurantId = restaurantId;
     }
 
-    public MenuItem(Long id, String name, String description, Double price, Boolean restaurantOnly, String imagePath) {
+    public MenuItem(Long id, String name, String description, Double price, Boolean restaurantOnly, String imagePath, Long restaurantId) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.price = price;
         this.restaurantOnly = restaurantOnly;
         this.imagePath = imagePath;
+        this.restaurantId = restaurantId;
     }
 
     private Long id;
@@ -25,6 +27,7 @@ public class MenuItem {
     private Double price;
     private Boolean restaurantOnly;
     private String imagePath;
+    private Long restaurantId;
 
     public String getName() {
         return name;
@@ -72,5 +75,13 @@ public class MenuItem {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Long getRestaurantId() {
+        return restaurantId;
+    }
+
+    public void setRestaurantId(Long restaurantId) {
+        this.restaurantId = restaurantId;
     }
 }
