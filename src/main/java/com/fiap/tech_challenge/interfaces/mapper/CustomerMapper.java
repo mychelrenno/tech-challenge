@@ -10,10 +10,9 @@ import java.util.List;
 
 public class CustomerMapper {
     public static CustomerJpa convertEntityToJpa(Customer customer){
-        return new CustomerJpa(
-                customer.getDocument(),
-                UserMapper.convertEntityToJpa(customer.getUser())
-        );
+        var userJpa = UserMapper.convertEntityToJpa(customer.getUser());
+        var customerJpa = new CustomerJpa(customer.getDocument(), userJpa);
+        return customerJpa;
     }
 
     public static Customer convertJpaToEntity(CustomerJpa customerJpa) {

@@ -42,7 +42,7 @@ public class CustomerRepositoryJpa implements CustomerRepository {
             UserTypeJpa userTypeJpa = springDataJpaUserType.findByName(customerJpa.getUserJpa().getUserTypeJpa().getName());
             // save new user
             UserJpa newUserJpa = new UserJpa(
-                customer.getUser().getName(),
+                    customer.getUser().getName(),
                     customer.getUser().getEmail(),
                     customer.getUser().getUsername(),
                     customer.getUser().getPassword(),
@@ -51,7 +51,7 @@ public class CustomerRepositoryJpa implements CustomerRepository {
                     new Date(),
                     true
             );
-            if(userTypeJpa!=null){
+            if(userTypeJpa != null){
                 newUserJpa.setUserTypeJpa(userTypeJpa);
             }else{
                 throw new IllegalArgumentException("User type not found on system.");
@@ -61,7 +61,9 @@ public class CustomerRepositoryJpa implements CustomerRepository {
         }
 
         // save customer
-        return CustomerMapper.convertJpaToEntity(springDataJpaCustomer.save(customerJpa));
+        var _customerJpa = springDataJpaCustomer.save(customerJpa);
+        var _customer = CustomerMapper.convertJpaToEntity(_customerJpa);
+        return _customer;
     }
 
     @Override
@@ -117,8 +119,8 @@ public class CustomerRepositoryJpa implements CustomerRepository {
             } else {
                 throw new IllegalArgumentException("User not found.");
             }
-           } else {
+       } else {
             throw new IllegalArgumentException("Customer not found.");
-        }
+       }
     }
 }

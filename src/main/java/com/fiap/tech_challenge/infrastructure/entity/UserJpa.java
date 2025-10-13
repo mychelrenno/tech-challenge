@@ -30,9 +30,12 @@ public class UserJpa implements Serializable {
     }
 
     public UserJpa(String name,
-                   String email, String username,
-                   String password, UserTypeJpa userTypeJpa,
-                   AddressJpa addressJpa, Date lastUpdateDate,
+                   String email,
+                   String username,
+                   String password,
+                   UserTypeJpa userTypeJpa,
+                   AddressJpa addressJpa,
+                   Date lastUpdateDate,
                    Boolean active) {
         this.name = name;
         this.email = email;
@@ -46,9 +49,12 @@ public class UserJpa implements Serializable {
 
     public UserJpa(Long id,
                    String name,
-                   String email, String username,
-                   String password, UserTypeJpa userTypeJpa,
-                   AddressJpa addressJpa, Date lastUpdateDate,
+                   String email,
+                   String username,
+                   String password,
+                   UserTypeJpa userTypeJpa,
+                   AddressJpa addressJpa,
+                   Date lastUpdateDate,
                    Boolean active) {
         this.id = id;
         this.name = name;

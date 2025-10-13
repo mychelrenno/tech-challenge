@@ -25,6 +25,14 @@ public class CustomerJpa implements Serializable {
         this.userJpa = userJpa;
     }
 
+    public CustomerJpa(Long id,
+                       String document,
+                       UserJpa userJpa) {
+        this.id = id;
+        this.document = document;
+        this.userJpa = userJpa;
+    }
+
     public Long getId() {
         return id;
     }

@@ -6,5 +6,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.Optional;
 
 public interface SpringDataJpaUserType extends JpaRepository<UserTypeJpa, Long> {
-    UserTypeJpa findByName(String name);
+    UserTypeJpa  findByName(String name);
 }

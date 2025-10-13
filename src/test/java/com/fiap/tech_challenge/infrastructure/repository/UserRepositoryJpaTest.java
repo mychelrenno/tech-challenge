@@ -106,7 +106,7 @@ public class UserRepositoryJpaTest {
         UserJpa existingJpa = UserMapper.convertEntityToJpa(user);
 
         when(springDataJpaUser.findById(userId)).thenReturn(Optional.of(existingJpa));
-        when(springDataJpaUserType.findByName("ADMIN")).thenReturn(new UserTypeJpa());
+        when(springDataJpaUserType.findByName("OWNER")).thenReturn(new UserTypeJpa("OWNER"));
         when(springDataJpaUser.save(existingJpa)).thenReturn(existingJpa);
 
         User result = userRepositoryJpa.update(userId, user);
@@ -182,5 +182,64 @@ public class UserRepositoryJpaTest {
         assertNotNull(result);
         assertEquals(1, result.size());
         verify(springDataJpaUser, times(1)).findByActiveTrue();
+    }
+
+    @Test
+    void mustReturnUserWhenFindByUsernameExists() {
+        String username = "Nome Owner";
+
+        UserTypeJpa userTypeJpa = new UserTypeJpa("OWNER");
+        AddressJpa addressJpa = new AddressJpa("01234-567", "Rua A", "Apto 101", "São Paulo", "Brasil");
+        UserJpa userJpa = new UserJpa("Nome Owner", "owner@email.com", username, "senha123", userTypeJpa, addressJpa, new java.util.Date(), true);
+
+        when(springDataJpaUser.findByUsername(username)).thenReturn(Optional.of(userJpa));
+
+        User result = userRepositoryJpa.findByUsername(username);
+
+        assertNotNull(result);
+        assertEquals(username, result.getUsername());
+        verify(springDataJpaUser, times(1)).findByUsername(username);
+    }
+
+    @Test
+    void mustReturnNullWhenFindByUsernameNotExists() {
+        String username = "not_found";
+        when(springDataJpaUser.findByUsername(username)).thenReturn(Optional.empty());
+
+        User result = userRepositoryJpa.findByUsername(username);
+
+        assertNull(result);
+        verify(springDataJpaUser, times(1)).findByUsername(username);
+    }
+
+    @Test
+    void mustReturnUserWhenFindByIdExists() {
+        // given
+        Long userId = 1L;
+
+        UserTypeJpa userTypeJpa = new UserTypeJpa("OWNER");
+        AddressJpa addressJpa = new AddressJpa("01234-567", "Rua A", "Apto 101", "São Paulo", "Brasil");
+        UserJpa userJpa = new UserJpa(userId, "Nome Owner", "owner@email.com", "owneruser", "senha123", userTypeJpa, addressJpa, new java.util.Date(), true);
+
+        // when
+        when(springDataJpaUser.findById(userId)).thenReturn(Optional.of(userJpa));
+
+        User result = userRepositoryJpa.findById(userId);
+
+        // then
+        assertNotNull(result);
+        assertEquals(userId, result.getId());
+        verify(springDataJpaUser, times(1)).findById(userId);
+    }
+
+    @Test
+    void mustReturnNullWhenFindByIdNotExists() {
+        Long userId = 99L;
+        when(springDataJpaUser.findById(userId)).thenReturn(Optional.empty());
+
+        User result = userRepositoryJpa.findById(userId);
+
+        assertNull(result);
+        verify(springDataJpaUser, times(1)).findById(userId);
     }
 }
