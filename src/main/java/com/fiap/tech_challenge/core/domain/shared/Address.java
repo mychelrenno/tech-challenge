@@ -24,8 +24,10 @@ public class Address {
     }
 
     public Address(String postalCode,
-                   String street, String additionalDetails,
-                   String city, String country) {
+                   String street,
+                   String additionalDetails,
+                   String city,
+                   String country) {
         if (postalCode == null || postalCode.isBlank()) {
             throw new IllegalArgumentException("Postal code cannot be empty.");
         }
@@ -35,6 +37,8 @@ public class Address {
         this.city = city;
         this.country = country;
     }
+
+    public Address(){}
 
     public Long getId() {
         return id;
