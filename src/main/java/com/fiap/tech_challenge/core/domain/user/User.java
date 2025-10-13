@@ -16,96 +16,27 @@ public class User {
     private Date lastUpdateDate;
     private Boolean active;
 
-    // All Args Constructor
-    public User(Long id, String name, String email, String username,
-                String password, UserType userType,
-                Address address) {
-        if (!email.contains("@")) {
-            throw new IllegalArgumentException("Invalid email.");
-        }
-        if (username == null || username.isBlank()) {
-            throw new IllegalArgumentException("Username cannot be empty.");
-        }
-        if (password == null || password.isBlank()) {
-            throw new IllegalArgumentException("Password cannot be empty.");
-        }
-        this.id = id;
-        this.name = name;
-        this.email = email;
-        this.username = username;
-        this.password = password;
-        this.userType = userType;
-        this.address = address;
-        this.lastUpdateDate = new Date();
-        this.active = true;
+    public User() {
     }
 
-    public User(Long id, String name,
-                String email, String username,
-                UserType userType, Address address,
+    public User(Long id,
+                String name,
+                String email,
+                String username,
+                String password,
+                UserType userType,
+                Address address,
+                Date lastUpdateDate,
                 Boolean active) {
-        if (!email.contains("@")) {
-            throw new IllegalArgumentException("Invalid email.");
-        }
-        if (username == null || username.isBlank()) {
-            throw new IllegalArgumentException("Username cannot be empty.");
-        }
         this.id = id;
-        this.name = name;
-        this.email = email;
-        this.username = username;
-        this.userType = userType;
-        this.address = address;
-        this.active = active;
-    }
-
-    public User(String name, String email, String username,
-                String password, UserType userType,
-                Address address) {
-
-        if (name == null || name.isBlank()) {
-            throw new IllegalArgumentException("Name cannot be empty.");
-        }
-        if (!email.contains("@")) {
-            throw new IllegalArgumentException("Invalid email.");
-        }
-        if (username == null || username.isBlank()) {
-            throw new IllegalArgumentException("Username cannot be empty.");
-        }
-        if (password == null || password.isBlank()) {
-            throw new IllegalArgumentException("Password cannot be empty.");
-        }
-
         this.name = name;
         this.email = email;
         this.username = username;
         this.password = password;
         this.userType = userType;
         this.address = address;
-        this.lastUpdateDate = new Date();
-        this.active = true;
-    }
-
-    public User(String name, String email, String username, UserType userType,
-                Address address) {
-
-        if (name == null || name.isBlank()) {
-            throw new IllegalArgumentException("Name cannot be empty.");
-        }
-        if (!email.contains("@")) {
-            throw new IllegalArgumentException("Invalid email.");
-        }
-        if (username == null || username.isBlank()) {
-            throw new IllegalArgumentException("Username cannot be empty.");
-        }
-
-        this.name = name;
-        this.email = email;
-        this.username = username;
-        this.userType = userType;
-        this.address = address;
-        this.lastUpdateDate = new Date();
-        this.active = true;
+        this.lastUpdateDate = lastUpdateDate;
+        this.active = active;
     }
 
     public Long getId() {
@@ -136,15 +67,15 @@ public class User {
         return address;
     }
 
+    public Date getLastUpdateDate() {
+        return lastUpdateDate;
+    }
+
     public Boolean getActive() {
         return active;
     }
 
-    public void changePassword(String newPassword){
-        if(!newPassword.isEmpty()){
-            this.password = newPassword;
-        }else{
-            throw new IllegalArgumentException("New password cannot be empty.");
-        }
+    public void changePassword(String password){
+        this.password = password;
     }
 }

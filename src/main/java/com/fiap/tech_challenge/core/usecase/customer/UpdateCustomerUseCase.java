@@ -26,13 +26,13 @@ public class UpdateCustomerUseCase {
     }
 
     public void validateDocument(String document){
-        if (document.isEmpty() || document.isBlank()){
+        if (document == null || document.isBlank()) {
             throw new IllegalArgumentException("Document cannot be empty.");
         }
     }
 
     public void validateUser(User user){
-        if (user.getName().isEmpty() || user.getName().isBlank()){
+        if (user.getName() == null || user.getName().isBlank()){
             throw new IllegalArgumentException("Name cannot be empty.");
         }
         if (!user.getEmail().contains("@")) {

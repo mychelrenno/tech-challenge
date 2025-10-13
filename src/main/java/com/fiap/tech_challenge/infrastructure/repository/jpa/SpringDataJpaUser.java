@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface SpringDataJpaUser extends JpaRepository<UserJpa, Long> {
+    Optional<UserJpa> findById(Long id);
     Optional<UserJpa> findByEmail(String email);
     Optional<UserJpa> findByUsername(String username);
     List<UserJpa> findByActiveTrue();

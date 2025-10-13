@@ -1,7 +1,6 @@
 package com.fiap.tech_challenge.infrastructure.entity;
 
 import jakarta.persistence.*;
-
 import java.io.Serializable;
 import java.util.Date;
 
@@ -11,9 +10,8 @@ public class UserJpa implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(nullable = false)
     private String name;
-    @Column(nullable = false, unique = true)
+    @Column(unique = true)
     private String email;
     @Column(nullable = false, unique = true)
     private String username;

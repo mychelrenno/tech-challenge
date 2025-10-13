@@ -12,8 +12,10 @@ public class RestaurantJpa {
     private String name;
     private String cuisineType;
     private String openingHours;
-    @Column(name = "owner_id", nullable = false)
-    private Long ownerId;
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "owner_id", nullable = false)
+    private OwnerJpa owner;
+
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "address_jpa_id")
     private AddressJpa addressJpa;
@@ -21,13 +23,13 @@ public class RestaurantJpa {
 
     public RestaurantJpa() {}
 
-    public RestaurantJpa(Long id, String name, AddressJpa addressJpa, String cuisineType, String openingHours, Long ownerId) {
+    public RestaurantJpa(Long id, String name, AddressJpa addressJpa, String cuisineType, String openingHours, OwnerJpa owner) {
         this.id = id;
         this.name = name;
         this.addressJpa = addressJpa;
         this.cuisineType = cuisineType;
         this.openingHours = openingHours;
-        this.ownerId = ownerId;
+        this.owner = owner;
     }
 
     // Getters e setters
@@ -41,6 +43,6 @@ public class RestaurantJpa {
     public void setCuisineType(String cuisineType) { this.cuisineType = cuisineType; }
     public String getOpeningHours() { return openingHours; }
     public void setOpeningHours(String openingHours) { this.openingHours = openingHours; }
-    public Long getOwnerId() { return ownerId; }
-    public void setOwnerId(Long ownerId) { this.ownerId = ownerId; }
+    public OwnerJpa getOwner() { return owner; }
+    public void setOwner(OwnerJpa owner) { this.owner = owner; }
 }

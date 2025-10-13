@@ -1,6 +1,6 @@
 package com.fiap.tech_challenge.infrastructure.configuration;
 
-import com.fiap.tech_challenge.core.usecase.*;
+import com.fiap.tech_challenge.core.usecase.menu_item.*;
 import com.fiap.tech_challenge.infrastructure.repository.MenuItemRepositoryJpa;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -37,5 +37,10 @@ public class UseCaseConfiguration {
     @Bean
     public DeleteMenuItemUseCase makeDeleteMenuItemUseCase() {
         return new DeleteMenuItemUseCase(menuItemRepositoryJpa);
+    }
+
+    @Bean
+    public FindMenuItemByRestaurantIdUseCase makeFindMenuItemByRestaurantIdUseCase() {
+        return new FindMenuItemByRestaurantIdUseCase(menuItemRepositoryJpa);
     }
 }

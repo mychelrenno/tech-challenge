@@ -1,6 +1,6 @@
 package com.fiap.tech_challenge.infrastructure.repository;
 
-import com.fiap.tech_challenge.core.entity.MenuItem;
+import com.fiap.tech_challenge.core.domain.restaurant.MenuItem;
 import com.fiap.tech_challenge.core.repository.MenuItemRepository;
 import com.fiap.tech_challenge.infrastructure.entity.MenuItemJpa;
 import com.fiap.tech_challenge.infrastructure.repository.jpa.SpringDataJpaMenuItem;
@@ -52,6 +52,12 @@ public class MenuItemRepositoryJpa implements MenuItemRepository {
     @Override
     public void deleteById(Long id) {
         springDataJpaMenuItem.deleteById(id);
+    }
+
+    @Override
+    public Optional<MenuItem> findByRestaurantId(Long restaurantId) {
+        Optional<MenuItemJpa> menuItemJpaOptional = springDataJpaMenuItem.findByRestaurantId(restaurantId);
+        return menuItemJpaOptional.map(MenuItemMapper::convertJpaToEntity);
     }
 }
 

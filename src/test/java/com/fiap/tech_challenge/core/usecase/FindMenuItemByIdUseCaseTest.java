@@ -1,7 +1,8 @@
 package com.fiap.tech_challenge.core.usecase;
 
-import com.fiap.tech_challenge.core.entity.MenuItem;
+import com.fiap.tech_challenge.core.domain.restaurant.MenuItem;
 import com.fiap.tech_challenge.core.repository.MenuItemRepository;
+import com.fiap.tech_challenge.core.usecase.menu_item.FindMenuItemByIdUseCase;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -35,7 +36,8 @@ class FindMenuItemByIdUseCaseTest {
                 "Pizza clássica com molho de tomate, mussarela e manjericão fresco",
                 45.90,
                 false,
-                "/images/pizza-margherita.jpg"
+                "/images/pizza-margherita.jpg",
+                1L
         );
 
         when(menuItemRepository.findById(menuItemId)).thenReturn(Optional.of(menuItem));
@@ -72,7 +74,8 @@ class FindMenuItemByIdUseCaseTest {
                 "Café expresso tradicional, servido apenas no local",
                 4.50,
                 true,
-                "/images/cafe-expresso.jpg"
+                "/images/cafe-expresso.jpg",
+                1L
         );
 
         when(menuItemRepository.findById(menuItemId)).thenReturn(Optional.of(restaurantOnlyItem));
@@ -94,7 +97,8 @@ class FindMenuItemByIdUseCaseTest {
                 "Hambúrguer com carne artesanal, disponível para delivery",
                 32.90,
                 false,
-                "/images/hamburger.jpg"
+                "/images/hamburger.jpg",
+                1L
         );
 
         when(menuItemRepository.findById(menuItemId)).thenReturn(Optional.of(deliveryItem));
@@ -116,7 +120,8 @@ class FindMenuItemByIdUseCaseTest {
                 "Descrição Completa",
                 99.99,
                 true,
-                "/images/caminho/completo.jpg"
+                "/images/caminho/completo.jpg",
+                1L
         );
 
         when(menuItemRepository.findById(menuItemId)).thenReturn(Optional.of(menuItem));
@@ -148,8 +153,24 @@ class FindMenuItemByIdUseCaseTest {
         Long firstId = 1L;
         Long secondId = 2L;
 
-        MenuItem firstItem = new MenuItem(firstId, "Item 1", "Desc 1", 10.00, false, "/img1.jpg");
-        MenuItem secondItem = new MenuItem(secondId, "Item 2", "Desc 2", 20.00, true, "/img2.jpg");
+        MenuItem firstItem = new MenuItem(
+                firstId,
+                "Item 1",
+                "Desc 1",
+                10.00,
+                false,
+                "/img1.jpg",
+                1L
+        );
+        MenuItem secondItem = new MenuItem(
+                secondId,
+                "Item 2",
+                "Desc 2",
+                20.00,
+                true,
+                "/img2.jpg",
+                1L
+        );
 
         when(menuItemRepository.findById(firstId)).thenReturn(Optional.of(firstItem));
         when(menuItemRepository.findById(secondId)).thenReturn(Optional.of(secondItem));

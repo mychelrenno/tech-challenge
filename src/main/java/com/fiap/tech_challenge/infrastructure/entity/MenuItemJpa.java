@@ -3,15 +3,16 @@ package com.fiap.tech_challenge.infrastructure.entity;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "menu-item")
+@Table(name = "menu_item")
 public class MenuItemJpa {
 
-    public MenuItemJpa(String name, String description, Double price, Boolean restaurantOnly, String imagePath) {
+    public MenuItemJpa(String name, String description, Double price, Boolean restaurantOnly, String imagePath, Long restaurantId) {
         this.name = name;
         this.description = description;
         this.price = price;
         this.restaurantOnly = restaurantOnly;
         this.imagePath = imagePath;
+        this.restaurantId = restaurantId;
     }
 
     @Id
@@ -23,6 +24,9 @@ public class MenuItemJpa {
     private Double price;
     private Boolean restaurantOnly;
     private String imagePath;
+
+    @Column(name = "restaurant_id")
+    private Long restaurantId;
 
     public MenuItemJpa() {
     }
@@ -74,7 +78,12 @@ public class MenuItemJpa {
     public void setImagePath(String imagePath) {
         this.imagePath = imagePath;
     }
+
+    public Long getRestaurantId() {
+        return restaurantId;
+    }
+
+    public void setRestaurantId(Long restaurantId) {
+        this.restaurantId = restaurantId;
+    }
 }
-
-
-

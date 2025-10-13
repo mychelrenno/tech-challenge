@@ -12,7 +12,7 @@ public class OwnerJpa {
     private Long id;
     @Column(nullable = false)
     private String document;
-    @OneToMany(mappedBy = "ownerId", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL)
     private List<RestaurantJpa> restaurants;
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(nullable = false)

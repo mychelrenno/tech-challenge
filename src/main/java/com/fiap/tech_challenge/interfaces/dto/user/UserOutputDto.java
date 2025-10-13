@@ -2,6 +2,7 @@ package com.fiap.tech_challenge.interfaces.dto.user;
 
 import com.fiap.tech_challenge.interfaces.dto.AddressDto;
 import com.fiap.tech_challenge.interfaces.dto.UserTypeDto;
+import java.util.Date;
 
 public record UserOutputDto(
         Long id,
@@ -10,6 +11,7 @@ public record UserOutputDto(
         String username,
         UserTypeDto userType,
         AddressDto address,
+        Date lastUpdateDate,
         Boolean active
 ) {
 }

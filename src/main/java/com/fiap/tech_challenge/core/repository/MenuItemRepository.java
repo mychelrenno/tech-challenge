@@ -1,6 +1,7 @@
 package com.fiap.tech_challenge.core.repository;
 
-import com.fiap.tech_challenge.core.entity.MenuItem;
+
+import com.fiap.tech_challenge.core.domain.restaurant.MenuItem;
 
 import java.util.List;
 import java.util.Optional;
@@ -14,9 +15,9 @@ public interface MenuItemRepository {
     public Optional<MenuItem> findById(Long id);
     
     public MenuItem update(MenuItem menuItem);
-    
+
     public void deleteById(Long id);
+
+    Optional<MenuItem> findByRestaurantId(Long restaurantId);
+
 }
-
-
-

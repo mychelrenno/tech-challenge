@@ -11,6 +11,9 @@ public class DeleteUserUseCase {
 
     // Method: Logic delete
     public boolean delete(Long userId){
+        if (userId == null) {
+            throw new IllegalArgumentException("User's ID cannot be null.");
+        }
         return userRepository.delete(userId);
     }
 }

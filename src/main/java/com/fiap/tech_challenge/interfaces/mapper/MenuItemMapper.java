@@ -1,6 +1,6 @@
 package com.fiap.tech_challenge.interfaces.mapper;
 
-import com.fiap.tech_challenge.core.entity.MenuItem;
+import com.fiap.tech_challenge.core.domain.restaurant.MenuItem;
 import com.fiap.tech_challenge.infrastructure.entity.MenuItemJpa;
 import com.fiap.tech_challenge.interfaces.dto.MenuItemDto;
 
@@ -13,7 +13,8 @@ public class MenuItemMapper {
                 dto.description(),
                 dto.price(),
                 dto.restaurantOnly(),
-                dto.imagePath()
+                dto.imagePath(),
+                dto.restaurantId()
         );
     }
 
@@ -23,7 +24,8 @@ public class MenuItemMapper {
                 menuItem.getDescription(),
                 menuItem.getPrice(),
                 menuItem.getRestaurantOnly(),
-                menuItem.getImagePath()
+                menuItem.getImagePath(),
+                menuItem.getRestaurantId()
         );
         if (menuItem.getId() != null) {
             menuItemJpa.setId(menuItem.getId());
@@ -38,10 +40,8 @@ public class MenuItemMapper {
                 menuItemJpa.getDescription(),
                 menuItemJpa.getPrice(),
                 menuItemJpa.getRestaurantOnly(),
-                menuItemJpa.getImagePath()
+                menuItemJpa.getImagePath(),
+                menuItemJpa.getRestaurantId()
         );
     }
 }
-
-
-

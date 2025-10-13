@@ -1,5 +1,6 @@
 package com.fiap.tech_challenge.core.entity;
 
+import com.fiap.tech_challenge.core.domain.restaurant.MenuItem;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -12,7 +13,8 @@ class MenuItemTest {
         Double price = 45.90;
         Boolean restaurantOnly = false;
         String imagePath = "/images/pizza-margherita.jpg";
-        MenuItem menuItem = new MenuItem(name, description, price, restaurantOnly, imagePath);
+Long restaurantId = 1L;
+        MenuItem menuItem = new MenuItem(name, description, price, restaurantOnly, imagePath, restaurantId);
         assertNotNull(menuItem);
         assertEquals(name, menuItem.getName());
         assertEquals(description, menuItem.getDescription());
@@ -23,7 +25,7 @@ class MenuItemTest {
 
     @Test
     void shouldAllowModificationOfFields() {
-        MenuItem menuItem = new MenuItem("Original Name", "Original Description", 10.0, false, "/original.jpg");
+MenuItem menuItem = new MenuItem("Original Name", "Original Description", 10.0, false, "/original.jpg", 1L);
         menuItem.setName("New Name");
         menuItem.setDescription("New Description");
         menuItem.setPrice(15.50);
@@ -43,7 +45,8 @@ class MenuItemTest {
         Double price = 4.50;
         Boolean restaurantOnly = true;
         String imagePath = "/images/cafe-expresso.jpg";
-        MenuItem menuItem = new MenuItem(name, description, price, restaurantOnly, imagePath);
+Long restaurantId = 1L;
+        MenuItem menuItem = new MenuItem(name, description, price, restaurantOnly, imagePath, restaurantId);
         assertNotNull(menuItem);
         assertEquals(name, menuItem.getName());
         assertTrue(menuItem.getRestaurantOnly());
@@ -57,7 +60,8 @@ class MenuItemTest {
         Double price = 32.90;
         Boolean restaurantOnly = false;
         String imagePath = "/images/hamburger.jpg";
-        MenuItem menuItem = new MenuItem(name, description, price, restaurantOnly, imagePath);
+Long restaurantId = 1L;
+        MenuItem menuItem = new MenuItem(name, description, price, restaurantOnly, imagePath, restaurantId);
         assertNotNull(menuItem);
         assertEquals(name, menuItem.getName());
         assertFalse(menuItem.getRestaurantOnly());

@@ -1,6 +1,6 @@
 package com.fiap.tech_challenge.interfaces.mapper;
 
-import com.fiap.tech_challenge.core.entity.MenuItem;
+import com.fiap.tech_challenge.core.domain.restaurant.MenuItem;
 import com.fiap.tech_challenge.infrastructure.entity.MenuItemJpa;
 import com.fiap.tech_challenge.interfaces.dto.MenuItemDto;
 import org.junit.jupiter.api.Test;
@@ -17,7 +17,8 @@ class MenuItemMapperTest {
                 "Pizza clássica com molho de tomate, mussarela e manjericão fresco",
                 45.90,
                 false,
-                "/images/pizza-margherita.jpg"
+                "/images/pizza-margherita.jpg",
+                1L
         );
         MenuItem entity = MenuItemMapper.convertDtoToEntity(dto);
         assertNotNull(entity);
@@ -35,7 +36,8 @@ class MenuItemMapperTest {
                 "Pizza clássica com molho de tomate, mussarela e manjericão fresco",
                 45.90,
                 false,
-                "/images/pizza-margherita.jpg"
+                "/images/pizza-margherita.jpg",
+                1L
         );
         MenuItemJpa jpa = MenuItemMapper.convertEntityToJpa(entity);
         assertNotNull(jpa);
@@ -53,7 +55,8 @@ class MenuItemMapperTest {
                 "Pizza clássica com molho de tomate, mussarela e manjericão fresco",
                 45.90,
                 false,
-                "/images/pizza-margherita.jpg"
+                "/images/pizza-margherita.jpg",
+                1L
         );
         MenuItem entity = MenuItemMapper.convertJpaToEntity(jpa);
         assertNotNull(entity);
@@ -72,7 +75,8 @@ class MenuItemMapperTest {
                 "Café expresso tradicional, servido apenas no local",
                 4.50,
                 true,
-                "/images/cafe-expresso.jpg"
+                "/images/cafe-expresso.jpg",
+                2L
         );
         MenuItem entity = MenuItemMapper.convertDtoToEntity(dto);
         assertNotNull(entity);
@@ -83,7 +87,8 @@ class MenuItemMapperTest {
 
     @Test
     void shouldConvertEntityToJpaWithNullValues() {
-        MenuItem entity = new MenuItem(null, null, null, null, null);
+        MenuItem entity = new MenuItem(null, null, null, null, null, null );
+
         MenuItemJpa jpa = MenuItemMapper.convertEntityToJpa(entity);
         assertNotNull(jpa);
         assertNull(jpa.getName());
@@ -95,7 +100,8 @@ class MenuItemMapperTest {
 
     @Test
     void shouldConvertJpaToEntityWithNullValues() {
-        MenuItemJpa jpa = new MenuItemJpa(null, null, null, null, null);
+        MenuItemJpa jpa = new MenuItemJpa(null, null, null, null, null, null);
+
         MenuItem entity = MenuItemMapper.convertJpaToEntity(jpa);
         assertNotNull(entity);
         assertNull(entity.getName());
@@ -107,7 +113,8 @@ class MenuItemMapperTest {
 
     @Test
     void shouldConvertDtoToEntityWithNullValues() {
-        MenuItemDto dto = new MenuItemDto(null, null, null, null, null, null);
+        MenuItemDto dto = new MenuItemDto(null, null, null, null, null, null, null);
+
         MenuItem entity = MenuItemMapper.convertDtoToEntity(dto);
         assertNotNull(entity);
         assertNull(entity.getName());

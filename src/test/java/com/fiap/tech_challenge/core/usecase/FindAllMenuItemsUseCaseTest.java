@@ -1,7 +1,8 @@
 package com.fiap.tech_challenge.core.usecase;
 
-import com.fiap.tech_challenge.core.entity.MenuItem;
+import com.fiap.tech_challenge.core.domain.restaurant.MenuItem;
 import com.fiap.tech_challenge.core.repository.MenuItemRepository;
+import com.fiap.tech_challenge.core.usecase.menu_item.FindAllMenuItemsUseCase;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -31,9 +32,9 @@ class FindAllMenuItemsUseCaseTest {
     @Test
     void shouldFindAllMenuItems() {
         List<MenuItem> menuItems = Arrays.asList(
-                new MenuItem(1L, "Pizza Margherita", "Pizza clássica", 45.90, false, "/images/pizza.jpg"),
-                new MenuItem(2L, "Café Expresso", "Café tradicional", 4.50, true, "/images/cafe.jpg"),
-                new MenuItem(3L, "Hambúrguer", "Hambúrguer artesanal", 32.90, false, "/images/hamburger.jpg")
+                new MenuItem(1L, "Pizza Margherita", "Pizza clássica", 45.90, false, "/images/pizza.jpg", 1L),
+                new MenuItem(2L, "Café Expresso", "Café tradicional", 4.50, true, "/images/cafe.jpg", 1L),
+                new MenuItem(3L, "Hambúrguer", "Hambúrguer artesanal", 32.90, false, "/images/hamburger.jpg", 1L)
         );
 
         when(menuItemRepository.findAll()).thenReturn(menuItems);
@@ -63,11 +64,11 @@ class FindAllMenuItemsUseCaseTest {
     @Test
     void shouldReturnMultipleMenuItems() {
         List<MenuItem> menuItems = Arrays.asList(
-                new MenuItem(1L, "Item 1", "Descrição 1", 10.00, false, "/img1.jpg"),
-                new MenuItem(2L, "Item 2", "Descrição 2", 20.00, false, "/img2.jpg"),
-                new MenuItem(3L, "Item 3", "Descrição 3", 30.00, true, "/img3.jpg"),
-                new MenuItem(4L, "Item 4", "Descrição 4", 40.00, false, "/img4.jpg"),
-                new MenuItem(5L, "Item 5", "Descrição 5", 50.00, true, "/img5.jpg")
+                new MenuItem(1L, "Item 1", "Descrição 1", 10.00, false, "/img1.jpg", 1L),
+                new MenuItem(2L, "Item 2", "Descrição 2", 20.00, false, "/img2.jpg", 1L),
+                new MenuItem(3L, "Item 3", "Descrição 3", 30.00, true, "/img3.jpg", 1L),
+                new MenuItem(4L, "Item 4", "Descrição 4", 40.00, false, "/img4.jpg", 1L),
+                new MenuItem(5L, "Item 5", "Descrição 5", 50.00, true, "/img5.jpg", 1L)
         );
 
         when(menuItemRepository.findAll()).thenReturn(menuItems);
@@ -80,12 +81,8 @@ class FindAllMenuItemsUseCaseTest {
 
     @Test
     void shouldReturnBothRestaurantOnlyAndDeliveryItems() {
-        MenuItem restaurantOnlyItem = new MenuItem(
-                1L, "Café Expresso", "Apenas no local", 4.50, true, "/images/cafe.jpg"
-        );
-        MenuItem deliveryItem = new MenuItem(
-                2L, "Pizza", "Disponível para delivery", 45.90, false, "/images/pizza.jpg"
-        );
+        MenuItem restaurantOnlyItem = new MenuItem(1L, "Café Expresso", "Apenas no local", 4.50, true, "/images/cafe.jpg", 1L);
+        MenuItem deliveryItem = new MenuItem(2L, "Pizza", "Disponível para delivery", 45.90, false, "/images/pizza.jpg", 1L);
 
         List<MenuItem> menuItems = Arrays.asList(restaurantOnlyItem, deliveryItem);
 
@@ -107,14 +104,7 @@ class FindAllMenuItemsUseCaseTest {
 
     @Test
     void shouldReturnAllItemsWithCompleteData() {
-        MenuItem menuItem = new MenuItem(
-                1L,
-                "Pizza Margherita",
-                "Pizza clássica com molho de tomate, mussarela e manjericão fresco",
-                45.90,
-                false,
-                "/images/pizza-margherita.jpg"
-        );
+        MenuItem menuItem = new MenuItem(1L, "Pizza Margherita", "Pizza clássica com molho de tomate, mussarela e manjericão fresco", 45.90, false, "/images/pizza-margherita.jpg", 1L);
 
         when(menuItemRepository.findAll()).thenReturn(Arrays.asList(menuItem));
         List<MenuItem> result = findAllMenuItemsUseCase.execute();
@@ -135,7 +125,7 @@ class FindAllMenuItemsUseCaseTest {
     @Test
     void shouldCallRepositoryOnlyOnce() {
         List<MenuItem> menuItems = Arrays.asList(
-                new MenuItem(1L, "Item 1", "Desc 1", 10.00, false, "/img1.jpg")
+                new MenuItem(1L, "Item 1", "Desc 1", 10.00, false, "/img1.jpg", 1L)
         );
 
         when(menuItemRepository.findAll()).thenReturn(menuItems);

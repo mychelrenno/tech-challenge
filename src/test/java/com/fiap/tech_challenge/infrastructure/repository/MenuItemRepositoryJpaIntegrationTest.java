@@ -1,6 +1,6 @@
 package com.fiap.tech_challenge.infrastructure.repository;
 
-import com.fiap.tech_challenge.core.entity.MenuItem;
+import com.fiap.tech_challenge.core.domain.restaurant.MenuItem;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -24,7 +24,8 @@ class MenuItemRepositoryJpaIntegrationTest {
                 "Pizza clássica com molho de tomate, mussarela e manjericão fresco",
                 45.90,
                 false,
-                "/images/pizza-margherita.jpg"
+                "/images/pizza-margherita.jpg",
+                1L
         );
         MenuItem savedMenuItem = menuItemRepository.save(menuItem);
         assertNotNull(savedMenuItem);
@@ -45,7 +46,8 @@ class MenuItemRepositoryJpaIntegrationTest {
                 "Café expresso tradicional, servido apenas no local",
                 4.50,
                 true,
-                "/images/cafe-expresso.jpg"
+                "/images/cafe-expresso.jpg",
+                2L
         );
         MenuItem savedMenuItem = menuItemRepository.save(menuItem);
         assertNotNull(savedMenuItem);
@@ -56,7 +58,7 @@ class MenuItemRepositoryJpaIntegrationTest {
 
     @Test
     void shouldSaveMenuItemWithNullValues() {
-        MenuItem menuItem = new MenuItem(null, null, null, null, null);
+MenuItem menuItem = new MenuItem(null, null, null, null, null, null, null);
         MenuItem savedMenuItem = menuItemRepository.save(menuItem);
         assertNotNull(savedMenuItem);
         assertNull(savedMenuItem.getName());
@@ -68,21 +70,9 @@ class MenuItemRepositoryJpaIntegrationTest {
 
     @Test
     void shouldSaveMultipleMenuItems() {
-        MenuItem pizza = new MenuItem(
-                "Pizza Margherita",
-                "Pizza clássica",
-                45.90,
-                false,
-                "/images/pizza.jpg"
-        );
+        MenuItem pizza = new MenuItem("Pizza Margherita", "Pizza clássica", 45.90, false, "/images/pizza.jpg", 1L);
 
-        MenuItem cafe = new MenuItem(
-                "Café Expresso",
-                "Café tradicional",
-                4.50,
-                true,
-                "/images/cafe.jpg"
-        );
+        MenuItem cafe = new MenuItem("Café Expresso", "Café tradicional", 4.50, true, "/images/cafe.jpg", 1L);
         MenuItem savedPizza = menuItemRepository.save(pizza);
         MenuItem savedCafe = menuItemRepository.save(cafe);
         assertNotNull(savedPizza);
@@ -99,7 +89,8 @@ class MenuItemRepositoryJpaIntegrationTest {
                 "Pizza clássica",
                 45.90,
                 false,
-                "/images/pizza.jpg"
+                "/images/pizza.jpg",
+                1L
         );
 
         MenuItem cafe = new MenuItem(
@@ -107,16 +98,11 @@ class MenuItemRepositoryJpaIntegrationTest {
                 "Café tradicional",
                 4.50,
                 true,
-                "/images/cafe.jpg"
+                "/images/cafe.jpg",
+                2L
         );
 
-        MenuItem hamburger = new MenuItem(
-                "Hambúrguer",
-                "Hambúrguer artesanal",
-                32.90,
-                false,
-                "/images/hamburger.jpg"
-        );
+        MenuItem hamburger = new MenuItem("Hambúrguer", "Hambúrguer artesanal", 32.90, false, "/images/hamburger.jpg", 1L);
 
         menuItemRepository.save(pizza);
         menuItemRepository.save(cafe);
@@ -138,13 +124,7 @@ class MenuItemRepositoryJpaIntegrationTest {
 
     @Test
     void shouldFindMenuItemById() {
-        MenuItem menuItem = new MenuItem(
-                "Pizza Calabresa",
-                "Pizza com calabresa e cebola",
-                42.90,
-                false,
-                "/images/pizza-calabresa.jpg"
-        );
+        MenuItem menuItem = new MenuItem("Pizza Calabresa", "Pizza com calabresa e cebola", 42.90, false, "/images/pizza-calabresa.jpg", 1L);
 
         MenuItem savedMenuItem = menuItemRepository.save(menuItem);
         Long savedId = savedMenuItem.getId();
@@ -167,13 +147,7 @@ class MenuItemRepositoryJpaIntegrationTest {
 
     @Test
     void shouldUpdateMenuItemSuccessfully() {
-        MenuItem originalMenuItem = new MenuItem(
-                "Pizza Original",
-                "Descrição Original",
-                40.00,
-                false,
-                "/images/original.jpg"
-        );
+        MenuItem originalMenuItem = new MenuItem("Pizza Original", "Descrição Original", 40.00, false, "/images/original.jpg", 1L);
 
         MenuItem savedMenuItem = menuItemRepository.save(originalMenuItem);
         Long itemId = savedMenuItem.getId();
@@ -184,7 +158,8 @@ class MenuItemRepositoryJpaIntegrationTest {
                 "Descrição Atualizada",
                 55.00,
                 true,
-                "/images/atualizada.jpg"
+                "/images/atualizada.jpg",
+                1L
         );
         MenuItem result = menuItemRepository.update(updatedMenuItem);
         assertNotNull(result);
@@ -202,13 +177,7 @@ class MenuItemRepositoryJpaIntegrationTest {
 
     @Test
     void shouldUpdateMenuItemPrice() {
-        MenuItem menuItem = new MenuItem(
-                "Pizza Mussarela",
-                "Pizza simples",
-                35.00,
-                false,
-                "/images/mussarela.jpg"
-        );
+        MenuItem menuItem = new MenuItem("Pizza Mussarela", "Pizza simples", 35.00, false, "/images/mussarela.jpg", 1L);
 
         MenuItem savedMenuItem = menuItemRepository.save(menuItem);
         Long itemId = savedMenuItem.getId();
@@ -219,7 +188,8 @@ class MenuItemRepositoryJpaIntegrationTest {
                 "Pizza simples",
                 45.00,
                 false,
-                "/images/mussarela.jpg"
+                "/images/mussarela.jpg",
+                1L
         );
         MenuItem result = menuItemRepository.update(updatedMenuItem);
         assertNotNull(result);
@@ -228,13 +198,7 @@ class MenuItemRepositoryJpaIntegrationTest {
 
     @Test
     void shouldUpdateMenuItemRestaurantOnlyFlag() {
-        MenuItem menuItem = new MenuItem(
-                "Suco Natural",
-                "Suco de laranja",
-                8.00,
-                false,
-                "/images/suco.jpg"
-        );
+        MenuItem menuItem = new MenuItem("Suco Natural", "Suco de laranja", 8.00, false, "/images/suco.jpg", 1L);
 
         MenuItem savedMenuItem = menuItemRepository.save(menuItem);
         Long itemId = savedMenuItem.getId();
@@ -246,7 +210,8 @@ class MenuItemRepositoryJpaIntegrationTest {
                 "Suco de laranja",
                 8.00,
                 true,
-                "/images/suco.jpg"
+                "/images/suco.jpg",
+                1L
         );
         MenuItem result = menuItemRepository.update(updatedMenuItem);
         assertNotNull(result);
@@ -255,13 +220,7 @@ class MenuItemRepositoryJpaIntegrationTest {
 
     @Test
     void shouldDeleteMenuItemById() {
-        MenuItem menuItem = new MenuItem(
-                "Item a Deletar",
-                "Este item será deletado",
-                25.00,
-                false,
-                "/images/deletar.jpg"
-        );
+        MenuItem menuItem = new MenuItem("Item a Deletar", "Este item será deletado", 25.00, false, "/images/deletar.jpg", 1L);
 
         MenuItem savedMenuItem = menuItemRepository.save(menuItem);
         Long itemId = savedMenuItem.getId();
