@@ -11,7 +11,6 @@ class MenuItemMapperTest {
 
     @Test
     void shouldConvertDtoToEntity() {
-        // Given
         MenuItemDto dto = new MenuItemDto(
                 null,
                 "Pizza Margherita",
@@ -21,11 +20,7 @@ class MenuItemMapperTest {
                 "/images/pizza-margherita.jpg",
                 1L
         );
-
-        // When
         MenuItem entity = MenuItemMapper.convertDtoToEntity(dto);
-
-        // Then
         assertNotNull(entity);
         assertEquals(dto.name(), entity.getName());
         assertEquals(dto.description(), entity.getDescription());
@@ -36,7 +31,6 @@ class MenuItemMapperTest {
 
     @Test
     void shouldConvertEntityToJpa() {
-        // Given
         MenuItem entity = new MenuItem(
                 "Pizza Margherita",
                 "Pizza clássica com molho de tomate, mussarela e manjericão fresco",
@@ -45,11 +39,7 @@ class MenuItemMapperTest {
                 "/images/pizza-margherita.jpg",
                 1L
         );
-
-        // When
         MenuItemJpa jpa = MenuItemMapper.convertEntityToJpa(entity);
-
-        // Then
         assertNotNull(jpa);
         assertEquals(entity.getName(), jpa.getName());
         assertEquals(entity.getDescription(), jpa.getDescription());
@@ -60,7 +50,6 @@ class MenuItemMapperTest {
 
     @Test
     void shouldConvertJpaToEntity() {
-        // Given
         MenuItemJpa jpa = new MenuItemJpa(
                 "Pizza Margherita",
                 "Pizza clássica com molho de tomate, mussarela e manjericão fresco",
@@ -69,11 +58,7 @@ class MenuItemMapperTest {
                 "/images/pizza-margherita.jpg",
                 1L
         );
-
-        // When
         MenuItem entity = MenuItemMapper.convertJpaToEntity(jpa);
-
-        // Then
         assertNotNull(entity);
         assertEquals(jpa.getName(), entity.getName());
         assertEquals(jpa.getDescription(), entity.getDescription());
@@ -84,7 +69,6 @@ class MenuItemMapperTest {
 
     @Test
     void shouldConvertDtoToEntityWithRestaurantOnly() {
-        // Given
         MenuItemDto dto = new MenuItemDto(
                 null,
                 "Café Expresso",
@@ -94,11 +78,7 @@ class MenuItemMapperTest {
                 "/images/cafe-expresso.jpg",
                 2L
         );
-
-        // When
         MenuItem entity = MenuItemMapper.convertDtoToEntity(dto);
-
-        // Then
         assertNotNull(entity);
         assertEquals(dto.name(), entity.getName());
         assertTrue(entity.getRestaurantOnly());
@@ -107,13 +87,9 @@ class MenuItemMapperTest {
 
     @Test
     void shouldConvertEntityToJpaWithNullValues() {
-        // Given
         MenuItem entity = new MenuItem(null, null, null, null, null, null );
 
-        // When
         MenuItemJpa jpa = MenuItemMapper.convertEntityToJpa(entity);
-
-        // Then
         assertNotNull(jpa);
         assertNull(jpa.getName());
         assertNull(jpa.getDescription());
@@ -124,13 +100,9 @@ class MenuItemMapperTest {
 
     @Test
     void shouldConvertJpaToEntityWithNullValues() {
-        // Given
         MenuItemJpa jpa = new MenuItemJpa(null, null, null, null, null, null);
 
-        // When
         MenuItem entity = MenuItemMapper.convertJpaToEntity(jpa);
-
-        // Then
         assertNotNull(entity);
         assertNull(entity.getName());
         assertNull(entity.getDescription());
@@ -141,13 +113,9 @@ class MenuItemMapperTest {
 
     @Test
     void shouldConvertDtoToEntityWithNullValues() {
-        // Given
         MenuItemDto dto = new MenuItemDto(null, null, null, null, null, null, null);
 
-        // When
         MenuItem entity = MenuItemMapper.convertDtoToEntity(dto);
-
-        // Then
         assertNotNull(entity);
         assertNull(entity.getName());
         assertNull(entity.getDescription());
