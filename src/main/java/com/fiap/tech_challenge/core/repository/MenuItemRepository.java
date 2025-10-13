@@ -1,6 +1,6 @@
 package com.fiap.tech_challenge.core.repository;
 
-import com.fiap.tech_challenge.core.entity.MenuItem;
+import com.fiap.tech_challenge.core.domain.MenuItem;
 
 import java.util.List;
 import java.util.Optional;

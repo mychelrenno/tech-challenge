@@ -1,6 +1,6 @@
 package com.fiap.tech_challenge.infrastructure.repository;
 
-import com.fiap.tech_challenge.core.entity.MenuItem;
+import com.fiap.tech_challenge.core.domain.MenuItem;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

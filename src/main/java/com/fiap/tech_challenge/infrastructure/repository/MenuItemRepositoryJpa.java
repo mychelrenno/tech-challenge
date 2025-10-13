@@ -1,6 +1,6 @@
 package com.fiap.tech_challenge.infrastructure.repository;
 
-import com.fiap.tech_challenge.core.entity.MenuItem;
+import com.fiap.tech_challenge.core.domain.MenuItem;
 import com.fiap.tech_challenge.core.repository.MenuItemRepository;
 import com.fiap.tech_challenge.infrastructure.entity.MenuItemJpa;
 import com.fiap.tech_challenge.infrastructure.repository.jpa.SpringDataJpaMenuItem;

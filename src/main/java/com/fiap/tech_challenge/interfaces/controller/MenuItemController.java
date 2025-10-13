@@ -1,7 +1,7 @@
 package com.fiap.tech_challenge.interfaces.controller;
 
-import com.fiap.tech_challenge.core.entity.MenuItem;
-import com.fiap.tech_challenge.core.usecase.*;
+import com.fiap.tech_challenge.core.domain.MenuItem;
+import com.fiap.tech_challenge.core.usecase.menu_item.*;
 import com.fiap.tech_challenge.interfaces.dto.MenuItemDto;
 import com.fiap.tech_challenge.interfaces.mapper.MenuItemMapper;
 import org.springframework.http.ResponseEntity;

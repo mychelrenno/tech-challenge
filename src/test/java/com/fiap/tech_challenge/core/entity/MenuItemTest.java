@@ -1,5 +1,6 @@
 package com.fiap.tech_challenge.core.entity;
 
+import com.fiap.tech_challenge.core.domain.MenuItem;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 

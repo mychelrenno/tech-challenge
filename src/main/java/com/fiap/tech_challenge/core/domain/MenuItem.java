@@ -1,4 +1,4 @@
-package com.fiap.tech_challenge.core.entity;
+package com.fiap.tech_challenge.core.domain;
 
 public class MenuItem {
 

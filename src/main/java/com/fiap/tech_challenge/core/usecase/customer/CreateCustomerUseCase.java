@@ -16,7 +16,7 @@ public class CreateCustomerUseCase {
     }
 
     public void validateCustomer(Customer customer){
-        if(customer.getDocument() == null && customer.getDocument().isBlank()){
+        if(customer.getDocument() == null || customer.getDocument().isBlank()){
             throw new IllegalArgumentException("Document cannot be empty.");
         }
         if(customer.getUser() == null){

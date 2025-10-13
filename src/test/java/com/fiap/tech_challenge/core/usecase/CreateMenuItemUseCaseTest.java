@@ -1,7 +1,8 @@
 package com.fiap.tech_challenge.core.usecase;
 
-import com.fiap.tech_challenge.core.entity.MenuItem;
+import com.fiap.tech_challenge.core.domain.MenuItem;
 import com.fiap.tech_challenge.core.repository.MenuItemRepository;
+import com.fiap.tech_challenge.core.usecase.menu_item.CreateMenuItemUseCase;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
