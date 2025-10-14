@@ -25,7 +25,7 @@ public class ListAllOwnersUseCaseTest {
     }
 
     private Restaurant createDomainRestaurant() {
-        return new Restaurant(1L, "Bistro 88", createDomainAddress(), "Italian", "09:00-22:00", null);
+        return new Restaurant(1L, "Bistro 88", createDomainAddress(), "Italian", "09:00-22:00", new Owner());
     }
 
     private UserType createDomainUserType() {
@@ -61,6 +61,7 @@ public class ListAllOwnersUseCaseTest {
                 List.of(createDomainRestaurant()),
                 createDomainUser()
         );
+        owner1.getRestaurants().getFirst().addOwner(owner1);
 
         Owner owner2 = new Owner(
                 2L,
@@ -68,6 +69,8 @@ public class ListAllOwnersUseCaseTest {
                 List.of(createDomainRestaurant()),
                 createDomainUser()
         );
+        owner2.getRestaurants().getFirst().addOwner(owner2);
+
         List<Owner> activeOwners = List.of(owner1, owner2);
 
         when(ownerRepository.findByActiveTrue()).thenReturn(activeOwners);

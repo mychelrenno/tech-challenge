@@ -1,5 +1,6 @@
 package com.fiap.tech_challenge.interfaces.mapper;
 
+import com.fiap.tech_challenge.core.domain.Owner;
 import com.fiap.tech_challenge.core.domain.restaurant.Restaurant;
 import com.fiap.tech_challenge.infrastructure.entity.RestaurantJpa;
 import com.fiap.tech_challenge.interfaces.dto.restaurant.RestaurantInputDto;
@@ -49,7 +50,7 @@ public class RestaurantMapper {
                 AddressMapper.convertDtoToEntity(dto.address()),
                 dto.cuisineType(),
                 dto.openingHours(),
-                null
+                new Owner()
         );
     }
 

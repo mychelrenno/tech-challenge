@@ -1,6 +1,7 @@
 package com.fiap.tech_challenge.core.usecase.user;
 
 import com.fiap.tech_challenge.core.domain.user.User;
+import com.fiap.tech_challenge.core.exception.ResourceNotFoundException;
 import com.fiap.tech_challenge.core.repository.UserRepository;
 
 public class ChangeUserPasswordUseCase {
@@ -10,12 +11,12 @@ public class ChangeUserPasswordUseCase {
         this.userRepository = userRepository;
     }
 
-    public User execute(Long id, String oldPassword, String newPassword) {
-        User foundUser = validateUser(id, oldPassword, newPassword);
-        return userRepository.save(foundUser);
+    public Boolean execute(Long id, String oldPassword, String newPassword) {
+        validateUser(id, oldPassword, newPassword);
+        return userRepository.changePassword(id, oldPassword, newPassword);
     }
 
-    public User validateUser(Long id, String oldPassword, String newPassword){
+    public void validateUser(Long id, String oldPassword, String newPassword){
         User user = userRepository.findById(id);
         if(user.getActive()){
             if(user.getPassword().matches(oldPassword)){
@@ -23,7 +24,8 @@ public class ChangeUserPasswordUseCase {
             }else{
                 throw new IllegalArgumentException("Old password not match user's password.");
             }
+        } else {
+            throw new ResourceNotFoundException("User is inactive.");
         }
-        return user;
     }
 }

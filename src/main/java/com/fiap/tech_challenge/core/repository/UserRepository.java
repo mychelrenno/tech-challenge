@@ -11,4 +11,5 @@ public interface UserRepository {
     User update(Long id, User user);
     Boolean delete(Long id);
     List<User> findByActiveTrue();
+    Boolean changePassword(Long id, String oldPassword, String newPassword);
 }
