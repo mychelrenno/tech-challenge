@@ -9,9 +9,12 @@ public class Address {
     private String country;
 
     // All Args Constructor
-    public Address(Long id, String postalCode,
-                   String street, String additionalDetails,
-                   String city, String country) {
+    public Address(Long id,
+                   String postalCode,
+                   String street,
+                   String additionalDetails,
+                   String city,
+                   String country) {
         if (postalCode == null || postalCode.isBlank()) {
             throw new IllegalArgumentException("Postal code cannot be empty.");
         }

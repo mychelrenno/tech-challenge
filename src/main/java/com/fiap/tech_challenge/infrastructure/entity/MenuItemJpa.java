@@ -6,25 +6,39 @@ import jakarta.persistence.*;
 @Table(name = "menu_item")
 public class MenuItemJpa {
 
-    public MenuItemJpa(String name, String description, Double price, Boolean restaurantOnly, String imagePath) {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String name;
+
+    private String description;
+
+    private Double price;
+    private Boolean restaurantOnly;
+    private String imagePath;
+    @Column(name = "restaurant_id")
+    private Long restaurantId;
+
+    public MenuItemJpa() {
+    }
+
+    public MenuItemJpa(String name, String description, Double price, Boolean restaurantOnly, String imagePath, Long restaurantId) {
         this.name = name;
         this.description = description;
         this.price = price;
         this.restaurantOnly = restaurantOnly;
         this.imagePath = imagePath;
+        this.restaurantId = restaurantId;
     }
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    private String name;
-    private String description;
-    private Double price;
-    private Boolean restaurantOnly;
-    private String imagePath;
-
-    public MenuItemJpa() {
+    public MenuItemJpa(Long id, String name, String description, Double price, Boolean restaurantOnly, String imagePath, Long restaurantId) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.price = price;
+        this.restaurantOnly = restaurantOnly;
+        this.imagePath = imagePath;
+        this.restaurantId = restaurantId;
     }
 
     public Long getId() {
@@ -74,7 +88,12 @@ public class MenuItemJpa {
     public void setImagePath(String imagePath) {
         this.imagePath = imagePath;
     }
+
+    public Long getRestaurantId() {
+        return restaurantId;
+    }
+
+    public void setRestaurantId(Long restaurantId) {
+        this.restaurantId = restaurantId;
+    }
 }
-
-
-

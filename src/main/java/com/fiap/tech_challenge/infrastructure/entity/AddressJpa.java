@@ -21,8 +21,24 @@ public class AddressJpa implements Serializable {
     }
 
     public AddressJpa(String postalCode,
-                      String street, String additionalDetails,
-                      String city, String country) {
+                      String street,
+                      String additionalDetails,
+                      String city,
+                      String country) {
+        this.postalCode = postalCode;
+        this.street = street;
+        this.additionalDetails = additionalDetails;
+        this.city = city;
+        this.country = country;
+    }
+
+    public AddressJpa(Long id,
+                      String postalCode,
+                      String street,
+                      String additionalDetails,
+                      String city,
+                      String country) {
+        this.id = id;
         this.postalCode = postalCode;
         this.street = street;
         this.additionalDetails = additionalDetails;

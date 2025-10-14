@@ -28,13 +28,13 @@ class CreateMenuItemUseCaseTest {
 
     @Test
     void shouldCreateMenuItemSuccessfully() {
-        // Given
         MenuItem inputMenuItem = new MenuItem(
                 "Pizza Margherita",
                 "Pizza clássica com molho de tomate, mussarela e manjericão fresco",
                 45.90,
                 false,
-                "/images/pizza-margherita.jpg"
+                "/images/pizza-margherita.jpg",
+                1L
         );
 
         MenuItem savedMenuItem = new MenuItem(
@@ -42,15 +42,12 @@ class CreateMenuItemUseCaseTest {
                 "Pizza clássica com molho de tomate, mussarela e manjericão fresco",
                 45.90,
                 false,
-                "/images/pizza-margherita.jpg"
+                "/images/pizza-margherita.jpg",
+                1L
         );
 
         when(menuItemRepository.save(any(MenuItem.class))).thenReturn(savedMenuItem);
-
-        // When
         MenuItem result = createMenuItemUseCase.execute(inputMenuItem);
-
-        // Then
         assertNotNull(result);
         assertEquals(inputMenuItem.getName(), result.getName());
         assertEquals(inputMenuItem.getDescription(), result.getDescription());
@@ -63,21 +60,17 @@ class CreateMenuItemUseCaseTest {
 
     @Test
     void shouldCreateMenuItemForRestaurantOnly() {
-        // Given
         MenuItem inputMenuItem = new MenuItem(
                 "Café Expresso",
                 "Café expresso tradicional, servido apenas no local",
                 4.50,
                 true,
-                "/images/cafe-expresso.jpg"
+                "/images/cafe-expresso.jpg",
+                1L
         );
 
         when(menuItemRepository.save(any(MenuItem.class))).thenReturn(inputMenuItem);
-
-        // When
         MenuItem result = createMenuItemUseCase.execute(inputMenuItem);
-
-        // Then
         assertNotNull(result);
         assertEquals("Café Expresso", result.getName());
         assertTrue(result.getRestaurantOnly());
@@ -88,21 +81,17 @@ class CreateMenuItemUseCaseTest {
 
     @Test
     void shouldCreateMenuItemForDelivery() {
-        // Given
         MenuItem inputMenuItem = new MenuItem(
                 "Hambúrguer Artesanal",
                 "Hambúrguer com carne artesanal, disponível para delivery",
                 32.90,
                 false,
-                "/images/hamburger.jpg"
+                "/images/hamburger.jpg",
+                1L
         );
 
         when(menuItemRepository.save(any(MenuItem.class))).thenReturn(inputMenuItem);
-
-        // When
         MenuItem result = createMenuItemUseCase.execute(inputMenuItem);
-
-        // Then
         assertNotNull(result);
         assertEquals("Hambúrguer Artesanal", result.getName());
         assertFalse(result.getRestaurantOnly());
@@ -113,15 +102,10 @@ class CreateMenuItemUseCaseTest {
 
     @Test
     void shouldHandleNullValues() {
-        // Given
-        MenuItem inputMenuItem = new MenuItem(null, null, null, null, null);
+MenuItem inputMenuItem = new MenuItem(null, null, null, null, null, null);
 
         when(menuItemRepository.save(any(MenuItem.class))).thenReturn(inputMenuItem);
-
-        // When
         MenuItem result = createMenuItemUseCase.execute(inputMenuItem);
-
-        // Then
         assertNotNull(result);
         assertNull(result.getName());
         assertNull(result.getDescription());

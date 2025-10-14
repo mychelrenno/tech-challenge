@@ -53,6 +53,12 @@ public class MenuItemRepositoryJpa implements MenuItemRepository {
     public void deleteById(Long id) {
         springDataJpaMenuItem.deleteById(id);
     }
+
+    @Override
+    public Optional<MenuItem> findByRestaurantId(Long restaurantId) {
+        Optional<MenuItemJpa> menuItemJpaOptional = springDataJpaMenuItem.findByRestaurantId(restaurantId);
+        return menuItemJpaOptional.map(MenuItemMapper::convertJpaToEntity);
+    }
 }
 
 

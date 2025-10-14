@@ -38,4 +38,9 @@ public class UseCaseConfiguration {
     public DeleteMenuItemUseCase makeDeleteMenuItemUseCase() {
         return new DeleteMenuItemUseCase(menuItemRepositoryJpa);
     }
+
+    @Bean
+    public FindMenuItemByRestaurantIdUseCase makeFindMenuItemByRestaurantIdUseCase() {
+        return new FindMenuItemByRestaurantIdUseCase(menuItemRepositoryJpa);
+    }
 }

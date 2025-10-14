@@ -40,7 +40,9 @@ public class UserMapper {
     }
 
     public static UserJpa convertEntityToJpa(User user) {
-        if (user == null) return null;
+        if (user == null) {
+            return null;
+        };
         return new UserJpa(
                 user.getId(),
                 user.getName(),
