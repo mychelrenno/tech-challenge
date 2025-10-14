@@ -1,6 +1,7 @@
 package com.fiap.tech_challenge.core.usecase.user;
 
 import com.fiap.tech_challenge.core.domain.user.User;
+import com.fiap.tech_challenge.core.exception.ResourceNotFoundException;
 import com.fiap.tech_challenge.core.repository.UserRepository;
 
 public class ChangeUserPasswordUseCase {
@@ -23,6 +24,8 @@ public class ChangeUserPasswordUseCase {
             }else{
                 throw new IllegalArgumentException("Old password not match user's password.");
             }
+        } else {
+            throw new ResourceNotFoundException("User is inactive.");
         }
     }
 }
