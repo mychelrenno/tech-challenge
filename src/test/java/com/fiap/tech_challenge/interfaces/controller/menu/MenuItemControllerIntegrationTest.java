@@ -1,4 +1,4 @@
-package com.fiap.tech_challenge.interfaces.controller;
+package com.fiap.tech_challenge.interfaces.controller.menu;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;

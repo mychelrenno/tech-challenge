@@ -1,4 +1,4 @@
-package com.fiap.tech_challenge.interfaces.controller;
+package com.fiap.tech_challenge.interfaces.controller.usertype;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fiap.tech_challenge.interfaces.dto.UserTypeDto;

@@ -1,7 +1,8 @@
-package com.fiap.tech_challenge.interfaces.controller;
+package com.fiap.tech_challenge.interfaces.controller.usertype;
 
 import com.fiap.tech_challenge.core.domain.UserType;
 import com.fiap.tech_challenge.core.usecase.usertype.*;
+import com.fiap.tech_challenge.interfaces.controller.UserTypeController;
 import com.fiap.tech_challenge.interfaces.dto.UserTypeDto;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

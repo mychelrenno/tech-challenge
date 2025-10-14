@@ -1,13 +1,12 @@
-package com.fiap.tech_challenge.infrastructure.repository;
+package com.fiap.tech_challenge.infrastructure.repository.menu;
 
 import com.fiap.tech_challenge.core.domain.restaurant.MenuItem;
 import com.fiap.tech_challenge.infrastructure.entity.MenuItemJpa;
+import com.fiap.tech_challenge.infrastructure.repository.MenuItemRepositoryJpa;
 import com.fiap.tech_challenge.infrastructure.repository.jpa.SpringDataJpaMenuItem;
-import com.fiap.tech_challenge.interfaces.mapper.MenuItemMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
