@@ -3,17 +3,13 @@ package com.fiap.tech_challenge.core.usecase.user;
 import com.fiap.tech_challenge.core.domain.UserType;
 import com.fiap.tech_challenge.core.domain.shared.Address;
 import com.fiap.tech_challenge.core.domain.user.User;
-import com.fiap.tech_challenge.core.exception.InvalidAttributeException;
 import com.fiap.tech_challenge.core.exception.ResourceNotFoundException;
 import com.fiap.tech_challenge.core.repository.UserRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
 import java.util.Date;
-import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 public class ChangeUserPasswordUseCaseTest {
@@ -37,30 +33,24 @@ public class ChangeUserPasswordUseCaseTest {
     }
 
     @Test
-    void shouldChangeActiveUserPassword() {
+    void shouldChangePasswordWhenUserIsActiveAndOldPasswordMatches() {
         // Arrange
         Long userId = 1L;
         String oldPassword = "123";
         String newPassword = "456";
 
-        User user = new User(userId,
-                "John Doe",
-                "john@email.com",
-                "johndoe",
-                oldPassword,
-                userType,
-                address,
-                new Date(),
-                true
-        );
-        when(userRepository.save(any(User.class))).thenReturn(user);
+        User user = mock(User.class);
         when(userRepository.findById(userId)).thenReturn(user);
+        when(user.getActive()).thenReturn(true);
+        when(user.getPassword()).thenReturn(oldPassword);
+        when(userRepository.changePassword(userId, oldPassword, newPassword)).thenReturn(true);
+
         // Act
         Boolean result = changeUserPasswordUseCase.execute(userId, oldPassword, newPassword);
         // Assert
-        assertEquals(true, result);
-        assertEquals(newPassword, user.getPassword()); // password was updated
-        verify(userRepository).save(user); // ensure save was called
+        assertTrue(result);
+        verify(user).changePassword(newPassword);
+        verify(userRepository).changePassword(userId, oldPassword, newPassword);
     }
 
     @Test
