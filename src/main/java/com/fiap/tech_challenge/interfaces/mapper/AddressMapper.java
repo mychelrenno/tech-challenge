@@ -27,6 +27,7 @@ public class AddressMapper {
     }
 
     public static Address convertJpaToEntity(AddressJpa addressJpa) {
+        if(addressJpa==null) return null;
         return new Address(
                 addressJpa.getPostalCode(),
                 addressJpa.getStreet(),

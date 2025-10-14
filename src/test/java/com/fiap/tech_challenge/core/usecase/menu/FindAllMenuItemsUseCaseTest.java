@@ -1,4 +1,4 @@
-package com.fiap.tech_challenge.core.usecase;
+package com.fiap.tech_challenge.core.usecase.menu;
 
 import com.fiap.tech_challenge.core.domain.restaurant.MenuItem;
 import com.fiap.tech_challenge.core.repository.MenuItemRepository;
