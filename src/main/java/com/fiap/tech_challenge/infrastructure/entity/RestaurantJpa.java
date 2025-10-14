@@ -8,14 +8,12 @@ public class RestaurantJpa {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String name;
     private String cuisineType;
     private String openingHours;
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "owner_id", nullable = false)
+    @ManyToOne()
+    @JoinColumn(name = "owner_id")
     private OwnerJpa owner;
-
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "address_jpa_id")
     private AddressJpa addressJpa;
@@ -30,6 +28,13 @@ public class RestaurantJpa {
         this.cuisineType = cuisineType;
         this.openingHours = openingHours;
         this.owner = owner;
+    }
+
+    public RestaurantJpa(String name, String cuisineType, String openingHours, AddressJpa addressJpa) {
+        this.name = name;
+        this.cuisineType = cuisineType;
+        this.openingHours = openingHours;
+        this.addressJpa = addressJpa;
     }
 
     // Getters e setters

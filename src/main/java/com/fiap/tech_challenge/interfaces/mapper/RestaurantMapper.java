@@ -42,6 +42,17 @@ public class RestaurantMapper {
         );
     }
 
+    public static Restaurant convertInputDtoToDomainWithoutOwner(RestaurantInputDto dto){
+        if (dto == null) return null;
+        return new Restaurant(
+                dto.name(),
+                AddressMapper.convertDtoToEntity(dto.address()),
+                dto.cuisineType(),
+                dto.openingHours(),
+                null
+        );
+    }
+
     public static RestaurantOutputDto convertEntitytoOutputDto(Restaurant restaurant) {
         if (restaurant == null) return null;
         return new RestaurantOutputDto(
@@ -51,6 +62,15 @@ public class RestaurantMapper {
             restaurant.getCuisineType(),
             restaurant.getOpeningHours(),
             new RestaurantOwnerOutputDto(restaurant.getOwner().getId(), restaurant.getName(), restaurant.getOwner().getDocument())
+        );
+    }
+
+    public static RestaurantJpa convertDomainToJpaWithoutOwner(Restaurant restaurant) {
+        return new RestaurantJpa(
+                restaurant.getName(),
+                restaurant.getCuisineType(),
+                restaurant.getOpeningHours(),
+                AddressMapper.convertEntityToJpa(restaurant.getAddress())
         );
     }
 }

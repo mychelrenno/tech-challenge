@@ -24,9 +24,6 @@ public class Restaurant {
         if (openingHours == null || openingHours.isBlank()) {
             throw new IllegalArgumentException("Horário de funcionamento não pode ser vazio.");
         }
-        if (owner == null) {
-            throw new IllegalArgumentException("Dono do restaurante não pode ser nulo.");
-        }
         this.id = id;
         this.name = name;
         this.address = address;
@@ -45,5 +42,8 @@ public class Restaurant {
     public String getCuisineType() { return cuisineType; }
     public String getOpeningHours() { return openingHours; }
     public Owner getOwner() { return owner; }
+    public void addOwner(Owner owner){
+        this.owner = owner;
+    }
 }
 

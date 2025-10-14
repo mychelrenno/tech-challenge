@@ -17,6 +17,7 @@ public class OwnerJpa {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(nullable = false)
     private UserJpa user;
+    private boolean active;
 
     public OwnerJpa() {
     }
@@ -63,6 +64,14 @@ public class OwnerJpa {
         this.user = user;
     }
 
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
     @Override
     public String toString() {
         return "OwnerJpa{" +
@@ -70,6 +79,7 @@ public class OwnerJpa {
                 ", document='" + document + '\'' +
                 ", restaurants=" + restaurants +
                 ", user=" + user +
+                ", active=" + active +
                 '}';
     }
 }

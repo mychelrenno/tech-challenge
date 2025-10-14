@@ -5,27 +5,26 @@ import com.fiap.tech_challenge.core.domain.restaurant.Restaurant;
 import com.fiap.tech_challenge.infrastructure.entity.OwnerJpa;
 import com.fiap.tech_challenge.interfaces.dto.owner.OwnerInputDto;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class OwnerMapper {
     public static Owner convertInputDtoToDomain(OwnerInputDto ownerInputDto){
-        List<Restaurant> restaurantList = ownerInputDto.restaurants()
-                .stream()
-                .map(dto -> new Restaurant(
-                        dto.name(),
-                        AddressMapper.convertDtoToEntity(dto.address()),
-                        dto.cuisineType(),
-                        dto.openingHours(),
-                        convertInputDtoToDomain(dto.owner())
-                ))
-                .toList();
+        List<Restaurant> restaurants = new ArrayList<>();
 
-        return new Owner(
+        ownerInputDto.restaurants().forEach(restaurant -> {
+            restaurants.add(RestaurantMapper.convertInputDtoToDomainWithoutOwner(restaurant));
+        });
+
+        Owner owner = new Owner(
              null,
                 ownerInputDto.document(),
-                restaurantList,
+                restaurants,
                 UserMapper.convertDtoToEntity(ownerInputDto.user())
         );
+
+        restaurants.forEach(restaurant -> restaurant.addOwner(owner));
+        return owner;
     }
 
     public static OwnerJpa convertEntityToJpa(Owner owner) {
