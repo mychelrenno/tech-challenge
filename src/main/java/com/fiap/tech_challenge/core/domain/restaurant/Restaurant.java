@@ -24,6 +24,9 @@ public class Restaurant {
         if (openingHours == null || openingHours.isBlank()) {
             throw new IllegalArgumentException("Horário de funcionamento não pode ser vazio.");
         }
+        if(owner == null){
+            throw new IllegalArgumentException("Dono do restaurante não pode ser vazio.");
+        }
         this.id = id;
         this.name = name;
         this.address = address;

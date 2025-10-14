@@ -11,6 +11,9 @@ public class Owner {
     private User user;
     private boolean active;
 
+    public Owner() {
+    }
+
     public Owner(Long id, String document, List<Restaurant> restaurants, User user) {
         this.id = id;
         this.document = document;

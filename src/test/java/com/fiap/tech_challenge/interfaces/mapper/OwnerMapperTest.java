@@ -57,18 +57,26 @@ public class OwnerMapperTest {
         return userJpa;
     }
 
+    private OwnerInputDto createOwnerInputDto(){
+        return new OwnerInputDto(
+                "valid document",
+                List.of(),
+                null
+        );
+    }
+
     private RestaurantInputDto createRestaurantInputDto() {
         return new RestaurantInputDto(
                 "Bistro 88",
                 createAddressDto(),
                 "Italian",
                 "09:00-22:00",
-                null
+                createOwnerInputDto()
         );
     }
 
     private Restaurant createDomainRestaurant() {
-        return new Restaurant(1L, "Bistro 88", createAddress(), "Italian", "09:00-22:00", null);
+        return new Restaurant(1L, "Bistro 88", createAddress(), "Italian", "09:00-22:00", new Owner());
     }
 
     private RestaurantJpa createRestaurantJpa() {
@@ -78,6 +86,7 @@ public class OwnerMapperTest {
         restaurantJpa.setCuisineType("Italian");
         restaurantJpa.setOpeningHours("09:00-22:00");
         restaurantJpa.setAddressJpa(createAddressJpa());
+        restaurantJpa.setOwner(new OwnerJpa());
         return restaurantJpa;
     }
 

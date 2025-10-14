@@ -32,7 +32,7 @@ public class UpdateOwnerUseCaseTest {
     }
 
     private Restaurant createDomainRestaurant() {
-        return new Restaurant(1L, "Bistro 88", createDomainAddress(), "Italian", "09:00-22:00", null);
+        return new Restaurant(1L, "Bistro 88", createDomainAddress(), "Italian", "09:00-22:00", new Owner());
     }
 
     private UserType createDomainUserType() {
