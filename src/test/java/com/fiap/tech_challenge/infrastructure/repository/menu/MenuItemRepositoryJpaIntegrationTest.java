@@ -1,6 +1,7 @@
-package com.fiap.tech_challenge.infrastructure.repository;
+package com.fiap.tech_challenge.infrastructure.repository.menu;
 
 import com.fiap.tech_challenge.core.domain.restaurant.MenuItem;
+import com.fiap.tech_challenge.infrastructure.repository.MenuItemRepositoryJpa;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

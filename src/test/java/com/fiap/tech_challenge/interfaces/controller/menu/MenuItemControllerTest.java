@@ -1,4 +1,4 @@
-package com.fiap.tech_challenge.interfaces.controller;
+package com.fiap.tech_challenge.interfaces.controller.menu;
 
 import com.fiap.tech_challenge.core.domain.restaurant.MenuItem;
 import com.fiap.tech_challenge.core.usecase.menu_item.CreateMenuItemUseCase;
@@ -7,6 +7,7 @@ import com.fiap.tech_challenge.core.usecase.menu_item.FindAllMenuItemsUseCase;
 import com.fiap.tech_challenge.core.usecase.menu_item.FindMenuItemByIdUseCase;
 import com.fiap.tech_challenge.core.usecase.menu_item.FindMenuItemByRestaurantIdUseCase;
 import com.fiap.tech_challenge.core.usecase.menu_item.UpdateMenuItemUseCase;
+import com.fiap.tech_challenge.interfaces.controller.MenuItemController;
 import com.fiap.tech_challenge.interfaces.dto.MenuItemDto;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;

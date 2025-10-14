@@ -1,4 +1,4 @@
-package com.fiap.tech_challenge.infrastructure.repository;
+package com.fiap.tech_challenge.infrastructure.repository.restaurant;
 
 import com.fiap.tech_challenge.core.domain.Owner;
 import com.fiap.tech_challenge.core.domain.restaurant.Restaurant;
@@ -6,6 +6,7 @@ import com.fiap.tech_challenge.core.domain.shared.Address;
 import com.fiap.tech_challenge.infrastructure.entity.OwnerJpa;
 import com.fiap.tech_challenge.infrastructure.entity.RestaurantJpa;
 import com.fiap.tech_challenge.infrastructure.entity.AddressJpa;
+import com.fiap.tech_challenge.infrastructure.repository.RestaurantRepositoryJpa;
 import com.fiap.tech_challenge.infrastructure.repository.jpa.SpringDataJpaRestaurant;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

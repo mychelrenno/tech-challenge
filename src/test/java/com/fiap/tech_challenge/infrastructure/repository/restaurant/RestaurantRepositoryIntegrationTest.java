@@ -1,4 +1,4 @@
-package com.fiap.tech_challenge.infrastructure.repository;
+package com.fiap.tech_challenge.infrastructure.repository.restaurant;
 
 import com.fiap.tech_challenge.infrastructure.entity.AddressJpa;
 import com.fiap.tech_challenge.infrastructure.entity.OwnerJpa;
@@ -19,7 +19,6 @@ import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import org.springframework.transaction.annotation.Transactional;
-import java.util.ArrayList;
 import jakarta.persistence.EntityManager;
 
 @DataJpaTest
