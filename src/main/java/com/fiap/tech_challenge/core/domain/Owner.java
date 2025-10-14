@@ -2,7 +2,6 @@ package com.fiap.tech_challenge.core.domain;
 
 import com.fiap.tech_challenge.core.domain.restaurant.Restaurant;
 import com.fiap.tech_challenge.core.domain.user.User;
-
 import java.util.List;
 
 public class Owner {
@@ -10,12 +9,20 @@ public class Owner {
     private String document;
     private List<Restaurant> restaurants;
     private User user;
+    private boolean active;
 
     public Owner(Long id, String document, List<Restaurant> restaurants, User user) {
         this.id = id;
         this.document = document;
         this.restaurants = restaurants;
         this.user = user;
+    }
+
+    public Owner(String document, List<Restaurant> restaurants, User user, boolean active) {
+        this.document = document;
+        this.restaurants = restaurants;
+        this.user = user;
+        this.active = active;
     }
 
     public Long getId() {
@@ -32,5 +39,9 @@ public class Owner {
 
     public User getUser() {
         return user;
+    }
+
+    public boolean isActive() {
+        return active;
     }
 }

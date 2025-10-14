@@ -30,7 +30,7 @@ public class OwnerController {
     }
 
     @PostMapping
-    public Owner createOwner(@RequestBody OwnerInputDto ownerInputDto){
+    public Boolean createOwner(@RequestBody OwnerInputDto ownerInputDto){
         return createOwnerUseCase.execute(OwnerMapper.convertInputDtoToDomain(ownerInputDto));
     }
 
@@ -45,7 +45,7 @@ public class OwnerController {
     }
 
     @PutMapping
-    public Owner updateOwner(@RequestParam Long ownerId, @RequestBody OwnerInputDto ownerInputDto){
+    public boolean updateOwner(@RequestParam Long ownerId, @RequestBody OwnerInputDto ownerInputDto){
         Owner owner = OwnerMapper.convertInputDtoToDomain(ownerInputDto);
         return updateOwnerUseCase.execute(ownerId, owner);
     }

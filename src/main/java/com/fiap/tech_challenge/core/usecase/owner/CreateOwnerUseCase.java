@@ -11,7 +11,7 @@ public class CreateOwnerUseCase {
         this.ownerRepository = ownerRepository;
     }
 
-    public Owner execute(Owner owner) {
+    public Boolean execute(Owner owner) {
         validateOwner(owner);
         return ownerRepository.save(owner);
     }

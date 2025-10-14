@@ -12,7 +12,7 @@ public class UpdateOwnerUseCase {
         this.ownerRepository = ownerRepository;
     }
 
-    public Owner execute(Long ownerId, Owner updatedOwnerData){
+    public boolean execute(Long ownerId, Owner updatedOwnerData){
         // check owner id
         Owner foundOwner = ownerRepository.findById(ownerId);
         // check data
