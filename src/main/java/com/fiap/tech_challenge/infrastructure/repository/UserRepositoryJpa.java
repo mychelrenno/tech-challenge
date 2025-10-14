@@ -1,6 +1,7 @@
 package com.fiap.tech_challenge.infrastructure.repository;
 
 import com.fiap.tech_challenge.core.domain.user.User;
+import com.fiap.tech_challenge.core.exception.ResourceNotFoundException;
 import com.fiap.tech_challenge.core.repository.UserRepository;
 import com.fiap.tech_challenge.infrastructure.entity.UserJpa;
 import com.fiap.tech_challenge.infrastructure.entity.UserTypeJpa;
@@ -10,10 +11,12 @@ import com.fiap.tech_challenge.interfaces.dto.user.UserOutputDto;
 import com.fiap.tech_challenge.interfaces.mapper.AddressMapper;
 import com.fiap.tech_challenge.interfaces.mapper.UserMapper;
 import com.fiap.tech_challenge.interfaces.mapper.UserTypeMapper;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Repository;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public class UserRepositoryJpa implements UserRepository {
@@ -37,6 +40,24 @@ public class UserRepositoryJpa implements UserRepository {
         }
         var savedUserJpa = springDataJpaUser.save(userJpa);
         return UserMapper.convertJpaToEntity(savedUserJpa);
+    }
+
+    public Boolean changePassword(Long userId, String oldPassword, String newPassword) {
+        Optional<UserJpa> user = springDataJpaUser.findById(userId);
+        if(user.isPresent()){
+            UserJpa foundUser = user.get();
+            if(!foundUser.getActive()){
+                throw new ResourceNotFoundException("User is not active.");
+            }
+            if (!oldPassword.matches(foundUser.getPassword())) {
+                throw new IllegalArgumentException("Old password is incorrect.");
+            }
+            foundUser.setPassword(newPassword);
+            foundUser.setLastUpdateDate(new Date());
+            springDataJpaUser.save(foundUser);
+            return true;
+        }
+        throw new ResourceNotFoundException("User not found.");
     }
 
     @Override

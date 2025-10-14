@@ -38,7 +38,7 @@ public class UserController {
     }
 
     @PatchMapping
-    public User updatePassword(@RequestBody PasswordRequestDto passwordRequestDto) {
+    public Boolean updatePassword(@RequestBody PasswordRequestDto passwordRequestDto) {
         return changeUserPasswordUseCase.execute(passwordRequestDto.id(),
                 passwordRequestDto.oldPassword(),
                 passwordRequestDto.newPassword());
