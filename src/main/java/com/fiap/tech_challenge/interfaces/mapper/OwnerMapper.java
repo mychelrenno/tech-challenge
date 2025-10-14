@@ -2,7 +2,9 @@ package com.fiap.tech_challenge.interfaces.mapper;
 
 import com.fiap.tech_challenge.core.domain.Owner;
 import com.fiap.tech_challenge.core.domain.restaurant.Restaurant;
+import com.fiap.tech_challenge.core.domain.shared.Address;
 import com.fiap.tech_challenge.infrastructure.entity.OwnerJpa;
+import com.fiap.tech_challenge.infrastructure.entity.RestaurantJpa;
 import com.fiap.tech_challenge.interfaces.dto.owner.OwnerInputDto;
 
 import java.util.ArrayList;
@@ -10,6 +12,7 @@ import java.util.List;
 
 public class OwnerMapper {
     public static Owner convertInputDtoToDomain(OwnerInputDto ownerInputDto){
+
         List<Restaurant> restaurants = new ArrayList<>();
 
         ownerInputDto.restaurants().forEach(restaurant -> {
@@ -47,14 +50,31 @@ public class OwnerMapper {
     public static Owner convertJpaToEntity(OwnerJpa ownerJpa) {
         if (ownerJpa == null) return null;
 
+        Owner owner1 = new Owner(
+                ownerJpa.getId(),
+                ownerJpa.getDocument(),
+                null,
+                UserMapper.convertJpaToEntity(ownerJpa.getUser())
+        );
+
+        List<Restaurant> restaurantList = new ArrayList<>();
+        ownerJpa.getRestaurants().forEach(restaurantJpa ->
+        {
+            restaurantJpa.setOwner(ownerJpa);
+            Restaurant restaurant = new Restaurant(
+                    restaurantJpa.getId(),
+                    restaurantJpa.getName(),
+                    AddressMapper.convertJpaToEntity(restaurantJpa.getAddressJpa()),
+                    restaurantJpa.getCuisineType(),
+                    restaurantJpa.getOpeningHours(),
+                    owner1
+            );
+            restaurantList.add(restaurant);
+        });
+
         return new Owner(
             ownerJpa.getId(),
-            ownerJpa.getDocument(),
-            ownerJpa.getRestaurants() != null ?
-                ownerJpa.getRestaurants().stream()
-                    .map(RestaurantMapper::convertJpaToEntity)
-                    .toList()
-                : null,
+            ownerJpa.getDocument(), restaurantList,
             UserMapper.convertJpaToEntity(ownerJpa.getUser())
         );
     }

@@ -1,5 +1,6 @@
 package com.fiap.tech_challenge.interfaces.dto.user;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fiap.tech_challenge.interfaces.dto.AddressDto;
 import com.fiap.tech_challenge.interfaces.dto.UserTypeDto;
 
@@ -9,6 +10,6 @@ public record UserInputDto(
         String username,
         String password,
         UserTypeDto userType,
-        AddressDto address
+        @JsonProperty("address")AddressDto address
 ) {
 }
