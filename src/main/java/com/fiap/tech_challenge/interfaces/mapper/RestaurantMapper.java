@@ -34,12 +34,14 @@ public class RestaurantMapper {
 
     public static Restaurant convertInputDtoToDomain(RestaurantInputDto dto) {
         if (dto == null) return null;
+        Owner owner = new Owner();
+        owner.setId(dto.ownerId());
         return new Restaurant(
             dto.name(),
             AddressMapper.convertDtoToEntity(dto.address()),
             dto.cuisineType(),
             dto.openingHours(),
-            OwnerMapper.convertInputDtoToDomain(dto.owner())
+                owner
         );
     }
 

@@ -1,10 +1,9 @@
 {
 	"info": {
-		"_postman_id": "c63cd424-5262-4974-bb05-9896ba479910",
+		"_postman_id": "19e87d77-5676-4ac5-b73c-2cefc66e6f5c",
 		"name": "tech-challenge-phase-two",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "5338485",
-		"_collection_link": "https://ze-comanda.postman.co/workspace/private-workspace~9d6a29a5-de4f-49af-8bed-1bb747e1ad88/collection/5338485-c63cd424-5262-4974-bb05-9896ba479910?action=share&source=collection_link&creator=5338485"
+		"_exporter_id": "2641780"
 	},
 	"item": [
 		{
@@ -251,6 +250,127 @@
 							"path": [
 								"api",
 								"restaurants"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "owner",
+			"item": [
+				{
+					"name": "Create new owner",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"document\": \"12345678900\",\r\n   \"user\": {\r\n        \"name\": \"Teste\",\r\n        \"email\": \"teste4@gmail.com\",\r\n        \"username\": \"teste4\",\r\n        \"password\": \"teste4\",\r\n        \"userType\": {\r\n            \"id\": 1,\r\n            \"name\": \"CUSTOMER\"\r\n        },\r\n        \"address\": {\r\n            \"postalCode\": \"00000000\"\r\n        }\r\n    },\r\n    \"restaurants\": [\r\n        {\r\n            \"name\": \"Restaurante Sabor & Arte\",\r\n            \"address\": {\r\n                \"street\": \"Rua das Flores\",\r\n                \"number\": \"123\",\r\n                \"city\": \"São Paulo\",\r\n                \"state\": \"SP\",\r\n                \"postalCode\": \"01234-567\",\r\n                \"country\": \"Brasil\"\r\n            },\r\n            \"cuisineType\": \"Italiana\",\r\n            \"openingHours\": \"Seg-Sex 12:00-22:00, Sáb-Dom 12:00-23:00\",\r\n            \"owner\": {\r\n                \"document\": \"12345678900\",\r\n                \"name\": \"João Silva\",\r\n                \"email\": \"joao.silva@email.com\",\r\n                \"phone\": \"+55 11 91234-5678\"\r\n            }\r\n            }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/owners",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"owners"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete owner",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/owners?ownerId=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"owners"
+							],
+							"query": [
+								{
+									"key": "ownerId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get one owner",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/owners?id=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"owners"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update owner",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"document\": \"12345678900\",\r\n   \"user\": {\r\n        \"name\": \"Teste\",\r\n        \"email\": \"teste6@gmail.com\",\r\n        \"username\": \"teste6\",\r\n        \"password\": \"teste6\",\r\n        \"userType\": {\r\n            \"id\": 1,\r\n            \"name\": \"CUSTOMER\"\r\n        },\r\n        \"address\": {\r\n            \"postalCode\": \"00000000\"\r\n        }\r\n    },\r\n    \"restaurants\": [\r\n        {\r\n            \"name\": \"Restaurante Sabor & Arte\",\r\n            \"address\": {\r\n                \"street\": \"Rua das Flores\",\r\n                \"number\": \"123\",\r\n                \"city\": \"São Paulo\",\r\n                \"state\": \"SP\",\r\n                \"postalCode\": \"01234-567\",\r\n                \"country\": \"Brasil\"\r\n            },\r\n            \"cuisineType\": \"Italiana\",\r\n            \"openingHours\": \"Seg-Sex 12:00-22:00, Sáb-Dom 12:00-23:00\"\r\n            }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/owners?ownerId=2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"owners"
+							],
+							"query": [
+								{
+									"key": "ownerId",
+									"value": "2"
+								}
 							]
 						}
 					},
@@ -589,7 +709,8 @@
 						}
 					},
 					"response": []
-				}]
+				}
+			]
 		},
 		{
 			"name": "customer",
@@ -715,126 +836,7 @@
 					},
 					"response": []
 				}
-			]},
-		{
-			"name": "owner",
-			"item": [
-				{
-					"name": "Create new owner",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n  \"document\": \"12345678900\",\r\n   \"user\": {\r\n        \"name\": \"Teste\",\r\n        \"email\": \"teste4@gmail.com\",\r\n        \"username\": \"teste4\",\r\n        \"password\": \"teste4\",\r\n        \"userType\": {\r\n            \"id\": 1,\r\n            \"name\": \"CUSTOMER\"\r\n        },\r\n        \"address\": {\r\n            \"postalCode\": \"00000000\"\r\n        }\r\n    },\r\n    \"restaurants\": [\r\n        {\r\n            \"name\": \"Restaurante Sabor & Arte\",\r\n            \"address\": {\r\n                \"street\": \"Rua das Flores\",\r\n                \"number\": \"123\",\r\n                \"city\": \"São Paulo\",\r\n                \"state\": \"SP\",\r\n                \"postalCode\": \"01234-567\",\r\n                \"country\": \"Brasil\"\r\n            },\r\n            \"cuisineType\": \"Italiana\",\r\n            \"openingHours\": \"Seg-Sex 12:00-22:00, Sáb-Dom 12:00-23:00\",\r\n            \"owner\": {\r\n                \"document\": \"12345678900\",\r\n                \"name\": \"João Silva\",\r\n                \"email\": \"joao.silva@email.com\",\r\n                \"phone\": \"+55 11 91234-5678\"\r\n            }\r\n            }\r\n    ]\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8081/api/owners",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8081",
-							"path": [
-								"api",
-								"owners"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Delete owner",
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8081/api/owners?ownerId=1",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8081",
-							"path": [
-								"api",
-								"owners"
-							],
-							"query": [
-								{
-									"key": "ownerId",
-									"value": "1"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Get one owner",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8081/api/owners?id=1",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8081",
-							"path": [
-								"api",
-								"owners"
-							],
-							"query": [
-								{
-									"key": "id",
-									"value": "1"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Update owner",
-					"request": {
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n  \"document\": \"12345678900\",\r\n   \"user\": {\r\n        \"name\": \"Teste\",\r\n        \"email\": \"teste6@gmail.com\",\r\n        \"username\": \"teste6\",\r\n        \"password\": \"teste6\",\r\n        \"userType\": {\r\n            \"id\": 1,\r\n            \"name\": \"CUSTOMER\"\r\n        },\r\n        \"address\": {\r\n            \"postalCode\": \"00000000\"\r\n        }\r\n    },\r\n    \"restaurants\": [\r\n        {\r\n            \"name\": \"Restaurante Sabor & Arte\",\r\n            \"address\": {\r\n                \"street\": \"Rua das Flores\",\r\n                \"number\": \"123\",\r\n                \"city\": \"São Paulo\",\r\n                \"state\": \"SP\",\r\n                \"postalCode\": \"01234-567\",\r\n                \"country\": \"Brasil\"\r\n            },\r\n            \"cuisineType\": \"Italiana\",\r\n            \"openingHours\": \"Seg-Sex 12:00-22:00, Sáb-Dom 12:00-23:00\"\r\n            }\r\n    ]\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8081/api/owners?ownerId=2",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8081",
-							"path": [
-								"api",
-								"owners"
-							],
-							"query": [
-								{
-									"key": "ownerId",
-									"value": "2"
-								}
-							]
-						}
-					},
-					"response": []
-				}
-			]}
+			]
+		}
 	]
 }

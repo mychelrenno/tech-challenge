@@ -71,7 +71,7 @@ public class OwnerMapperTest {
                 createAddressDto(),
                 "Italian",
                 "09:00-22:00",
-                createOwnerInputDto()
+                1L
         );
     }
 

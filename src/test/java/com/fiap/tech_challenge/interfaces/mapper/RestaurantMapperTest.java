@@ -4,9 +4,7 @@ import com.fiap.tech_challenge.core.domain.Owner;
 import com.fiap.tech_challenge.core.domain.UserType;
 import com.fiap.tech_challenge.core.domain.restaurant.Restaurant;
 import com.fiap.tech_challenge.core.domain.shared.Address;
-import com.fiap.tech_challenge.infrastructure.entity.AddressJpa;
-import com.fiap.tech_challenge.infrastructure.entity.OwnerJpa;
-import com.fiap.tech_challenge.infrastructure.entity.RestaurantJpa;
+import com.fiap.tech_challenge.infrastructure.entity.*;
 import com.fiap.tech_challenge.interfaces.dto.AddressDto;
 import com.fiap.tech_challenge.interfaces.dto.UserTypeDto;
 import com.fiap.tech_challenge.interfaces.dto.owner.OwnerInputDto;
@@ -16,6 +14,8 @@ import com.fiap.tech_challenge.interfaces.dto.user.UserInputDto;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Date;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -44,7 +44,8 @@ class RestaurantMapperTest {
     @Test
     void testToDomain() {
         AddressJpa addressJpa = new AddressJpa("01234-567", "Rua A", "Apto 101", "São Paulo", "Brasil");
-        OwnerJpa ownerJpa = new OwnerJpa();
+        UserJpa userJpa = new UserJpa(1L, "ownerUser", "", "", "password123", new UserTypeJpa(1L, "OWNER"), addressJpa, new Date(), Boolean.TRUE);
+        OwnerJpa ownerJpa = new OwnerJpa(1L, "12345678900", Collections.emptyList(), null);
         ownerJpa.setId(2L);
         RestaurantJpa entity = new RestaurantJpa(2L, "Restaurante JPA", addressJpa, "Japonesa", "09:00-22:00", ownerJpa);
         Restaurant restaurant = RestaurantMapper.convertJpaToEntity(entity);
@@ -68,14 +69,14 @@ class RestaurantMapperTest {
         AddressDto addressDto = new AddressDto("01234-567", "Rua B", "Casa", "Rio de Janeiro", "Brasil");
         UserTypeDto userTypeDto = new UserTypeDto(1L, "OWNER");
         UserInputDto userDto = new UserInputDto("ownerUser", "", "", "password123", userTypeDto , addressDto);
-        OwnerInputDto ownerDto = new OwnerInputDto("12345678900", new ArrayList<>(), userDto);
-        RestaurantInputDto inputDto = new RestaurantInputDto("Restaurante DTO", addressDto, "Brasileira", "10:00-20:00", ownerDto);
+        Long ownerId = 1L;
+        RestaurantInputDto inputDto = new RestaurantInputDto("Restaurante DTO", addressDto, "Brasileira", "10:00-20:00", ownerId);
         Restaurant restaurant = RestaurantMapper.convertInputDtoToDomain(inputDto);
         assertNotNull(restaurant);
         assertEquals(inputDto.name(), restaurant.getName());
         assertEquals(inputDto.cuisineType(), restaurant.getCuisineType());
         assertEquals(inputDto.openingHours(), restaurant.getOpeningHours());
-        assertEquals(inputDto.owner().document(), restaurant.getOwner().getDocument());
+        assertEquals(inputDto.ownerId(), restaurant.getOwner().getId());
         assertNotNull(restaurant.getAddress());
         assertEquals(addressDto.postalCode(), restaurant.getAddress().getPostalCode());
     }
