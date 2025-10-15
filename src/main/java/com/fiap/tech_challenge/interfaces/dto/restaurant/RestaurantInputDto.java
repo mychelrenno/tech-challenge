@@ -8,5 +8,5 @@ public record RestaurantInputDto(
     AddressDto address,
     String cuisineType,
     String openingHours,
-    OwnerInputDto owner
+    Long ownerId
 ) {}

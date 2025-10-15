@@ -3,6 +3,7 @@ package com.fiap.tech_challenge.core.usecase.restaurant;
 import com.fiap.tech_challenge.core.domain.Owner;
 import com.fiap.tech_challenge.core.domain.restaurant.Restaurant;
 import com.fiap.tech_challenge.core.domain.shared.Address;
+import com.fiap.tech_challenge.core.repository.OwnerRepository;
 import com.fiap.tech_challenge.core.repository.RestaurantRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -15,12 +16,14 @@ import static org.mockito.Mockito.*;
 class CreateRestaurantUseCaseTest {
     @Mock
     private RestaurantRepository restaurantRepository;
+    @Mock
+    private OwnerRepository ownerRepository;
     private CreateRestaurantUseCase createRestaurantUseCase;
 
     @BeforeEach
     void setUp() {
         MockitoAnnotations.openMocks(this);
-        createRestaurantUseCase = new CreateRestaurantUseCase(restaurantRepository);
+        createRestaurantUseCase = new CreateRestaurantUseCase(restaurantRepository, ownerRepository);
     }
 
     @Test

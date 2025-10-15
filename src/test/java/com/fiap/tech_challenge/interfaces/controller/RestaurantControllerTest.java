@@ -48,8 +48,8 @@ class RestaurantControllerTest {
     @Test
     void testCreate() {
         AddressDto addressDto = new AddressDto("01234-567", "Endereço A", "Apto 101", "São Paulo", "Brasil");
-        OwnerInputDto ownerDto = new OwnerInputDto( "12345678900", new ArrayList<>(), null);
-        RestaurantInputDto inputDto = new RestaurantInputDto("Restaurante A", addressDto, "Italiana", "08:00-18:00", ownerDto);
+        Long ownerId = 1L;
+        RestaurantInputDto inputDto = new RestaurantInputDto("Restaurante A", addressDto, "Italiana", "08:00-18:00", ownerId);
         Address address = new Address(addressDto.postalCode(), addressDto.street(), addressDto.additionalDetails(), addressDto.city(), addressDto.country());
         Owner owner = new Owner(1L, "12345678900", null, null);
         Restaurant created = new Restaurant(1L, inputDto.name(), address, inputDto.cuisineType(), inputDto.openingHours(), owner);
@@ -64,8 +64,8 @@ class RestaurantControllerTest {
     @Test
     void testUpdate() {
         AddressDto addressDto = new AddressDto("98765-432", "Endereço B", "Casa", "Rio de Janeiro", "Brasil");
-        OwnerInputDto ownerDto = new OwnerInputDto( "09876543211", new ArrayList<>(), null);
-        RestaurantInputDto inputDto = new RestaurantInputDto("Restaurante B", addressDto, "Japonesa", "09:00-22:00", ownerDto);
+        Long ownerId = 1L;
+        RestaurantInputDto inputDto = new RestaurantInputDto("Restaurante B", addressDto, "Japonesa", "09:00-22:00", ownerId);
         Address address = new Address(addressDto.postalCode(), addressDto.street(), addressDto.additionalDetails(), addressDto.city(), addressDto.country());
         Owner owner = new Owner(1L, "12345678900", new ArrayList<>(), null);
         Restaurant updated = new Restaurant(2L, inputDto.name(), address, inputDto.cuisineType(), inputDto.openingHours(), owner);

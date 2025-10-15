@@ -48,5 +48,9 @@ public class Restaurant {
     public void addOwner(Owner owner){
         this.owner = owner;
     }
+
+    public void setOwner(Owner owner) {
+        this.owner = owner;
+    }
 }
 
